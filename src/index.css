@@ -53,6 +53,9 @@ All colors MUST be HSL.
     --sidebar-border: 220 13% 91%;
 
     --sidebar-ring: 217.2 91.2% 59.8%;
+    
+    --splash-gradient-start: 45 100% 96%;
+    --splash-gradient-end: 210 100% 96%;
   }
 
   .dark {
