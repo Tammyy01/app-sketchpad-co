@@ -14,22 +14,12 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 via-white to-orange-50/30 px-6 py-12 flex flex-col">
+    <div className="min-h-screen bg-background px-6 py-12 flex flex-col">
       <div className="flex-1 flex flex-col justify-center max-w-md mx-auto w-full">
-        {/* Header */}
-        <div className="mb-12">
-          <h1 className="text-3xl font-bold text-foreground mb-3">
-            Welcome Back
-          </h1>
-          <p className="text-muted-foreground text-sm leading-relaxed">
-            Login to stay connected, manage events, and grow your impact with Punch.
-          </p>
-        </div>
-
         {/* Phone Number Input */}
-        <div className="space-y-6 mb-8">
-          <div className="space-y-2">
-            <Label htmlFor="phone" className="text-foreground font-medium">
+        <div className="space-y-6 mb-12">
+          <div className="space-y-3">
+            <Label htmlFor="phone" className="text-foreground font-normal text-base">
               Phone number
             </Label>
             <Input
@@ -38,91 +28,95 @@ const Login = () => {
               placeholder="+1 2982 29234"
               value={phoneNumber}
               onChange={(e) => setPhoneNumber(e.target.value)}
-              className="h-12 text-base"
+              className="h-12 text-base border-0 bg-transparent"
             />
           </div>
 
           <Button
             onClick={handleSendCode}
-            variant="brand"
-            className="w-full h-14 text-base rounded-full"
+            className="w-full h-16 text-lg rounded-full bg-[#2D2D2D] text-white hover:bg-[#2D2D2D]/90"
           >
             Send Code
           </Button>
         </div>
 
         {/* Divider */}
-        <div className="relative mb-8">
-          <div className="absolute inset-0 flex items-center">
-            <div className="w-full border-t border-border"></div>
-          </div>
-          <div className="relative flex justify-center text-sm">
-            <span className="px-4 bg-background text-muted-foreground">Or</span>
-          </div>
+        <div className="text-center mb-12">
+          <span className="text-muted-foreground text-base">Or</span>
         </div>
 
         {/* Social Login */}
-        <div className="flex justify-center gap-6 mb-8">
+        <div className="flex justify-center gap-8 mb-12">
           <button
-            className="w-12 h-12 rounded-full bg-white shadow-sm flex items-center justify-center hover:shadow-md transition-shadow"
+            className="hover:opacity-80 transition-opacity"
             onClick={() => console.log("Google login")}
           >
-            <svg className="w-6 h-6" viewBox="0 0 24 24">
+            <svg className="w-12 h-12" viewBox="0 0 48 48">
               <path
                 fill="#4285F4"
-                d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+                d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"
               />
               <path
                 fill="#34A853"
-                d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+                d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"
               />
               <path
                 fill="#FBBC05"
-                d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
+                d="M11.69 28.18c-.44-1.32-.69-2.73-.69-4.18s.25-2.86.69-4.18v-5.7H4.34C2.85 17.09 2 20.43 2 24s.85 6.91 2.34 9.88l5.63-4.45 1.72-1.25z"
               />
               <path
                 fill="#EA4335"
-                d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+                d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7C13.42 14.62 18.27 10.75 24 10.75z"
               />
             </svg>
           </button>
 
           <button
-            className="w-12 h-12 rounded-full bg-[#1877F2] shadow-sm flex items-center justify-center hover:shadow-md transition-shadow"
+            className="hover:opacity-80 transition-opacity"
             onClick={() => console.log("Facebook login")}
           >
-            <svg className="w-6 h-6" viewBox="0 0 24 24" fill="white">
-              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+            <svg className="w-12 h-12" viewBox="0 0 48 48" fill="#1877F2">
+              <path d="M48 24c0-13.255-10.745-24-24-24S0 10.745 0 24c0 11.979 8.776 21.908 20.25 23.708v-16.77h-6.094V24h6.094v-4.641c0-6.015 3.583-9.337 9.065-9.337 2.625 0 5.372.469 5.372.469v5.906h-3.026c-2.981 0-3.911 1.85-3.911 3.748V24h6.656l-1.064 6.938H27.75v16.77C39.224 45.908 48 35.978 48 24z" />
             </svg>
           </button>
 
           <button
-            className="w-12 h-12 rounded-full bg-gradient-to-tr from-[#FD5949] via-[#D6249F] to-[#285AEB] shadow-sm flex items-center justify-center hover:shadow-md transition-shadow"
+            className="hover:opacity-80 transition-opacity"
             onClick={() => console.log("Instagram login")}
           >
-            <svg className="w-6 h-6" viewBox="0 0 24 24" fill="white">
-              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+            <svg className="w-12 h-12" viewBox="0 0 48 48">
+              <defs>
+                <linearGradient id="ig-gradient" x1="0%" y1="100%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="#FD5949" />
+                  <stop offset="50%" stopColor="#D6249F" />
+                  <stop offset="100%" stopColor="#285AEB" />
+                </linearGradient>
+              </defs>
+              <path
+                fill="url(#ig-gradient)"
+                d="M24 4.324c6.408 0 7.167.013 9.699.141 6.505.297 9.534 3.376 9.831 9.831.128 2.533.14 3.292.14 9.7 0 6.41-.013 7.168-.14 9.7-.299 6.449-3.327 9.534-9.831 9.831-2.533.128-3.289.14-9.699.14-6.408 0-7.167-.013-9.699-.14-6.509-.299-9.534-3.387-9.831-9.832-.128-2.532-.14-3.29-.14-9.699 0-6.408.013-7.167.14-9.699.299-6.453 3.327-9.534 9.831-9.831 2.533-.128 3.291-.141 9.699-.141zM24 0c-6.519 0-7.335.028-9.895.144-8.715.4-13.56 5.24-13.96 13.96C.028 16.665 0 17.481 0 24s.028 7.335.144 9.895c.4 8.716 5.24 13.56 13.96 13.96C16.665 47.972 17.481 48 24 48s7.335-.028 9.895-.144c8.708-.4 13.564-5.24 13.959-13.96C47.972 31.335 48 30.519 48 24s-.028-7.335-.144-9.895c-.392-8.708-5.236-13.56-13.959-13.96C31.335.028 30.519 0 24 0zm0 11.676c-6.806 0-12.324 5.518-12.324 12.324S17.194 36.324 24 36.324 36.324 30.806 36.324 24 30.806 11.676 24 11.676zM24 32c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8zm12.811-23.69c-1.591 0-2.881 1.29-2.881 2.88s1.29 2.881 2.881 2.881c1.59 0 2.88-1.291 2.88-2.881s-1.29-2.88-2.88-2.88z"
+              />
             </svg>
           </button>
 
           <button
-            className="w-12 h-12 rounded-full bg-[#0A66C2] shadow-sm flex items-center justify-center hover:shadow-md transition-shadow"
+            className="hover:opacity-80 transition-opacity"
             onClick={() => console.log("LinkedIn login")}
           >
-            <svg className="w-6 h-6" viewBox="0 0 24 24" fill="white">
-              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+            <svg className="w-12 h-12" viewBox="0 0 48 48" fill="#0A66C2">
+              <path d="M40.894 40.904h-7.107v-11.138c0-2.656-.054-6.074-3.703-6.074-3.706 0-4.272 2.891-4.272 5.878v11.334h-7.107V18h6.828v3.122h.093c.954-1.8 3.274-3.701 6.74-3.701 7.202 0 8.535 4.74 8.535 10.91v12.573zM10.674 14.866c-2.287 0-4.126-1.852-4.126-4.129s1.84-4.126 4.126-4.126c2.28 0 4.128 1.85 4.128 4.126 0 2.277-1.849 4.129-4.128 4.129zm3.564 26.038H7.107V18h7.131v22.904zM44.45 0H3.544C1.584 0 0 1.547 0 3.458v41.084C0 46.453 1.584 48 3.544 48h40.902C46.416 48 48 46.453 48 44.542V3.458C48 1.547 46.416 0 44.45 0h.006z" />
             </svg>
           </button>
         </div>
 
         {/* Terms */}
-        <div className="text-center text-xs text-muted-foreground">
+        <div className="text-center text-sm text-foreground">
           By signing in, you agree to Tripcoin's{" "}
-          <a href="#" className="text-blue-600 hover:underline">
+          <a href="#" className="text-[#4A9EFF] hover:underline">
             Terms of Service
           </a>{" "}
           and{" "}
-          <a href="#" className="text-blue-600 hover:underline">
+          <a href="#" className="text-[#4A9EFF] hover:underline">
             Privacy Policy
           </a>
           .
