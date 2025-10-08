@@ -40,16 +40,17 @@ const Onboarding = () => {
         <div className="space-y-4 w-full max-w-sm">
           <Button 
             onClick={() => navigate("/login")}
-            className="w-full h-14 text-lg bg-emerald-600 hover:bg-emerald-700 text-white rounded-full"
+            variant="brand"
+            className="w-full h-14 text-lg rounded-full"
           >
             Login
           </Button>
           
           <button
             onClick={() => navigate("/apply")}
-            className="flex items-center justify-center gap-2 w-full text-emerald-700 font-medium"
+            className="flex items-center justify-center gap-2 w-full text-brand-green font-medium"
           >
-            <span className="text-emerald-700 font-bold">P&gt;</span>
+            <span className="text-brand-green font-bold">P&gt;</span>
             Apply to be an Ambassador
           </button>
         </div>
