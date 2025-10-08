@@ -1,5 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
+import avatar1 from "@/assets/avatar1.png";
+import avatar2 from "@/assets/avatar2.png";
+import avatar3 from "@/assets/avatar3.png";
+import avatar4 from "@/assets/avatar4.png";
 
 const Onboarding = () => {
   const navigate = useNavigate();
@@ -9,16 +13,16 @@ const Onboarding = () => {
       {/* Avatar circles section */}
       <div className="relative w-full h-64 flex items-center justify-center mt-8">
         <div className="absolute top-0 left-16 w-24 h-24 rounded-full bg-white shadow-lg overflow-hidden">
-          <div className="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300" />
+          <img src={avatar1} alt="Ambassador" className="w-full h-full object-cover" />
         </div>
         <div className="absolute top-8 right-12 w-20 h-20 rounded-full bg-white shadow-lg overflow-hidden">
-          <div className="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300" />
+          <img src={avatar2} alt="Ambassador" className="w-full h-full object-cover" />
         </div>
         <div className="relative z-10 w-40 h-40 rounded-full bg-white shadow-xl overflow-hidden">
-          <div className="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300" />
+          <img src={avatar3} alt="Ambassador" className="w-full h-full object-cover" />
         </div>
         <div className="absolute bottom-4 right-20 w-20 h-20 rounded-full bg-white shadow-lg overflow-hidden">
-          <div className="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300" />
+          <img src={avatar4} alt="Ambassador" className="w-full h-full object-cover" />
         </div>
       </div>
 
