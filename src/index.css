@@ -59,6 +59,9 @@ All colors MUST be HSL.
     
     --splash-gradient-start: 45 100% 96%;
     --splash-gradient-end: 210 100% 96%;
+    
+    --login-gradient-start: 40 60% 90%;
+    --login-gradient-end: 220 60% 90%;
   }
 
   .dark {

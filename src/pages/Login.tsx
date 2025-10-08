@@ -14,12 +14,25 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background px-6 py-12 flex flex-col">
+    <div 
+      className="min-h-screen px-6 py-12 flex flex-col"
+      style={{
+        background: 'linear-gradient(to top right, hsl(var(--login-gradient-start)), hsl(var(--login-gradient-end)))'
+      }}
+    >
       <div className="flex-1 flex flex-col justify-center max-w-md mx-auto w-full">
+        {/* Welcome Header */}
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold text-foreground mb-2">Welcome Back</h1>
+          <p className="text-foreground/70 text-sm">
+            Login to stay connected, manage events, and grow your impact with Punch.
+          </p>
+        </div>
+
         {/* Phone Number Input */}
-        <div className="space-y-6 mb-12">
+        <div className="space-y-6 mb-8">
           <div className="space-y-3">
-            <Label htmlFor="phone" className="text-foreground font-normal text-base">
+            <Label htmlFor="phone" className="text-foreground font-normal text-sm">
               Phone number
             </Label>
             <Input
@@ -28,30 +41,30 @@ const Login = () => {
               placeholder="+1 2982 29234"
               value={phoneNumber}
               onChange={(e) => setPhoneNumber(e.target.value)}
-              className="h-12 text-base border-0 bg-transparent"
+              className="h-14 text-base bg-white border-0 rounded-2xl"
             />
           </div>
 
           <Button
             onClick={handleSendCode}
-            className="w-full h-16 text-lg rounded-full bg-[#2D2D2D] text-white hover:bg-[#2D2D2D]/90"
+            className="w-full h-14 text-base rounded-full bg-[#2D2D2D] text-white hover:bg-[#2D2D2D]/90"
           >
             Send Code
           </Button>
         </div>
 
         {/* Divider */}
-        <div className="text-center mb-12">
-          <span className="text-muted-foreground text-base">Or</span>
+        <div className="text-center mb-8">
+          <span className="text-foreground/60 text-sm">Or</span>
         </div>
 
         {/* Social Login */}
-        <div className="flex justify-center gap-8 mb-12">
+        <div className="flex justify-center gap-6 mb-8">
           <button
             className="hover:opacity-80 transition-opacity"
             onClick={() => console.log("Google login")}
           >
-            <svg className="w-12 h-12" viewBox="0 0 48 48">
+            <svg className="w-10 h-10" viewBox="0 0 48 48">
               <path
                 fill="#4285F4"
                 d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"
@@ -75,7 +88,7 @@ const Login = () => {
             className="hover:opacity-80 transition-opacity"
             onClick={() => console.log("Facebook login")}
           >
-            <svg className="w-12 h-12" viewBox="0 0 48 48" fill="#1877F2">
+            <svg className="w-10 h-10" viewBox="0 0 48 48" fill="#1877F2">
               <path d="M48 24c0-13.255-10.745-24-24-24S0 10.745 0 24c0 11.979 8.776 21.908 20.25 23.708v-16.77h-6.094V24h6.094v-4.641c0-6.015 3.583-9.337 9.065-9.337 2.625 0 5.372.469 5.372.469v5.906h-3.026c-2.981 0-3.911 1.85-3.911 3.748V24h6.656l-1.064 6.938H27.75v16.77C39.224 45.908 48 35.978 48 24z" />
             </svg>
           </button>
@@ -84,7 +97,7 @@ const Login = () => {
             className="hover:opacity-80 transition-opacity"
             onClick={() => console.log("Instagram login")}
           >
-            <svg className="w-12 h-12" viewBox="0 0 48 48">
+            <svg className="w-10 h-10" viewBox="0 0 48 48">
               <defs>
                 <linearGradient id="ig-gradient" x1="0%" y1="100%" x2="100%" y2="0%">
                   <stop offset="0%" stopColor="#FD5949" />
@@ -103,7 +116,7 @@ const Login = () => {
             className="hover:opacity-80 transition-opacity"
             onClick={() => console.log("LinkedIn login")}
           >
-            <svg className="w-12 h-12" viewBox="0 0 48 48" fill="#0A66C2">
+            <svg className="w-10 h-10" viewBox="0 0 48 48" fill="#0A66C2">
               <path d="M40.894 40.904h-7.107v-11.138c0-2.656-.054-6.074-3.703-6.074-3.706 0-4.272 2.891-4.272 5.878v11.334h-7.107V18h6.828v3.122h.093c.954-1.8 3.274-3.701 6.74-3.701 7.202 0 8.535 4.74 8.535 10.91v12.573zM10.674 14.866c-2.287 0-4.126-1.852-4.126-4.129s1.84-4.126 4.126-4.126c2.28 0 4.128 1.85 4.128 4.126 0 2.277-1.849 4.129-4.128 4.129zm3.564 26.038H7.107V18h7.131v22.904zM44.45 0H3.544C1.584 0 0 1.547 0 3.458v41.084C0 46.453 1.584 48 3.544 48h40.902C46.416 48 48 46.453 48 44.542V3.458C48 1.547 46.416 0 44.45 0h.006z" />
             </svg>
           </button>
