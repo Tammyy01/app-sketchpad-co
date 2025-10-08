@@ -42,49 +42,59 @@ const VerifyCode = () => {
       {/* Back Button */}
       <button
         onClick={() => navigate(-1)}
-        className="self-start mb-8 p-2 hover:opacity-70 transition-opacity"
+        className="self-start mb-12 hover:opacity-70 transition-opacity"
       >
-        <ArrowLeft className="w-6 h-6 text-gray-700" />
+        <ArrowLeft className="w-6 h-6 text-gray-900" strokeWidth={2} />
       </button>
 
       {/* Content */}
       <div className="flex-1 flex flex-col">
-        <h1 className="text-[32px] font-bold text-gray-900 mb-3">
+        <h1 className="text-[28px] font-bold text-gray-900 mb-3">
           Verification code
         </h1>
-        <p className="text-gray-600 mb-8">
+        <p className="text-gray-600 text-sm mb-12">
           Enter the 4 digit verification code sent to {email}
         </p>
 
-        {/* OTP Input */}
-        <div className="flex items-center justify-between mb-6">
+        {/* OTP Input - Centered */}
+        <div className="flex flex-col items-center mb-8">
           <InputOTP
             maxLength={4}
             value={value}
             onChange={(value) => setValue(value)}
           >
-            <InputOTPGroup className="gap-4">
+            <InputOTPGroup className="gap-3">
               <InputOTPSlot 
                 index={0} 
-                className="w-16 h-16 text-2xl border-0 bg-white rounded-xl shadow-sm"
+                className="w-14 h-14 text-2xl border-0 bg-white rounded-lg shadow-sm"
               />
               <InputOTPSlot 
                 index={1} 
-                className="w-16 h-16 text-2xl border-0 bg-white rounded-xl shadow-sm"
+                className="w-14 h-14 text-2xl border-0 bg-white rounded-lg shadow-sm"
               />
               <InputOTPSlot 
                 index={2} 
-                className="w-16 h-16 text-2xl border-0 bg-white rounded-xl shadow-sm"
+                className="w-14 h-14 text-2xl border-0 bg-white rounded-lg shadow-sm"
               />
               <InputOTPSlot 
                 index={3} 
-                className="w-16 h-16 text-2xl border-0 bg-white rounded-xl shadow-sm"
+                className="w-14 h-14 text-2xl border-0 bg-white rounded-lg shadow-sm"
               />
             </InputOTPGroup>
           </InputOTP>
-          <span className="text-brand-green text-sm font-medium ml-4">
-            {timer}s
-          </span>
+          {/* Timer positioned under the far right box */}
+          <div className="w-full flex justify-center mt-2">
+            <div className="flex gap-3" style={{ width: '224px' }}>
+              <div className="w-14"></div>
+              <div className="w-14"></div>
+              <div className="w-14"></div>
+              <div className="w-14 flex justify-center">
+                <span className="text-brand-green text-sm font-medium">
+                  {timer}s
+                </span>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Verify Button */}
