@@ -42,9 +42,9 @@ const VerifyCode = () => {
       {/* Back Button */}
       <button
         onClick={() => navigate(-1)}
-        className="self-start mb-12 hover:opacity-70 transition-opacity"
+        className="self-start mb-12 hover:opacity-70 transition-opacity w-10 h-10 bg-white rounded-lg flex items-center justify-center shadow-sm"
       >
-        <ArrowLeft className="w-6 h-6 text-gray-900" strokeWidth={2} />
+        <ArrowLeft className="w-5 h-5 text-gray-900" strokeWidth={2} />
       </button>
 
       {/* Content */}
@@ -88,7 +88,7 @@ const VerifyCode = () => {
               <div className="w-14"></div>
               <div className="w-14"></div>
               <div className="w-14"></div>
-              <div className="w-14 flex justify-center">
+              <div className="w-14 flex justify-end">
                 <span className="text-brand-green text-sm font-medium">
                   {timer}s
                 </span>
