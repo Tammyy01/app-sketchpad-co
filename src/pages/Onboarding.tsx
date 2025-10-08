@@ -9,7 +9,7 @@ const Onboarding = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-between bg-gradient-to-br from-[hsl(var(--onboarding-gradient-start))] to-[hsl(var(--onboarding-gradient-end))] px-6 py-12">
+    <div className="min-h-screen flex flex-col items-center justify-between bg-gradient-to-b from-[hsl(var(--onboarding-gradient-start))] to-[hsl(var(--onboarding-gradient-end))] px-6 py-12">
       {/* Avatar circles section */}
       <div className="relative w-full h-64 flex items-center justify-center mt-8">
         <div className="absolute top-0 left-16 w-24 h-24 rounded-full bg-white shadow-lg overflow-hidden">
