@@ -9,7 +9,7 @@ const Onboarding = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-between bg-gradient-to-b from-blue-100 via-white to-orange-100 px-6 py-12">
+    <div className="min-h-screen flex flex-col items-center justify-between bg-gradient-to-br from-[hsl(var(--onboarding-gradient-start))] to-[hsl(var(--onboarding-gradient-end))] px-6 py-12">
       {/* Avatar circles section */}
       <div className="relative w-full h-64 flex items-center justify-center mt-8">
         <div className="absolute top-0 left-16 w-24 h-24 rounded-full bg-white shadow-lg overflow-hidden">
@@ -40,17 +40,17 @@ const Onboarding = () => {
         <div className="space-y-4 w-full max-w-sm">
           <Button 
             onClick={() => navigate("/login")}
-            variant="brand"
-            className="w-full h-14 text-lg rounded-full"
+            className="w-full h-14 text-lg rounded-full bg-[#343434] text-white hover:bg-[#2a2a2a]"
           >
             Login
           </Button>
           
           <button
             onClick={() => navigate("/apply")}
-            className="flex items-center justify-center gap-2 w-full text-brand-green font-medium"
+            className="flex items-center justify-center gap-2 w-full font-medium"
+            style={{ color: '#343434' }}
           >
-            <span className="text-brand-green font-bold">P&gt;</span>
+            <span className="font-bold" style={{ color: '#343434' }}>P&gt;</span>
             Apply to be an Ambassador
           </button>
         </div>

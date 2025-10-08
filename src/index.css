@@ -62,6 +62,9 @@ All colors MUST be HSL.
     
     --login-gradient-start: 40 60% 90%;
     --login-gradient-end: 220 60% 90%;
+    
+    --onboarding-gradient-start: 20 50% 90%;
+    --onboarding-gradient-end: 220 35% 85%;
   }
 
   .dark {
