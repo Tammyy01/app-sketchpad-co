@@ -12,12 +12,12 @@ const Index = () => {
       <div className="flex-1 flex items-center justify-center px-6 pb-24">
         <div className="w-full max-w-sm">
           {/* QR Code Container */}
-          <div className="bg-white rounded-3xl p-8 shadow-lg">
+          <div className="bg-white rounded-[32px] p-8 shadow-[0_8px_30px_rgba(0,0,0,0.12)]">
             <div className="relative">
               {/* QR Code */}
               <QRCode
                 value={userProfileUrl}
-                size={256}
+                size={346}
                 className="w-full h-auto"
                 level="H"
               />
