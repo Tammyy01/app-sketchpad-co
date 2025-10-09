@@ -38,7 +38,7 @@ const VerifyCode = () => {
       {/* Back Button */}
       <button
         onClick={() => navigate(-1)}
-        className="self-start mb-12 hover:opacity-70 transition-opacity w-10 h-10 bg-white rounded-lg flex items-center justify-center shadow-sm"
+        className="self-start mt-8 mb-12 hover:opacity-70 transition-opacity w-10 h-10 bg-white rounded-lg flex items-center justify-center shadow-sm"
       >
         <ArrowLeft className="w-5 h-5 text-gray-900" strokeWidth={2} />
       </button>
