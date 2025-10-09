@@ -83,17 +83,10 @@ const VerifyCode = () => {
             </InputOTPGroup>
           </InputOTP>
           {/* Timer positioned under the far right box */}
-          <div className="w-full flex justify-center mt-2">
-            <div className="flex gap-3" style={{ width: '224px' }}>
-              <div className="w-14"></div>
-              <div className="w-14"></div>
-              <div className="w-14"></div>
-              <div className="w-14 flex justify-end">
-                <span className="text-brand-green text-sm font-medium">
-                  {timer}s
-                </span>
-              </div>
-            </div>
+          <div className="w-full flex justify-end mt-2" style={{ maxWidth: '224px', margin: '8px auto 0' }}>
+            <span className="text-brand-green text-sm font-medium">
+              {timer}s
+            </span>
           </div>
         </div>
 
