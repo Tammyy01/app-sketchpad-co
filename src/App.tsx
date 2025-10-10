@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Splash from "./pages/Splash";
 import Onboarding from "./pages/Onboarding";
 import Apply from "./pages/Apply";
+import VideoRecording from "./pages/VideoRecording";
 import Login from "./pages/Login";
 import VerifyCode from "./pages/VerifyCode";
 import Index from "./pages/Index";
@@ -23,6 +24,7 @@ const App = () => (
           <Route path="/" element={<Splash />} />
           <Route path="/onboarding" element={<Onboarding />} />
           <Route path="/apply" element={<Apply />} />
+          <Route path="/video-recording" element={<VideoRecording />} />
           <Route path="/login" element={<Login />} />
           <Route path="/verify-code" element={<VerifyCode />} />
           <Route path="/home" element={<Index />} />

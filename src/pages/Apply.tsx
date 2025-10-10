@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -10,7 +11,13 @@ import {
 import { Video, Phone, Mail } from "lucide-react";
 
 const Apply = () => {
+  const navigate = useNavigate();
   const [showCameraDialog, setShowCameraDialog] = useState(false);
+
+  const handleCameraAccess = () => {
+    setShowCameraDialog(false);
+    navigate("/video-recording");
+  };
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-start bg-gradient-to-b from-[hsl(var(--onboarding-gradient-start))] to-[hsl(var(--onboarding-gradient-end))] px-6 py-12">
@@ -81,7 +88,7 @@ const Apply = () => {
             </Button>
             <Button
               className="flex-1 h-12 rounded-full bg-foreground text-background hover:bg-foreground/90"
-              onClick={() => setShowCameraDialog(false)}
+              onClick={handleCameraAccess}
             >
               Ok
             </Button>
