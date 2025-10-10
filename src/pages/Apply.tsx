@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
@@ -8,11 +8,17 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { Video, Phone, Mail } from "lucide-react";
+import { Video, Phone, Mail, Check } from "lucide-react";
 
 const Apply = () => {
   const navigate = useNavigate();
   const [showCameraDialog, setShowCameraDialog] = useState(false);
+  const [videoCompleted, setVideoCompleted] = useState(false);
+
+  useEffect(() => {
+    const completed = localStorage.getItem("videoCompleted") === "true";
+    setVideoCompleted(completed);
+  }, []);
 
   const handleCameraAccess = () => {
     setShowCameraDialog(false);
@@ -37,13 +43,21 @@ const Apply = () => {
         <div className="w-full space-y-4">
           <Button
             variant="outline"
-            className="w-full h-16 rounded-full bg-white hover:bg-gray-50 border-0 shadow-sm flex items-center justify-start px-6 gap-4"
-            onClick={() => setShowCameraDialog(true)}
+            className="w-full h-16 rounded-full bg-white hover:bg-gray-50 border-0 shadow-sm flex items-center justify-between px-6"
+            onClick={() => !videoCompleted && setShowCameraDialog(true)}
+            disabled={videoCompleted}
           >
-            <div className="w-10 h-10 rounded-full bg-red-500 flex items-center justify-center flex-shrink-0">
-              <Video className="w-5 h-5 text-white" />
+            <div className="flex items-center gap-4">
+              <div className={`w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 ${videoCompleted ? 'bg-muted' : 'bg-red-500'}`}>
+                <Video className={`w-5 h-5 ${videoCompleted ? 'text-muted-foreground' : 'text-white'}`} />
+              </div>
+              <span className={`font-medium ${videoCompleted ? 'text-muted-foreground' : 'text-foreground'}`}>Record Video</span>
             </div>
-            <span className="text-foreground font-medium">Record Video</span>
+            {videoCompleted && (
+              <div className="w-6 h-6 rounded-full bg-green-500 flex items-center justify-center">
+                <Check className="w-4 h-4 text-white stroke-[3]" />
+              </div>
+            )}
           </Button>
 
           <Button

@@ -1,12 +1,20 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { X, Image, RotateCcw, Play } from "lucide-react";
+import { X, Image, RotateCcw, Play, Check } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 const VideoRecording = () => {
   const navigate = useNavigate();
   const [isRecording, setIsRecording] = useState(false);
   const [hasRecorded, setHasRecorded] = useState(false);
+  const [showSuccessDialog, setShowSuccessDialog] = useState(false);
   const [recordingTime, setRecordingTime] = useState(0);
   const videoRef = useRef<HTMLVideoElement>(null);
   const streamRef = useRef<MediaStream | null>(null);
@@ -71,6 +79,11 @@ const VideoRecording = () => {
 
   const handleUpload = () => {
     // Upload logic here
+    setShowSuccessDialog(true);
+  };
+
+  const handleContinue = () => {
+    localStorage.setItem("videoCompleted", "true");
     navigate("/apply");
   };
 
@@ -126,6 +139,31 @@ const VideoRecording = () => {
             </Button>
           </div>
         </div>
+
+        {/* Success Dialog */}
+        <Dialog open={showSuccessDialog} onOpenChange={setShowSuccessDialog}>
+          <DialogContent className="sm:max-w-sm rounded-3xl border-0 p-8">
+            <div className="flex flex-col items-center text-center space-y-6">
+              <div className="w-16 h-16 rounded-full bg-green-500 flex items-center justify-center">
+                <Check className="w-8 h-8 text-white stroke-[3]" />
+              </div>
+              <DialogHeader className="space-y-3">
+                <DialogTitle className="text-2xl font-semibold text-foreground">
+                  Successful
+                </DialogTitle>
+                <DialogDescription className="text-muted-foreground text-base">
+                  Your video has been successfully uploaded
+                </DialogDescription>
+              </DialogHeader>
+              <Button
+                className="w-full h-14 rounded-full bg-foreground text-background hover:bg-foreground/90 font-medium"
+                onClick={handleContinue}
+              >
+                Continue
+              </Button>
+            </div>
+          </DialogContent>
+        </Dialog>
       </div>
     );
   }
