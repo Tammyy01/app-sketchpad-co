@@ -73,7 +73,10 @@ const VideoRecording = () => {
       />
 
       {/* Top controls */}
-      <div className="absolute top-0 left-0 right-0 p-6 flex items-center justify-between z-10">
+      <div 
+        className="absolute top-0 left-0 right-0 p-6 flex items-center justify-between z-10"
+        style={{ paddingTop: 'max(env(safe-area-inset-top), 1.5rem)' }}
+      >
         <Button
           variant="ghost"
           size="icon"
@@ -84,7 +87,7 @@ const VideoRecording = () => {
         </Button>
 
         {/* Timer */}
-        <div className="px-4 py-2 rounded-lg bg-black/60 backdrop-blur-sm">
+        <div className={`px-4 py-2 rounded-lg ${isRecording ? 'bg-red-600' : 'bg-black/60'} backdrop-blur-sm`}>
           <span className="text-white font-medium">{formatTime(recordingTime)}</span>
         </div>
 
@@ -92,7 +95,10 @@ const VideoRecording = () => {
       </div>
 
       {/* Bottom controls */}
-      <div className="absolute bottom-0 left-0 right-0 p-6 pb-12">
+      <div 
+        className="absolute bottom-0 left-0 right-0 p-6"
+        style={{ paddingBottom: 'max(env(safe-area-inset-bottom), 3rem)' }}
+      >
         <div className="bg-black/80 backdrop-blur-md rounded-[2rem] px-8 py-6">
           <div className="flex items-center justify-between max-w-md mx-auto">
             {/* Gallery button */}
