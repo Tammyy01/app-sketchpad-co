@@ -2,6 +2,14 @@ import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { Check } from "lucide-react";
 
 const ApplyVerifyCode = () => {
   const navigate = useNavigate();
@@ -9,6 +17,7 @@ const ApplyVerifyCode = () => {
   const phoneNumber = location.state?.phoneNumber || "";
   const [value, setValue] = useState("");
   const [timer, setTimer] = useState(60);
+  const [showSuccess, setShowSuccess] = useState(false);
 
   useEffect(() => {
     if (timer > 0) {
@@ -22,9 +31,13 @@ const ApplyVerifyCode = () => {
   const handleVerify = () => {
     // Handle verification logic here
     console.log("Verifying code:", value);
-    // Mark phone as completed and navigate back to apply
-    localStorage.setItem("phoneCompleted", "true");
-    navigate("/apply");
+    // Show success dialog
+    setShowSuccess(true);
+  };
+
+  const handleContinue = () => {
+    // Navigate back to apply with phone completion state
+    navigate("/apply", { state: { phoneVerified: true } });
   };
 
   const handleResend = () => {
@@ -86,6 +99,33 @@ const ApplyVerifyCode = () => {
           </button>
         </p>
       </div>
+
+      {/* Success dialog */}
+      <Dialog open={showSuccess} onOpenChange={setShowSuccess}>
+        <DialogContent className="w-[320px] rounded-3xl border-0 p-8">
+          <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-emerald-100">
+            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white ring-2 ring-emerald-500">
+              <Check className="h-6 w-6 text-emerald-600" />
+            </div>
+          </div>
+          <DialogHeader className="text-center">
+            <DialogTitle className="text-2xl font-semibold text-foreground">
+              Successful
+            </DialogTitle>
+            <DialogDescription className="text-muted-foreground pt-2">
+              Your phone number has been successfully verified
+            </DialogDescription>
+          </DialogHeader>
+          <div className="pt-6">
+            <Button
+              className="w-full h-12 rounded-full bg-foreground text-background hover:bg-foreground/90"
+              onClick={handleContinue}
+            >
+              Continue
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
