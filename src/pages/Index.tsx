@@ -64,7 +64,7 @@ const Index = () => {
 
             {/* Complete Profile Button */}
             <Button
-              onClick={() => navigate("/apply")}
+              onClick={() => navigate("/complete-profile")}
               className="w-full max-w-xs h-14 rounded-full bg-foreground text-background hover:bg-foreground/90 text-base font-medium mt-8"
             >
               Complete Profile
