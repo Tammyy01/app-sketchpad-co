@@ -154,7 +154,8 @@ const CompleteProfile = () => {
             <div className="pt-8">
               <Button
                 type="submit"
-                className="w-full h-14 rounded-full bg-foreground text-background hover:bg-foreground/90 text-base font-medium"
+                className="w-full h-14 rounded-full text-white text-base font-medium"
+                style={{ backgroundColor: "#343434" }}
               >
                 Submit
               </Button>
