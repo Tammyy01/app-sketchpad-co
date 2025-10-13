@@ -7,7 +7,7 @@ import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp
 const VerifyCode = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const email = location.state?.email || "example@gmail.com";
+  const phoneNumber = location.state?.phoneNumber || "";
   const [value, setValue] = useState("");
   const [timer, setTimer] = useState(60);
 
@@ -34,32 +34,31 @@ const VerifyCode = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[hsl(var(--login-gradient-start))] to-[hsl(var(--login-gradient-end))] flex flex-col p-6">
-      {/* Back Button */}
-      <button
-        onClick={() => navigate(-1)}
-        className="self-start mt-8 mb-12 hover:opacity-70 transition-opacity w-10 h-10 bg-white rounded-lg flex items-center justify-center shadow-sm"
-      >
-        <ArrowLeft className="w-5 h-5 text-gray-900" strokeWidth={2} />
-      </button>
+    <div className="min-h-screen bg-gradient-to-b from-[hsl(var(--login-gradient-start))] to-[hsl(var(--login-gradient-end))] flex flex-col items-center px-6 pt-24 pb-safe">
+      {/* Header Text */}
+      <div className="text-center mb-16">
+        <h1 className="text-[20px] font-medium text-gray-900 leading-relaxed">
+          Input the code sent to
+          <br />
+          your mobile
+        </h1>
+      </div>
 
       {/* Content */}
-      <div className="flex-1 flex flex-col">
-        <h1 className="text-[28px] font-bold text-gray-900 mb-3">Verification code</h1>
-        <p className="text-gray-600 text-sm mb-12">Enter the 4 digit verification code sent to {email}</p>
+      <div className="w-full max-w-md flex flex-col">
 
         {/* OTP Input - Centered */}
-        <div className="flex flex-col items-center mb-8">
+        <div className="flex flex-col items-center mb-10">
           <InputOTP maxLength={4} value={value} onChange={(value) => setValue(value)}>
             <InputOTPGroup className="gap-3">
-              <InputOTPSlot index={0} className="w-14 h-14 text-2xl border-0 bg-white rounded-lg shadow-sm" />
-              <InputOTPSlot index={1} className="w-14 h-14 text-2xl border-0 bg-white rounded-lg shadow-sm" />
-              <InputOTPSlot index={2} className="w-14 h-14 text-2xl border-0 bg-white rounded-lg shadow-sm" />
-              <InputOTPSlot index={3} className="w-14 h-14 text-2xl border-0 bg-white rounded-lg shadow-sm" />
+              <InputOTPSlot index={0} className="w-16 h-16 text-2xl border-0 bg-white rounded-xl shadow-sm" />
+              <InputOTPSlot index={1} className="w-16 h-16 text-2xl border-0 bg-white rounded-xl shadow-sm" />
+              <InputOTPSlot index={2} className="w-16 h-16 text-2xl border-0 bg-white rounded-xl shadow-sm" />
+              <InputOTPSlot index={3} className="w-16 h-16 text-2xl border-0 bg-white rounded-xl shadow-sm" />
             </InputOTPGroup>
           </InputOTP>
           {/* Timer positioned under the far right box */}
-          <div className="w-full max-w-[284px] flex justify-end mt-3">
+          <div className="w-full max-w-[304px] flex justify-end mt-3">
             <span className="text-[#4CAF50] text-[14px] font-medium">{timer}s</span>
           </div>
         </div>
