@@ -47,6 +47,16 @@ const Apply = () => {
     }
   }, [location.state, navigate]);
 
+  // When coming back from email verification
+  useEffect(() => {
+    const flag = (location.state as any)?.emailVerified;
+    if (flag) {
+      setProgress((p) => ({ ...p, email: true }));
+      // Clear the route state
+      navigate(".", { replace: true, state: {} });
+    }
+  }, [location.state, navigate]);
+
   const handleCameraAccess = () => {
     setShowCameraDialog(false);
     navigate("/video-recording");
