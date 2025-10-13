@@ -63,6 +63,7 @@ const Apply = () => {
           <Button
             variant="outline"
             className="w-full h-16 rounded-full bg-white hover:bg-gray-50 border-0 shadow-sm flex items-center justify-start px-6 gap-4"
+            onClick={() => navigate("/add-phone")}
           >
             <div className="w-10 h-10 rounded-full bg-green-500 flex items-center justify-center flex-shrink-0">
               <Phone className="w-5 h-5 text-white" />
