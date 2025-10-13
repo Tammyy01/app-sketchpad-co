@@ -9,6 +9,7 @@ import Apply from "./pages/Apply";
 import VideoRecording from "./pages/VideoRecording";
 import Login from "./pages/Login";
 import VerifyCode from "./pages/VerifyCode";
+import ApplyVerifyCode from "./pages/ApplyVerifyCode";
 import AddPhone from "./pages/AddPhone";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
@@ -28,6 +29,7 @@ const App = () => (
           <Route path="/video-recording" element={<VideoRecording />} />
           <Route path="/login" element={<Login />} />
           <Route path="/verify-code" element={<VerifyCode />} />
+          <Route path="/apply-verify-code" element={<ApplyVerifyCode />} />
           <Route path="/add-phone" element={<AddPhone />} />
           <Route path="/home" element={<Index />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

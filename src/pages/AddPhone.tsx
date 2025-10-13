@@ -11,7 +11,7 @@ const AddPhone = () => {
   const handleSubmit = () => {
     // Handle phone submission logic here
     console.log("Phone number submitted:", phoneNumber);
-    navigate("/verify-code", { state: { phoneNumber } });
+    navigate("/apply-verify-code", { state: { phoneNumber } });
   };
 
   return (
