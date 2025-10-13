@@ -62,7 +62,7 @@ const CompleteProfile = () => {
         {/* Avatar Section */}
         <div className="flex flex-col items-center space-y-4">
           <div className="relative">
-            <div className="w-32 h-32 rounded-full bg-white shadow-lg flex items-center justify-center overflow-hidden">
+            <div className="w-32 h-32 rounded-full bg-white flex items-center justify-center overflow-hidden">
               {profileImage ? (
                 <img
                   src={profileImage}
@@ -102,7 +102,7 @@ const CompleteProfile = () => {
                   <FormControl>
                     <Input
                       placeholder="John Doe"
-                      className="h-12 rounded-xl bg-white border-0 shadow-sm"
+                      className="h-12 rounded-xl bg-white border-0"
                       {...field}
                     />
                   </FormControl>
@@ -122,7 +122,7 @@ const CompleteProfile = () => {
                     <Input
                       type="email"
                       placeholder="ab@gmail.com"
-                      className="h-12 rounded-xl bg-white border-0 shadow-sm"
+                      className="h-12 rounded-xl bg-white border-0"
                       {...field}
                     />
                   </FormControl>
@@ -141,7 +141,7 @@ const CompleteProfile = () => {
                   <FormControl>
                     <Input
                       placeholder="ab/linkedin.com"
-                      className="h-12 rounded-xl bg-white border-0 shadow-sm"
+                      className="h-12 rounded-xl bg-white border-0"
                       {...field}
                     />
                   </FormControl>
