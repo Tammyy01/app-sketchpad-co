@@ -6,7 +6,7 @@ import * as z from "zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { User, Upload } from "lucide-react";
+import { Camera, Pencil } from "lucide-react";
 import {
   Form,
   FormControl,
@@ -61,8 +61,8 @@ const CompleteProfile = () => {
       <div className="w-full max-w-md space-y-8">
         {/* Avatar Section */}
         <div className="flex flex-col items-center space-y-4">
-          <div className="relative">
-            <div className="w-32 h-32 rounded-full bg-white flex items-center justify-center overflow-hidden">
+          <label htmlFor="image-upload" className="relative cursor-pointer">
+            <div className="w-40 h-40 rounded-full bg-white flex items-center justify-center overflow-hidden">
               {profileImage ? (
                 <img
                   src={profileImage}
@@ -70,15 +70,14 @@ const CompleteProfile = () => {
                   className="w-full h-full object-cover"
                 />
               ) : (
-                <User className="w-16 h-16 text-gray-300" />
+                <Camera className="w-12 h-12 text-gray-400" />
               )}
             </div>
-          </div>
-          
-          <label htmlFor="image-upload" className="cursor-pointer">
-            <span className="text-emerald-600 font-medium hover:text-emerald-700 transition-colors">
-              Upload Image
-            </span>
+            {profileImage && (
+              <div className="absolute bottom-2 right-2 w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-md">
+                <Pencil className="w-5 h-5 text-gray-700" />
+              </div>
+            )}
             <input
               id="image-upload"
               type="file"
@@ -98,11 +97,11 @@ const CompleteProfile = () => {
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-foreground font-normal">Name</FormLabel>
+                  <FormLabel className="text-sm font-normal text-gray-700 mb-2">Name</FormLabel>
                   <FormControl>
                     <Input
                       placeholder="John Doe"
-                      className="h-12 rounded-xl bg-white border-0"
+                      className="h-14 rounded-2xl bg-white border-0 text-gray-900 placeholder:text-gray-400"
                       {...field}
                     />
                   </FormControl>
@@ -117,12 +116,12 @@ const CompleteProfile = () => {
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-foreground font-normal">Email address</FormLabel>
+                  <FormLabel className="text-sm font-normal text-gray-700 mb-2">Email address</FormLabel>
                   <FormControl>
                     <Input
                       type="email"
                       placeholder="ab@gmail.com"
-                      className="h-12 rounded-xl bg-white border-0"
+                      className="h-14 rounded-2xl bg-white border-0 text-gray-900 placeholder:text-gray-400"
                       {...field}
                     />
                   </FormControl>
@@ -137,11 +136,11 @@ const CompleteProfile = () => {
               name="linkedinUrl"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-foreground font-normal">LinkedIn profile URL</FormLabel>
+                  <FormLabel className="text-sm font-normal text-gray-700 mb-2">LinkedIn profile URL</FormLabel>
                   <FormControl>
                     <Input
                       placeholder="ab/linkedin.com"
-                      className="h-12 rounded-xl bg-white border-0"
+                      className="h-14 rounded-2xl bg-white border-0 text-gray-900 placeholder:text-gray-400"
                       {...field}
                     />
                   </FormControl>
@@ -151,7 +150,7 @@ const CompleteProfile = () => {
             />
 
             {/* Submit Button */}
-            <div className="pt-8">
+            <div className="pt-6">
               <Button
                 type="submit"
                 className="w-full h-14 rounded-full text-white text-base font-medium"
