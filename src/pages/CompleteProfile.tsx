@@ -6,7 +6,13 @@ import * as z from "zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Camera, Pencil } from "lucide-react";
+import { Camera, Pencil, X, Check } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import {
   Form,
   FormControl,
@@ -27,6 +33,9 @@ type FormData = z.infer<typeof formSchema>;
 const CompleteProfile = () => {
   const navigate = useNavigate();
   const [profileImage, setProfileImage] = useState<string | null>(null);
+  const [tempImage, setTempImage] = useState<string | null>(null);
+  const [showPreview, setShowPreview] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
 
   const form = useForm<FormData>({
     resolver: zodResolver(formSchema),
@@ -42,22 +51,107 @@ const CompleteProfile = () => {
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
-        setProfileImage(reader.result as string);
+        setTempImage(reader.result as string);
+        setShowPreview(true);
       };
       reader.readAsDataURL(file);
     }
+  };
+
+  const handleRetake = () => {
+    setTempImage(null);
+    setShowPreview(false);
+  };
+
+  const handleUpload = () => {
+    setProfileImage(tempImage);
+    setShowPreview(false);
   };
 
   const onSubmit = (data: FormData) => {
     console.log("Profile data:", data);
     // Store profile completion
     localStorage.setItem("profileCompleted", "true");
-    // Navigate back to home
+    // Show success dialog
+    setShowSuccess(true);
+  };
+
+  const handleSuccessOk = () => {
+    setShowSuccess(false);
     navigate("/home", { state: { profileCompleted: true } });
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 flex flex-col items-center px-6 py-12">
+    <>
+      {/* Photo Preview Screen */}
+      {showPreview && tempImage && (
+        <div className="fixed inset-0 bg-black z-50 flex flex-col">
+          <div className="absolute top-6 left-6">
+            <button
+              onClick={handleRetake}
+              className="w-10 h-10 rounded-full bg-gray-700/50 flex items-center justify-center"
+            >
+              <X className="w-6 h-6 text-white" />
+            </button>
+          </div>
+          
+          <div className="flex-1 flex items-center justify-center">
+            <img
+              src={tempImage}
+              alt="Preview"
+              className="max-w-full max-h-full object-contain"
+            />
+          </div>
+
+          <div className="p-6 flex gap-4">
+            <Button
+              onClick={handleRetake}
+              className="flex-1 h-14 rounded-full text-white text-base font-medium"
+              style={{ backgroundColor: "#343434" }}
+            >
+              Retake
+            </Button>
+            <Button
+              onClick={handleUpload}
+              className="flex-1 h-14 rounded-full text-base font-medium"
+              style={{ backgroundColor: "#ffffff", color: "#000000" }}
+            >
+              Upload
+            </Button>
+          </div>
+        </div>
+      )}
+
+      {/* Success Dialog */}
+      <Dialog open={showSuccess} onOpenChange={setShowSuccess}>
+        <DialogContent className="bg-white rounded-3xl max-w-sm mx-auto p-8">
+          <div className="flex flex-col items-center space-y-6">
+            <div className="w-16 h-16 rounded-full bg-emerald-500 flex items-center justify-center">
+              <Check className="w-8 h-8 text-white" strokeWidth={3} />
+            </div>
+            
+            <div className="text-center space-y-2">
+              <DialogTitle className="text-xl font-semibold text-gray-900">
+                Profile completed
+              </DialogTitle>
+              <DialogDescription className="text-gray-600">
+                Your QR code has been generated
+              </DialogDescription>
+            </div>
+
+            <Button
+              onClick={handleSuccessOk}
+              className="w-full h-14 rounded-full text-white text-base font-medium"
+              style={{ backgroundColor: "#343434" }}
+            >
+              OK
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* Main Form */}
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 flex flex-col items-center px-6 py-12">
       <div className="w-full max-w-md space-y-8">
         {/* Avatar Section */}
         <div className="flex flex-col items-center space-y-4">
@@ -163,6 +257,7 @@ const CompleteProfile = () => {
         </Form>
       </div>
     </div>
+    </>
   );
 };
 
