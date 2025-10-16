@@ -1,118 +1,92 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { UserCircle, Bell } from "lucide-react";
 import QRCode from "react-qr-code";
 import { BottomNav } from "@/components/BottomNav";
-import { Button } from "@/components/ui/button";
-import { Bell, User } from "lucide-react";
-import avatar1 from "@/assets/avatar1.png";
+import { Sidebar } from "@/components/Sidebar";
+import avatar5 from "@/assets/avatar5.jpg";
+import image from "@/assets/image.png";
 
 const Index = () => {
+  const location = useLocation();
   const navigate = useNavigate();
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  // If we arrived here from the apply flow, show the empty state
+  const showEmpty = Boolean((location.state as any)?.fromApply);
+
   const userProfileUrl = "https://myapp.com/profile/user123";
-  
-  // Check if ambassador application is complete
-  const [isProfileComplete, setIsProfileComplete] = useState(false);
 
-  useEffect(() => {
-    const videoCompleted = localStorage.getItem("videoCompleted") === "true";
-    const phoneCompleted = localStorage.getItem("phoneCompleted") === "true";
-    const emailCompleted = localStorage.getItem("emailCompleted") === "true";
-    
-    setIsProfileComplete(videoCompleted && phoneCompleted && emailCompleted);
-  }, []);
-
-  if (!isProfileComplete) {
-    // Show "No QR Yet" state for ambassador applicants
-    return (
+  return (
+    <>
+      <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
+      
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 flex flex-col">
-        {/* Header */}
-        <div className="fixed top-0 left-0 right-0 flex items-center justify-between px-6 py-4 bg-transparent">
-          <button className="w-10 h-10 rounded-full bg-white/60 flex items-center justify-center">
-            <User className="w-5 h-5 text-gray-600" />
-          </button>
-          <button className="w-10 h-10 rounded-full bg-white/60 flex items-center justify-center">
-            <Bell className="w-5 h-5 text-gray-600" />
-          </button>
-        </div>
+        {showEmpty ? (
+          <>
+            {/* Top icons */}
+            <div className="flex items-center justify-between px-5 pt-6">
+              <button onClick={() => setSidebarOpen(true)}>
+                <UserCircle className="w-6 h-6 text-gray-400 mt-24" />
+              </button>
+              <Bell className="w-6 h-6 text-gray-400 mt-24" />
+            </div>
 
-        {/* Main Content */}
-        <div className="flex-1 flex items-center justify-center px-6 pb-24">
-          <div className="w-full max-w-sm text-center space-y-6">
-            {/* QR Illustration */}
-            <div className="flex justify-center mb-8">
-              <div className="relative">
-                <div className="w-32 h-32 rounded-3xl bg-white/80 shadow-lg flex items-center justify-center transform -rotate-6">
-                  <div className="w-24 h-24 bg-gradient-to-br from-emerald-400 to-teal-500 rounded-2xl opacity-20"></div>
+            {/* Empty state */}
+            <div className="flex-1 flex items-center justify-center px-6 pb-24">
+              <div className="w-full max-w-sm text-center">
+                {/* Illustration placeholder */}
+                <div className="mx-auto mb-6 pt-14 w-40 h-40 overflow-hidden rounded-full bg-white/70 flex items-center justify-center">
+                  <img src={image} alt="Profile" className="w-30 h-[130px] top-11" />
                 </div>
-                <div className="absolute -right-8 top-8 w-24 h-24 rounded-2xl bg-white/80 shadow-lg flex items-center justify-center transform rotate-12">
-                  <div className="w-16 h-16 grid grid-cols-3 gap-1 p-2">
-                    {[...Array(9)].map((_, i) => (
-                      <div key={i} className="bg-gray-300 rounded-sm"></div>
-                    ))}
+
+                <h2 className="text-[24px] font-semibold text-gray-900">No QR Yet</h2>
+                <p className="mt-2 text-gray-600">
+                  Complete your profile to generate your unique Punch QR code to share at events and connect founders instantly
+                </p>
+
+                <button
+                  onClick={() => navigate("/complete-profile")}
+                  className="mt-6 inline-flex w-[246px] h-[54px] items-center justify-center rounded-full bg-[#2B2B2B] text-white font-medium"
+                >
+                  Complete Profile
+                </button>
+              </div>
+            </div>
+
+            <BottomNav />
+          </>
+        ) : (
+          <>
+            {/* Top Navigation */}
+            <div className="flex items-center justify-between px-5 pt-6 absolute top-0 left-0 right-0 z-10">
+              <button onClick={() => setSidebarOpen(true)}>
+                <UserCircle className="w-6 h-6 text-gray-400" />
+              </button>
+              <Bell className="w-6 h-6 text-gray-400" />
+            </div>
+
+            {/* QR View (shown after normal login) */}
+            <div className="flex-1 flex items-center justify-center px-6 pb-24">
+              <div className="w-full max-w-sm">
+                <div className="bg-white p-8 shadow-[0_8px_30px_rgba(0,0,0,0.12)]">
+                  <div className="relative">
+                    <QRCode value={userProfileUrl} size={346} className="w-full h-auto" level="H" />
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                      <div className="w-20 h-20 rounded-full overflow-hidden border-4 border-white shadow-lg">
+                        <img src={avatar5} alt="Profile" className="w-full h-full object-cover" />
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Text Content */}
-            <div className="space-y-3">
-              <h1 className="text-3xl font-bold text-foreground">No QR Yet</h1>
-              <p className="text-muted-foreground text-base leading-relaxed px-4">
-                Complete your profile to generate your unique Punch QR code to share at events and connect founders instantly
-              </p>
-            </div>
-
-            {/* Complete Profile Button */}
-            <Button
-              onClick={() => navigate("/complete-profile")}
-              className="w-full max-w-xs h-14 rounded-full bg-foreground text-background hover:bg-foreground/90 text-base font-medium mt-8"
-            >
-              Complete Profile
-            </Button>
-          </div>
-        </div>
-
-        {/* Bottom Navigation */}
-        <BottomNav />
+            <BottomNav />
+          </>
+        )}
       </div>
-    );
-  }
-
-  // Show QR code for completed profiles
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 flex flex-col">
-      {/* Main Content */}
-      <div className="flex-1 flex items-center justify-center px-6 pb-24">
-        <div className="w-full max-w-sm">
-          {/* QR Code Container */}
-          <div className="bg-white rounded-[32px] p-8 shadow-[0_8px_30px_rgba(0,0,0,0.12)]">
-            <div className="relative">
-              {/* QR Code */}
-              <QRCode
-                value={userProfileUrl}
-                size={346}
-                className="w-full h-auto"
-                level="H"
-              />
-              
-              {/* Profile Photo Overlay */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-                <div className="w-20 h-20 rounded-full overflow-hidden border-4 border-white shadow-lg">
-                  <img 
-                    src={avatar1} 
-                    alt="Profile" 
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Bottom Navigation */}
-      <BottomNav />
-    </div>
+    </>
   );
 };
 
