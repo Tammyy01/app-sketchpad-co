@@ -1,5 +1,5 @@
 import { X, User, BarChart3, Wallet, Bell as BellIcon, LogOut } from "lucide-react";
-import avatar5 from "@/assets/avatar5.jpg";
+import avatar1 from "@/assets/avatar1.png";
 
 interface SidebarProps {
   isOpen: boolean;
@@ -45,7 +45,7 @@ export const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
             <div className="flex items-start gap-4">
               <div className="w-16 h-16 rounded-full overflow-hidden bg-white">
                 <img
-                  src={avatar5}
+                  src={avatar1}
                   alt="Profile"
                   className="w-full h-full object-cover"
                 />

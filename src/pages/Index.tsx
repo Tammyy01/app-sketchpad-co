@@ -4,7 +4,7 @@ import { UserCircle, Bell } from "lucide-react";
 import QRCode from "react-qr-code";
 import { BottomNav } from "@/components/BottomNav";
 import { Sidebar } from "@/components/Sidebar";
-import avatar5 from "@/assets/avatar5.jpg";
+import avatar1 from "@/assets/avatar1.png";
 import image from "@/assets/image.png";
 
 const Index = () => {
@@ -74,7 +74,7 @@ const Index = () => {
                     <QRCode value={userProfileUrl} size={346} className="w-full h-auto" level="H" />
                     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
                       <div className="w-20 h-20 rounded-full overflow-hidden border-4 border-white shadow-lg">
-                        <img src={avatar5} alt="Profile" className="w-full h-full object-cover" />
+                        <img src={avatar1} alt="Profile" className="w-full h-full object-cover" />
                       </div>
                     </div>
                   </div>
