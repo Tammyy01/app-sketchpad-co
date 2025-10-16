@@ -5,7 +5,6 @@ import QRCode from "react-qr-code";
 import { BottomNav } from "@/components/BottomNav";
 import { Sidebar } from "@/components/Sidebar";
 import avatar1 from "@/assets/avatar1.png";
-import image from "@/assets/image.png";
 
 const Index = () => {
   const location = useLocation();
@@ -35,10 +34,10 @@ const Index = () => {
             {/* Empty state */}
             <div className="flex-1 flex items-center justify-center px-6 pb-24">
               <div className="w-full max-w-sm text-center">
-                {/* Illustration placeholder */}
-                <div className="mx-auto mb-6 pt-14 w-40 h-40 overflow-hidden rounded-full bg-white/70 flex items-center justify-center">
-                  <img src={image} alt="Profile" className="w-30 h-[130px] top-11" />
-                </div>
+              {/* Illustration placeholder */}
+              <div className="mx-auto mb-6 pt-14 w-40 h-40 rounded-full bg-white/70 shadow-sm flex items-center justify-center">
+                <UserCircle className="w-24 h-24 text-gray-300" />
+              </div>
 
                 <h2 className="text-[24px] font-semibold text-gray-900">No QR Yet</h2>
                 <p className="mt-2 text-gray-600">

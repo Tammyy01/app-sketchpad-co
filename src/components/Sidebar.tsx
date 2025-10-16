@@ -1,4 +1,5 @@
 import { X, User, BarChart3, Wallet, Bell as BellIcon, LogOut } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import avatar1 from "@/assets/avatar1.png";
 
 interface SidebarProps {
@@ -7,12 +8,21 @@ interface SidebarProps {
 }
 
 export const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
+  const navigate = useNavigate();
+  
   const menuItems = [
-    { icon: User, label: "Profile", color: "#10B981" },
-    { icon: BarChart3, label: "Analytics", color: "#10B981" },
-    { icon: Wallet, label: "Reimbursement", color: "#10B981" },
-    { icon: BellIcon, label: "Notification", color: "#10B981" },
+    { icon: User, label: "Profile", color: "#10B981", path: "/profile" },
+    { icon: BarChart3, label: "Analytics", color: "#10B981", path: "#" },
+    { icon: Wallet, label: "Reimbursement", color: "#10B981", path: "#" },
+    { icon: BellIcon, label: "Notification", color: "#10B981", path: "#" },
   ];
+
+  const handleMenuClick = (path: string) => {
+    if (path !== "#") {
+      navigate(path);
+      onClose();
+    }
+  };
 
   return (
     <>
@@ -64,6 +74,7 @@ export const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
               return (
                 <button
                   key={item.label}
+                  onClick={() => handleMenuClick(item.path)}
                   className="w-full flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-white/50 transition-colors"
                 >
                   <Icon className="w-5 h-5" style={{ color: item.color }} />
