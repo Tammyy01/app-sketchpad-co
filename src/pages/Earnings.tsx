@@ -123,10 +123,10 @@ const Earnings = () => {
             >
               {/* Sliding background indicator */}
               <div 
-                className="absolute top-1 bottom-1 bg-[#343434] rounded-full transition-all duration-300 ease-in-out"
+                className="absolute top-1 bottom-1 bg-[#343434] rounded-full transition-all duration-300 ease-out shadow-sm"
                 style={{
-                  width: 'calc(33.333% - 4px)',
-                  left: `calc(${tabs.findIndex(t => t.id === activeTab) * 33.333}% + 4px)`,
+                  width: 'calc(33.333% - 6px)',
+                  left: `calc(${tabs.findIndex(t => t.id === activeTab) * 33.333}% + 3px)`,
                 }}
               />
               
