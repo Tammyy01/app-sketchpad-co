@@ -117,17 +117,27 @@ const Earnings = () => {
           {/* Time Period Tabs and Amount */}
           <div className="flex items-center justify-between">
             <div 
-              className="flex gap-2"
+              className="relative flex bg-white border border-gray-200 rounded-full p-1"
               style={{ width: '160px', height: '37px' }}
             >
+              {/* Sliding background indicator */}
+              <div 
+                className="absolute top-1 bottom-1 bg-[#343434] rounded-full transition-all duration-300 ease-in-out"
+                style={{
+                  width: 'calc(33.333% - 4px)',
+                  left: `calc(${tabs.findIndex(t => t.id === activeTab) * 33.333}% + 4px)`,
+                }}
+              />
+              
+              {/* Tab buttons */}
               {tabs.map((tab) => (
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`flex-1 rounded-full text-sm font-medium transition-colors ${
+                  className={`relative z-10 flex-1 rounded-full text-sm font-medium transition-colors ${
                     activeTab === tab.id
-                      ? "bg-[#343434] text-white"
-                      : "bg-white text-gray-600 border border-gray-200"
+                      ? "text-white"
+                      : "text-gray-600"
                   }`}
                 >
                   {tab.label}
