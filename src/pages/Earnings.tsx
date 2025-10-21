@@ -117,8 +117,8 @@ const Earnings = () => {
           {/* Time Period Tabs and Amount */}
           <div className="flex items-center justify-between">
             <div 
-              className="relative flex bg-white border border-gray-200 rounded-full p-1"
-              style={{ width: '160px', height: '37px' }}
+              className="relative flex border border-gray-200 rounded-full p-1"
+              style={{ width: '160px', height: '37px', backgroundColor: '#F9F9F9' }}
             >
               {/* Sliding background indicator */}
               <div 
