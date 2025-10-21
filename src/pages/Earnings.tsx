@@ -91,8 +91,12 @@ const Earnings = () => {
                   <Eye className="w-[13.33px] h-[10.67px] text-white" />
                 </div>
               </div>
-              <svg width="29" height="30" viewBox="0 0 29 30" fill="none" xmlns="http://www.w3.org/2000/svg" className="mt-[27px]">
-                <g filter="url(#filter0_d_2514_2996)">
+              <button 
+                onClick={() => navigate('/rankings')}
+                className="mt-[27px] cursor-pointer hover:opacity-80 transition-opacity"
+              >
+                <svg width="29" height="30" viewBox="0 0 29 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <g filter="url(#filter0_d_2514_2996)">
                   <path d="M17.3781 27.4514C15.5128 28.8495 12.9871 28.8495 11.1219 27.4514L2.19408 20.7596C0.328862 19.3616 -0.451621 16.8834 0.260831 14.6213L3.67096 3.79369C4.38341 1.53157 6.42675 0 8.73229 0H19.7677C22.0733 0 24.1166 1.53157 24.829 3.7937L28.2392 14.6213C28.9516 16.8834 28.1711 19.3616 26.3059 20.7596L17.3781 27.4514Z" fill="url(#paint0_linear_2514_2996)"/>
                   <path d="M8.73242 1H19.7676C21.6194 1 23.2884 2.23177 23.875 4.09375L27.2852 14.9219C27.873 16.7887 27.2235 18.8214 25.7061 19.959L16.7783 26.6514C15.2686 27.783 13.2314 27.783 11.7217 26.6514L2.79395 19.959C1.27645 18.8214 0.62695 16.7887 1.21484 14.9219L4.625 4.09375C5.2116 2.23177 6.88059 1 8.73242 1Z" stroke="white" strokeOpacity="0.4" strokeWidth="2"/>
                 </g>
@@ -112,6 +116,7 @@ const Earnings = () => {
                   </linearGradient>
                 </defs>
               </svg>
+              </button>
             </div>
           </div>
 
