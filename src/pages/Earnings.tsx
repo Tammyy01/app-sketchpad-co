@@ -369,7 +369,7 @@ const Earnings = () => {
         </Card>
 
         {/* Earning History */}
-        <div className="space-y-3">
+        <div className="space-y-3 flex flex-col items-center">
           <h3 className="text-base font-semibold text-gray-900">
             Earning History
           </h3>
