@@ -27,24 +27,24 @@ const Events = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-[#F5F5F7] pb-24">
+    <div className="min-h-screen bg-background pb-24">
       {/* Header */}
-      <div className="bg-white px-4 pt-12 pb-4">
-        <div className="flex items-center justify-between mb-6">
+      <div className="bg-card px-6 pt-12 pb-6">
+        <div className="flex items-center justify-between mb-8">
           <Avatar className="w-10 h-10">
             <AvatarImage src="/placeholder.svg" />
             <AvatarFallback>U</AvatarFallback>
           </Avatar>
-          <h1 className="text-lg font-semibold text-gray-900">Events</h1>
+          <h1 className="text-xl font-semibold">Events</h1>
           <button className="w-10 h-10 flex items-center justify-center">
-            <Bell className="w-6 h-6 text-gray-900" />
+            <Bell className="w-5 h-5" />
           </button>
         </div>
 
         {/* Stay Connected Section */}
         <div className="mb-6">
-          <h2 className="text-2xl font-bold text-gray-900 mb-1">Stay connected</h2>
-          <p className="text-gray-500 text-sm">
+          <h2 className="text-3xl font-bold mb-2">Stay connected</h2>
+          <p className="text-muted-foreground">
             Find the amazing tech events near you
           </p>
         </div>
@@ -55,10 +55,10 @@ const Events = () => {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+              className={`px-5 py-2.5 rounded-full text-sm font-medium transition-colors ${
                 activeTab === tab.id
-                  ? "bg-[#22C55E] text-white"
-                  : "bg-gray-100 text-gray-600"
+                  ? "bg-brand-green text-white"
+                  : "bg-muted text-muted-foreground"
               }`}
             >
               {tab.label}
@@ -68,11 +68,11 @@ const Events = () => {
       </div>
 
       {/* Event Cards */}
-      <div className="px-4 py-6">
+      <div className="px-6 py-6">
         {events.map((event) => (
           <div
             key={event.id}
-            className="bg-white rounded-[20px] overflow-hidden shadow-sm"
+            className="bg-card rounded-3xl overflow-hidden shadow-sm"
           >
             {/* Event Image */}
             <div className="w-full h-[240px] relative">
@@ -84,43 +84,43 @@ const Events = () => {
             </div>
 
             {/* Event Details */}
-            <div className="p-4 space-y-3">
+            <div className="p-5 space-y-4">
               {/* Title */}
-              <h3 className="text-xl font-semibold text-gray-900">
+              <h3 className="text-xl font-semibold">
                 {event.title}
               </h3>
 
               {/* Date and Time */}
-              <div className="flex items-center gap-4 text-sm text-gray-500">
-                <div className="flex items-center gap-1">
+              <div className="flex items-center gap-4 text-sm text-muted-foreground">
+                <div className="flex items-center gap-1.5">
                   <Calendar className="w-4 h-4" />
                   <span>{event.date}</span>
                 </div>
-                <div className="flex items-center gap-1">
+                <div className="flex items-center gap-1.5">
                   <Clock className="w-4 h-4" />
                   <span>{event.time}</span>
                 </div>
               </div>
 
               {/* Description */}
-              <p className="text-sm text-gray-500 leading-relaxed">
+              <p className="text-sm text-muted-foreground leading-relaxed">
                 {event.description}
               </p>
 
               {/* Location */}
-              <div className="flex items-start gap-2 text-sm text-gray-500">
+              <div className="flex items-start gap-2 text-sm text-muted-foreground">
                 <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" />
                 <span>{event.location}</span>
               </div>
 
               {/* Action Buttons */}
               <div className="flex gap-3 pt-2">
-                <Button className="flex-1 bg-[#22C55E] hover:bg-[#22C55E]/90 text-white rounded-full h-12 font-medium">
+                <Button variant="brand" className="flex-1 rounded-full h-12 font-medium">
                   Yes, I'm going
                 </Button>
                 <Button
                   variant="outline"
-                  className="flex-1 border-gray-300 rounded-full h-12 font-medium"
+                  className="flex-1 rounded-full h-12 font-medium"
                 >
                   <Calendar className="w-4 h-4 mr-2" />
                   Add to Calendar
@@ -132,9 +132,9 @@ const Events = () => {
 
         {/* Pagination Dots */}
         <div className="flex justify-center gap-2 mt-6">
-          <div className="w-2 h-2 rounded-full bg-[#22C55E]" />
-          <div className="w-2 h-2 rounded-full bg-gray-300" />
-          <div className="w-2 h-2 rounded-full bg-gray-300" />
+          <div className="w-2 h-2 rounded-full bg-brand-green" />
+          <div className="w-2 h-2 rounded-full bg-muted" />
+          <div className="w-2 h-2 rounded-full bg-muted" />
         </div>
       </div>
 
