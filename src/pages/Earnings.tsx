@@ -68,7 +68,7 @@ const Earnings = () => {
 
       <div className="max-w-full mx-auto mt-6 space-y-5">
         {/* Main Card containing Total Earning, Tabs, and Chart */}
-        <Card className="bg-white/90 backdrop-blur border-0 shadow-sm rounded-[15px] p-2 space-y-4" style={{ height: '291px' }}>
+        <Card className="bg-white/90 backdrop-blur border-0 shadow-sm rounded-[15px] p-2 space-y-2" style={{ height: '291px' }}>
           {/* Total Earning Card */}
           <div 
             className="bg-[#343434] border-0 rounded-3xl  relative overflow-hidden"
@@ -149,7 +149,7 @@ const Earnings = () => {
           </div>
 
           {/* Weekly Chart */}
-          <ChartContainer config={chartConfig} className="h-[200px] w-full">
+          <ChartContainer config={chartConfig} className="h-[140px] w-full">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart
                 data={weeklyChartData}
