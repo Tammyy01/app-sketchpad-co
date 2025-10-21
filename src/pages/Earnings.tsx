@@ -13,6 +13,7 @@ import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer } from "recharts";
 import { BottomNav } from "@/components/BottomNav";
 import avatar1 from "@/assets/avatar1.png";
 import avatar2 from "@/assets/avatar2.png";
+import earningsPattern from "@/assets/earnings-pattern.png";
 
 const weeklyChartData = [
   { day: "M", value: 150 },
@@ -65,42 +66,54 @@ const Earnings = () => {
       </div>
 
       <div className="max-w-full mx-auto mt-6 space-y-5">
-        {/* Total Earning Card */}
-        <Card className="bg-[#343434] border-0 rounded-3xl p-6 relative overflow-hidden">
-          <div className="flex items-start justify-between">
-            <div>
-              <p className="text-gray-400 text-sm mb-2">Total Earning</p>
-              <div className="flex items-center gap-2">
-                <h2 className="text-white text-4xl font-bold">$17,100</h2>
-                <Eye className="w-5 h-5 text-white" />
+        {/* Main Card containing Total Earning, Tabs, and Chart */}
+        <Card className="bg-white/90 backdrop-blur border-0 shadow-sm rounded-3xl p-6 space-y-4">
+          {/* Total Earning Card */}
+          <div 
+            className="bg-[#343434] border-0 rounded-3xl p-6 relative overflow-hidden"
+            style={{
+              width: '329px',
+              height: '93px',
+              backgroundImage: `url(${earningsPattern})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center'
+            }}
+          >
+            <div className="flex items-start justify-between relative z-10">
+              <div>
+                <p className="text-gray-400 text-sm mb-2">Total Earning</p>
+                <div className="flex items-center gap-2">
+                  <h2 className="text-white text-4xl font-bold">$17,100</h2>
+                  <Eye className="w-5 h-5 text-white" />
+                </div>
               </div>
             </div>
-            <div className="text-4xl">💰</div>
           </div>
-        </Card>
 
-        {/* Time Period Tabs and Amount */}
-        <div className="flex items-center justify-between">
-          <div className="flex gap-2">
-            {tabs.map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className={`px-5 py-2 rounded-full text-sm font-medium transition-colors ${
-                  activeTab === tab.id
-                    ? "bg-[#343434] text-white"
-                    : "bg-white/90 text-gray-600"
-                }`}
-              >
-                {tab.label}
-              </button>
-            ))}
+          {/* Time Period Tabs and Amount */}
+          <div className="flex items-center justify-between">
+            <div 
+              className="flex gap-2"
+              style={{ width: '160px', height: '37px' }}
+            >
+              {tabs.map((tab) => (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                  className={`flex-1 rounded-full text-sm font-medium transition-colors ${
+                    activeTab === tab.id
+                      ? "bg-[#343434] text-white"
+                      : "bg-white text-gray-600 border border-gray-200"
+                  }`}
+                >
+                  {tab.label}
+                </button>
+              ))}
+            </div>
+            <div className="text-2xl font-bold text-gray-900">$150</div>
           </div>
-          <div className="text-2xl font-bold text-gray-900">$150</div>
-        </div>
 
-        {/* Weekly Chart */}
-        <Card className="bg-white/90 backdrop-blur border-0 shadow-sm p-6 rounded-3xl">
+          {/* Weekly Chart */}
           <ChartContainer config={chartConfig} className="h-[200px] w-full">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart
