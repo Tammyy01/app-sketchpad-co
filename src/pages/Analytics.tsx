@@ -112,8 +112,8 @@ const Analytics = () => {
                 </button>
               ))}
             </div>
-            <button className="w-10 h-10 rounded-full bg-white/90 backdrop-blur flex items-center justify-center">
-              <Filter className="w-5 h-5 text-gray-600" />
+            <button className="flex items-center justify-center">
+              <Filter className="w-5 h-5" style={{ color: "#717171" }} />
             </button>
           </div>
 
