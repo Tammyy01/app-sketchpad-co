@@ -70,7 +70,7 @@ const Earnings = () => {
         <Card className="bg-white/90 backdrop-blur border-0 shadow-sm rounded-3xl p-6 space-y-4">
           {/* Total Earning Card */}
           <div 
-            className="bg-[#343434] border-0 rounded-3xl p-6 relative overflow-hidden"
+            className="bg-[#343434] border-0 rounded-3xl p-6 relative overflow-hidden mx-auto"
             style={{
               width: '329px',
               height: '93px',
