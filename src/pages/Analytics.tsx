@@ -70,9 +70,9 @@ const Analytics = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-[#E5E5E5]">
+    <div className="min-h-screen bg-gradient-to-b from-[#E8E4F3] via-[#F5F3F8] to-[#FAF8E8]">
       {/* Header */}
-      <div className="bg-white border-b border-gray-100">
+      <div className="bg-white/40 backdrop-blur-md">
         <div className="flex items-center justify-center h-16 px-6 relative">
           <button
             onClick={() => navigate(-1)}
