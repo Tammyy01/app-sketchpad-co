@@ -12,7 +12,7 @@ export const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
   
   const menuItems = [
     { icon: User, label: "Profile", color: "#10B981", path: "/profile" },
-    { icon: BarChart3, label: "Analytics", color: "#10B981", path: "#" },
+    { icon: BarChart3, label: "Analytics", color: "#10B981", path: "/analytics" },
     { icon: Wallet, label: "Reimbursement", color: "#10B981", path: "#" },
     { icon: BellIcon, label: "Notification", color: "#10B981", path: "#" },
   ];
