@@ -112,8 +112,8 @@ const Analytics = () => {
                 </button>
               ))}
             </div>
-            <button className="w-10 h-10 rounded-full bg-white/90 backdrop-blur flex items-center justify-center shadow-sm">
-              <Filter className="w-5 h-5 text-gray-500" />
+            <button className="w-10 h-10 rounded-full bg-white/90 backdrop-blur flex items-center justify-center">
+              <Filter className="w-5 h-5 text-gray-600" />
             </button>
           </div>
 
@@ -147,11 +147,11 @@ const Analytics = () => {
         </div>
 
         {/* Stats Cards */}
-        <div className="space-y-3">
+        <div className="space-y-3 flex flex-col items-center">
           {stats.map((stat, index) => (
             <Card
               key={index}
-              className={`${stat.bgColor} backdrop-blur border-0 w-[348px] h-[50px] mx-auto flex items-center justify-between rounded-2xl px-4`}
+              className={`${stat.bgColor} backdrop-blur border-0 w-[348px] h-[50px] flex items-center justify-between rounded-2xl px-4`}
             >
               <div className="flex items-center gap-3">
                 <div className="w-8 h-8 rounded-full flex items-center justify-center bg-white">
