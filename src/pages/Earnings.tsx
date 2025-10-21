@@ -90,6 +90,18 @@ const Earnings = () => {
                   <Eye className="w-[13.33px] h-[10.67px] text-white" />
                 </div>
               </div>
+              <svg width="28.5" height="28.5" viewBox="0 0 28.5 28.5">
+                <defs>
+                  <linearGradient id="badgeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#F07E00" />
+                    <stop offset="100%" stopColor="#F7F4CF" />
+                  </linearGradient>
+                </defs>
+                <polygon 
+                  points="14.25,0 28.5,14.25 14.25,28.5 0,14.25" 
+                  fill="url(#badgeGradient)" 
+                />
+              </svg>
             </div>
           </div>
 
