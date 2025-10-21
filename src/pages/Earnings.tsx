@@ -67,24 +67,27 @@ const Earnings = () => {
 
       <div className="max-w-full mx-auto mt-6 space-y-5">
         {/* Main Card containing Total Earning, Tabs, and Chart */}
-        <Card className="bg-white/90 backdrop-blur border-0 shadow-sm rounded-3xl p-6 space-y-4">
+        <Card className="bg-white/90 backdrop-blur border-0 shadow-sm rounded-[15px] p-2 space-y-4">
           {/* Total Earning Card */}
           <div 
-            className="bg-[#343434] border-0 rounded-3xl p-6 relative overflow-hidden mx-auto"
+            className="bg-[#343434] border-0 rounded-3xl  relative overflow-hidden"
             style={{
               width: '329px',
               height: '93px',
-              backgroundImage: `url(${earningsPattern})`,
+            //   backgroundImage: `url(${earningsPattern})`,
               backgroundSize: 'cover',
-              backgroundPosition: 'center'
+              backgroundPosition: 'center',
+              backgroundColor: '#343434',
+              borderRadius: '10px',
+              padding: '16px 8px 16px 16px'
             }}
           >
             <div className="flex items-start justify-between relative z-10">
               <div>
-                <p className="text-gray-400 text-sm mb-2">Total Earning</p>
+                <p className="text-gray-400 text-[14px]">Total Earning</p>
                 <div className="flex items-center gap-2">
-                  <h2 className="text-white text-4xl font-bold">$17,100</h2>
-                  <Eye className="w-5 h-5 text-white" />
+                  <h2 className="text-white text-[30px] font-bold">$17,100</h2>
+                  <Eye className="w-[13.33px] h-[10.67px] text-white" />
                 </div>
               </div>
             </div>
