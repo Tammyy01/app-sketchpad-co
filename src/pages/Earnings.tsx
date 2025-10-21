@@ -153,13 +153,14 @@ const Earnings = () => {
             <ResponsiveContainer width="100%" height="100%">
               <BarChart
                 data={weeklyChartData}
-                margin={{ top: 10, right: 10, left: -20, bottom: 10 }}
+                margin={{ top: 5, right: 15, left: 15, bottom: 5 }}
               >
                 <XAxis
                   dataKey="day"
                   tickLine={false}
                   axisLine={false}
-                  tick={{ fill: "#9CA3AF", fontSize: 13 }}
+                  tick={{ fill: "#9CA3AF", fontSize: 14, fontWeight: 500 }}
+                  height={30}
                 />
                 <YAxis hide />
                 <ChartTooltip content={<ChartTooltipContent hideLabel />} />
@@ -167,7 +168,7 @@ const Earnings = () => {
                   dataKey="value"
                   fill="#343434"
                   radius={[8, 8, 0, 0]}
-                  maxBarSize={45}
+                  maxBarSize={35}
                 />
               </BarChart>
             </ResponsiveContainer>
