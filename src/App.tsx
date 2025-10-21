@@ -19,6 +19,7 @@ import Profile from "./pages/Profile";
 import Analytics from "./pages/Analytics";
 import Earnings from "./pages/Earnings";
 import Rankings from "./pages/Rankings";
+import Events from "./pages/Events";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -45,6 +46,7 @@ const App = () => (
           <Route path="/profile" element={<Profile />} />
           <Route path="/analytics" element={<Analytics />} />
           <Route path="/home/earnings" element={<Earnings />} />
+          <Route path="/home/events" element={<Events />} />
           <Route path="/rankings" element={<Rankings />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
