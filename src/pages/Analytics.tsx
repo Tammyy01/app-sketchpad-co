@@ -175,11 +175,11 @@ const Analytics = () => {
                   {stat.label}
                 </span>
               </div>
-              <div className="text-right">
-                <div className="text-2xl font-bold text-gray-900">
+              <div className="flex items-baseline gap-1">
+                <span className="text-[18px] font-bold text-gray-900">
                   {stat.value}
-                </div>
-                <div className="text-xs text-gray-400">{stat.subtitle}</div>
+                </span>
+                <span className="text-[14px] text-gray-400">{stat.subtitle}</span>
               </div>
             </Card>
           ))}
