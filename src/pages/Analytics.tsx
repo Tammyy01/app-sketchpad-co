@@ -20,7 +20,7 @@ const chartData = [
 const chartConfig = {
   value: {
     label: "Events",
-    color: "#2B2B2B",
+    color: "#343434",
   },
 };
 
@@ -40,15 +40,15 @@ const Analytics = () => {
       label: "Events",
       value: "12",
       subtitle: "Attended",
-      bgColor: "bg-[#F5F5F5]",
-      iconColor: "#2B2B2B",
+      bgColor: "bg-gray-50",
+      iconColor: "#343434",
     },
     {
       icon: "phone",
       label: "Calls",
       value: "8",
       subtitle: "Booked",
-      bgColor: "bg-[#FEF9E6]",
+      bgColor: "bg-yellow-50",
       iconColor: "#F59E0B",
     },
     {
@@ -56,7 +56,7 @@ const Analytics = () => {
       label: "Contacts",
       value: "26",
       subtitle: "Shared",
-      bgColor: "bg-[#EFF6FF]",
+      bgColor: "bg-blue-50",
       iconColor: "#3B82F6",
     },
     {
@@ -64,19 +64,19 @@ const Analytics = () => {
       label: "Total Rewards",
       value: "$3,500",
       subtitle: "Earned",
-      bgColor: "bg-[#FEF2F2]",
+      bgColor: "bg-red-50",
       iconColor: "#EF4444",
     },
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
+    <div className="min-h-screen bg-[#E5E5E5]">
       {/* Header */}
-      <div className="bg-white/80 backdrop-blur-sm border-b border-gray-200">
-        <div className="flex items-center justify-center h-16 px-4 relative">
+      <div className="bg-white border-b border-gray-100">
+        <div className="flex items-center justify-center h-16 px-6 relative">
           <button
             onClick={() => navigate(-1)}
-            className="absolute left-4"
+            className="absolute left-6"
           >
             <ArrowLeft className="w-6 h-6 text-gray-900" />
           </button>
@@ -84,10 +84,10 @@ const Analytics = () => {
         </div>
       </div>
 
-      <div className="px-4 py-6 space-y-6">
+      <div className="px-6 py-6 space-y-6">
         {/* Monthly Progress Chart */}
         <div>
-          <h2 className="text-base font-medium text-gray-900 mb-4">
+          <h2 className="text-base font-semibold text-gray-900 mb-4">
             Monthly progress chart
           </h2>
 
@@ -98,62 +98,60 @@ const Analytics = () => {
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                  className={`px-5 py-2 rounded-full text-sm font-medium transition-colors ${
                     activeTab === tab.id
-                      ? "bg-[#2B2B2B] text-white"
-                      : "bg-white text-gray-700"
+                      ? "bg-[#343434] text-white"
+                      : "bg-white text-gray-600"
                   }`}
                 >
                   {tab.label}
                 </button>
               ))}
             </div>
-            <button className="w-10 h-10 rounded-full bg-white flex items-center justify-center">
-              <Filter className="w-5 h-5 text-gray-600" />
+            <button className="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-sm">
+              <Filter className="w-5 h-5 text-gray-500" />
             </button>
           </div>
 
           {/* Chart */}
           <Card className="bg-white border-0 shadow-sm p-6 rounded-3xl">
-            <ChartContainer config={chartConfig} className="h-[220px] w-full">
+            <ChartContainer config={chartConfig} className="h-[240px] w-full">
               <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={chartData} margin={{ top: 20, right: 10, left: -20, bottom: 0 }}>
+                <BarChart data={chartData} margin={{ top: 10, right: 0, left: -30, bottom: 10 }}>
                   <XAxis
                     dataKey="period"
                     tickLine={false}
                     axisLine={false}
-                    tick={{ fill: "#9CA3AF", fontSize: 14 }}
-                    dy={10}
+                    tick={{ fill: "#9CA3AF", fontSize: 13 }}
                   />
                   <YAxis hide />
-                  <ChartTooltip content={<ChartTooltipContent />} />
+                  <ChartTooltip content={<ChartTooltipContent hideLabel />} />
                   <Bar
                     dataKey="value"
-                    fill="#2B2B2B"
+                    fill="#343434"
                     radius={[8, 8, 0, 0]}
-                    maxBarSize={50}
+                    maxBarSize={45}
                   />
                 </BarChart>
               </ResponsiveContainer>
             </ChartContainer>
 
-            <p className="text-xs text-gray-400 mt-2">
+            <p className="text-xs text-gray-400 mt-4">
               Your performance between Aug 01, 2025 and Aug 31, 2025
             </p>
           </Card>
         </div>
 
         {/* Stats Cards */}
-        <div className="space-y-3">
+        <div className="space-y-3 pb-6">
           {stats.map((stat, index) => (
             <Card
               key={index}
-              className={`${stat.bgColor} border-0 shadow-sm p-5 flex items-center justify-between rounded-2xl`}
+              className={`${stat.bgColor} border-0 p-5 flex items-center justify-between rounded-2xl`}
             >
               <div className="flex items-center gap-3">
                 <div
-                  className="w-9 h-9 rounded-full flex items-center justify-center"
-                  style={{ backgroundColor: stat.icon === "circle" ? "white" : `${stat.iconColor}15` }}
+                  className="w-10 h-10 rounded-full flex items-center justify-center bg-white"
                 >
                   {stat.icon === "circle" && (
                     <div
@@ -179,7 +177,7 @@ const Analytics = () => {
                 <div className="text-2xl font-bold text-gray-900">
                   {stat.value}
                 </div>
-                <div className="text-xs text-gray-400 font-normal">{stat.subtitle}</div>
+                <div className="text-xs text-gray-400">{stat.subtitle}</div>
               </div>
             </Card>
           ))}
