@@ -187,8 +187,8 @@ const Rankings = () => {
             className="bg-white/90 backdrop-blur border-0 shadow-sm rounded-[15px] p-5 space-y-3"
           >
             {/* Icon and Title */}
-            <div className="flex flex-row items-center gap-3">
-              <div className="w-12 h-12 flex items-center justify-center flex-shrink-0">
+            <div className="flex flex-col items-center gap-2">
+              <div className="w-12 h-12 flex items-center justify-center">
                 {rank.icon}
               </div>
               <h2 className="text-lg font-semibold">{rank.name}</h2>
