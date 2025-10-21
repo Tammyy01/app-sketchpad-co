@@ -174,7 +174,7 @@ const Earnings = () => {
         </Card>
 
         {/* Progress Section */}
-        <div className="space-y-3">
+        <Card className="bg-white/90 backdrop-blur border-0 shadow-sm rounded-[15px] p-4 space-y-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs text-gray-500 mb-1">Your progress</p>
@@ -185,23 +185,9 @@ const Earnings = () => {
             <button className="text-sm text-gray-500">Learn More..</button>
           </div>
 
-          {/* Progress Bar with Emojis */}
-          <div className="relative">
-            <div className="bg-[#343434] rounded-full h-12 flex items-center px-2 relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-r from-[#343434] to-[#4A4A4A] rounded-full" />
-              <div className="relative z-10 flex items-center justify-between w-full px-2">
-                <span className="text-2xl">🏆</span>
-                <span className="text-2xl">💎</span>
-                <span className="text-2xl">💰</span>
-              </div>
-            </div>
-            <div className="absolute right-4 -top-1 flex gap-2">
-              <span className="text-3xl">😊</span>
-              <span className="text-3xl">💜</span>
-              <span className="text-3xl">❤️</span>
-            </div>
-          </div>
-        </div>
+          {/* Progress Bar */}
+          <Progress value={50} className="h-[25px]" style={{ width: '327px' }} />
+        </Card>
 
         {/* Earning History */}
         <div className="space-y-3">
