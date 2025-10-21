@@ -35,6 +35,7 @@ const chartConfig = {
 const earningHistory = [
   { name: "Micheal Smith", amount: 100, avatar: avatar1 },
   { name: "Steph Dave", amount: 150, avatar: avatar2 },
+  { name: "John Doe", amount: 200, avatar: avatar1 },
 ];
 
 const Earnings = () => {
@@ -377,6 +378,7 @@ const Earnings = () => {
             <Card
               key={index}
               className="bg-white/90 backdrop-blur border-0 rounded-2xl p-4 flex items-center justify-between"
+              style={{ width: '347px', height: '51px' }}
             >
               <div className="flex items-center gap-3">
                 <img
