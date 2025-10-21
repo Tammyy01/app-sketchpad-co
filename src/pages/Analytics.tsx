@@ -121,7 +121,7 @@ const Analytics = () => {
           <Card className="bg-white/90 backdrop-blur border-0 shadow-sm p-6 rounded-3xl">
             <ChartContainer config={chartConfig} className="h-[240px] w-full">
               <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={chartData} margin={{ top: 10, right: 0, left: -30, bottom: 10 }}>
+                <BarChart data={chartData} margin={{ top: 10, right: 10, left: -20, bottom: 10 }}>
                   <XAxis
                     dataKey="period"
                     tickLine={false}
@@ -139,11 +139,11 @@ const Analytics = () => {
                 </BarChart>
               </ResponsiveContainer>
             </ChartContainer>
-
-            <p className="text-xs text-gray-400 mt-4">
-              Your performance between Aug 01, 2025 and Aug 31, 2025
-            </p>
           </Card>
+
+          <p className="text-xs text-gray-400 mt-2">
+            Your performance between Aug 01, 2025 and Aug 31, 2025
+          </p>
         </div>
 
         {/* Stats Cards */}
@@ -151,10 +151,10 @@ const Analytics = () => {
           {stats.map((stat, index) => (
             <Card
               key={index}
-              className={`${stat.bgColor} backdrop-blur border-0 p-5 flex items-center justify-between rounded-2xl`}
+              className={`${stat.bgColor} backdrop-blur border-0 w-[348px] h-[50px] mx-auto flex items-center justify-between rounded-2xl px-4`}
             >
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full flex items-center justify-center bg-white">
+                <div className="w-8 h-8 rounded-full flex items-center justify-center bg-white">
                   {stat.icon === "circle" && (
                     <div
                       className="w-5 h-5 rounded-full"
