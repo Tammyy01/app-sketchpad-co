@@ -7,7 +7,7 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
-import { BarChart, Bar, XAxis, ResponsiveContainer } from "recharts";
+import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer } from "recharts";
 
 const chartData = [
   { period: "1M", value: 12 },
@@ -40,7 +40,7 @@ const Analytics = () => {
       label: "Events",
       value: "12",
       subtitle: "Attended",
-      bgColor: "bg-gray-50",
+      bgColor: "bg-[#F5F5F5]",
       iconColor: "#2B2B2B",
     },
     {
@@ -48,15 +48,15 @@ const Analytics = () => {
       label: "Calls",
       value: "8",
       subtitle: "Booked",
-      bgColor: "bg-yellow-50",
-      iconColor: "#EAB308",
+      bgColor: "bg-[#FEF9E6]",
+      iconColor: "#F59E0B",
     },
     {
       icon: "user",
       label: "Contacts",
       value: "26",
       subtitle: "Shared",
-      bgColor: "bg-blue-50",
+      bgColor: "bg-[#EFF6FF]",
       iconColor: "#3B82F6",
     },
     {
@@ -64,7 +64,7 @@ const Analytics = () => {
       label: "Total Rewards",
       value: "$3,500",
       subtitle: "Earned",
-      bgColor: "bg-red-50",
+      bgColor: "bg-[#FEF2F2]",
       iconColor: "#EF4444",
     },
   ];
@@ -114,28 +114,30 @@ const Analytics = () => {
           </div>
 
           {/* Chart */}
-          <Card className="bg-white border-0 shadow-sm p-6">
-            <ChartContainer config={chartConfig} className="h-[200px] w-full">
+          <Card className="bg-white border-0 shadow-sm p-6 rounded-3xl">
+            <ChartContainer config={chartConfig} className="h-[220px] w-full">
               <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={chartData}>
+                <BarChart data={chartData} margin={{ top: 20, right: 10, left: -20, bottom: 0 }}>
                   <XAxis
                     dataKey="period"
                     tickLine={false}
                     axisLine={false}
-                    tick={{ fill: "#6B7280", fontSize: 12 }}
+                    tick={{ fill: "#9CA3AF", fontSize: 14 }}
+                    dy={10}
                   />
+                  <YAxis hide />
                   <ChartTooltip content={<ChartTooltipContent />} />
                   <Bar
                     dataKey="value"
                     fill="#2B2B2B"
                     radius={[8, 8, 0, 0]}
-                    barSize={40}
+                    maxBarSize={50}
                   />
                 </BarChart>
               </ResponsiveContainer>
             </ChartContainer>
 
-            <p className="text-xs text-gray-500 mt-4">
+            <p className="text-xs text-gray-400 mt-2">
               Your performance between Aug 01, 2025 and Aug 31, 2025
             </p>
           </Card>
@@ -146,38 +148,38 @@ const Analytics = () => {
           {stats.map((stat, index) => (
             <Card
               key={index}
-              className={`${stat.bgColor} border-0 shadow-sm p-4 flex items-center justify-between`}
+              className={`${stat.bgColor} border-0 shadow-sm p-5 flex items-center justify-between rounded-2xl`}
             >
               <div className="flex items-center gap-3">
                 <div
-                  className="w-8 h-8 rounded-full flex items-center justify-center"
-                  style={{ backgroundColor: `${stat.iconColor}20` }}
+                  className="w-9 h-9 rounded-full flex items-center justify-center"
+                  style={{ backgroundColor: stat.icon === "circle" ? "white" : `${stat.iconColor}15` }}
                 >
                   {stat.icon === "circle" && (
                     <div
-                      className="w-4 h-4 rounded-full"
+                      className="w-5 h-5 rounded-full"
                       style={{ backgroundColor: stat.iconColor }}
                     />
                   )}
                   {stat.icon === "phone" && (
-                    <Phone className="w-4 h-4" style={{ color: stat.iconColor }} />
+                    <Phone className="w-5 h-5" style={{ color: stat.iconColor }} />
                   )}
                   {stat.icon === "user" && (
-                    <Users className="w-4 h-4" style={{ color: stat.iconColor }} />
+                    <Users className="w-5 h-5" style={{ color: stat.iconColor }} />
                   )}
                   {stat.icon === "gift" && (
-                    <Gift className="w-4 h-4" style={{ color: stat.iconColor }} />
+                    <Gift className="w-5 h-5" style={{ color: stat.iconColor }} />
                   )}
                 </div>
-                <span className="text-sm font-medium text-gray-700">
+                <span className="text-sm font-medium text-gray-900">
                   {stat.label}
                 </span>
               </div>
               <div className="text-right">
-                <div className="text-xl font-semibold text-gray-900">
+                <div className="text-2xl font-bold text-gray-900">
                   {stat.value}
                 </div>
-                <div className="text-xs text-gray-500">{stat.subtitle}</div>
+                <div className="text-xs text-gray-400 font-normal">{stat.subtitle}</div>
               </div>
             </Card>
           ))}
