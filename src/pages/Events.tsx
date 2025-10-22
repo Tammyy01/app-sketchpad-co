@@ -73,7 +73,7 @@ const Events = () => {
         {events.map((event) => (
           <div key={event.id}>
             {/* Main Event Card with 10px padding */}
-            <div className="w-[347px] h-auto bg-[#FFFFFF] rounded-[6px] p-[10px]">
+            <div className="w-[347px] h-auto bg-[#FFFFFF] rounded-[6px] p-[10px] mx-auto">
               {/* Interest Notification Card */}
               <div className="w-[327px] h-[32px] bg-[#F6FEF9] rounded-[4px] flex items-center justify-center">
                 <p className="text-sm text-center">You have shown interest to attend this event</p>
