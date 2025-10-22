@@ -32,7 +32,7 @@ const Events = () => {
       <div className="pt-6 max-w-full mx-auto">
         <h1 className="text-xl font-semibold text-center mt-[40px]">Events</h1>
         
-        <div className="flex items-center justify-between mt-[104px] mb-6">
+        <div className="flex items-center justify-between mt-[10px] mb-6">
           <Avatar className="w-10 h-10">
             <AvatarImage src="/placeholder.svg" />
             <AvatarFallback>U</AvatarFallback>
@@ -51,12 +51,12 @@ const Events = () => {
         </div>
 
         {/* Tabs */}
-        <div className="flex gap-2">
+        <div className="w-[277px] flex gap-2">
           {tabs.map((tab) => (
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`px-5 py-2.5 rounded-full text-sm font-medium transition-colors ${
+              className={`w-[86px] h-[27px] rounded-full text-xs font-normal transition-colors ${
                 activeTab === tab.id
                   ? "bg-[#343434] text-white"
                   : "bg-white/90 text-gray-600"
