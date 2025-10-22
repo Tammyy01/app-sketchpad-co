@@ -30,20 +30,21 @@ const Events = () => {
     <div className="min-h-screen bg-gradient-to-b from-[hsl(var(--onboarding-gradient-start))] to-[hsl(var(--onboarding-gradient-end))] px-6 pb-32">
       {/* Header */}
       <div className="pt-6 max-w-full mx-auto">
-        <div className="flex items-center justify-between mb-8 mt-[40px]">
+        <h1 className="text-xl font-semibold text-center mt-[40px]">Events</h1>
+        
+        <div className="flex items-center justify-between mt-[104px] mb-6">
           <Avatar className="w-10 h-10">
             <AvatarImage src="/placeholder.svg" />
             <AvatarFallback>U</AvatarFallback>
           </Avatar>
-          <h1 className="text-xl font-semibold">Events</h1>
           <button className="w-10 h-10 flex items-center justify-center">
             <Bell className="w-5 h-5" />
           </button>
         </div>
 
         {/* Stay Connected Section */}
-        <div className="mb-6">
-          <h2 className="text-3xl font-bold mb-2">Stay connected</h2>
+        <div className="mb-6 flex flex-col gap-[5px]">
+          <h2 className="text-2xl font-medium">Stay connected</h2>
           <p className="text-muted-foreground">
             Find the amazing tech events near you
           </p>
