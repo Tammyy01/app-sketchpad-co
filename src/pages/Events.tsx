@@ -27,10 +27,10 @@ const Events = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background pb-24">
+    <div className="min-h-screen bg-gradient-to-b from-[hsl(var(--onboarding-gradient-start))] to-[hsl(var(--onboarding-gradient-end))] px-6 pb-32">
       {/* Header */}
-      <div className="bg-card px-6 pt-12 pb-6">
-        <div className="flex items-center justify-between mb-8">
+      <div className="pt-6 max-w-full mx-auto">
+        <div className="flex items-center justify-between mb-8 mt-[40px]">
           <Avatar className="w-10 h-10">
             <AvatarImage src="/placeholder.svg" />
             <AvatarFallback>U</AvatarFallback>
@@ -57,8 +57,8 @@ const Events = () => {
               onClick={() => setActiveTab(tab.id)}
               className={`px-5 py-2.5 rounded-full text-sm font-medium transition-colors ${
                 activeTab === tab.id
-                  ? "bg-brand-green text-white"
-                  : "bg-muted text-muted-foreground"
+                  ? "bg-[#343434] text-white"
+                  : "bg-white/90 text-gray-600"
               }`}
             >
               {tab.label}
@@ -68,11 +68,11 @@ const Events = () => {
       </div>
 
       {/* Event Cards */}
-      <div className="px-6 py-6">
+      <div className="py-6">
         {events.map((event) => (
           <div
             key={event.id}
-            className="bg-card rounded-3xl overflow-hidden shadow-sm"
+            className="bg-white/90 backdrop-blur border-0 shadow-sm rounded-3xl overflow-hidden"
           >
             {/* Event Image */}
             <div className="w-full h-[240px] relative">
