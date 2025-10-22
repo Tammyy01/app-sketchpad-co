@@ -95,17 +95,17 @@ const Events = () => {
               <div className="mt-5 space-y-4">
                 {/* Title, Date and Time in one line */}
                 <div className="flex items-center gap-3">
-                  <h3 className="text-[18px] font-medium" style={{ color: '#419A6B' }}>
+                  <h3 className="w-[144px] text-[18px] font-medium" style={{ color: '#419A6B' }}>
                     {event.title}
                   </h3>
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <div className="w-[144px] flex items-center gap-2 text-[10px] text-muted-foreground">
                     <div className="flex items-center gap-1.5">
-                      <Calendar className="w-4 h-4" />
+                      <Calendar className="w-[14px] h-[14px]" />
                       <span>{event.date}</span>
                     </div>
                     <div className="h-[14px] w-px bg-border" />
                     <div className="flex items-center gap-1.5">
-                      <Clock className="w-4 h-4" />
+                      <Clock className="w-[14px] h-[14px]" />
                       <span>{event.time}</span>
                     </div>
                   </div>
