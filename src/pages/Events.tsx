@@ -73,7 +73,7 @@ const Events = () => {
         {events.map((event) => (
           <div key={event.id}>
             {/* Main Event Card with 10px padding */}
-            <div className="w-[347px] h-[542px] bg-[#FFFFFF] rounded-[6px] p-[10px]">
+            <div className="w-[347px] h-auto bg-[#FFFFFF] rounded-[6px] p-[10px]">
               {/* Interest Notification Card */}
               <div className="w-[327px] h-[32px] bg-[#F6FEF9] rounded-[4px] flex items-center justify-center">
                 <p className="text-sm text-center">You have shown interest to attend this event</p>
@@ -111,14 +111,17 @@ const Events = () => {
                   </div>
                 </div>
 
+                {/* Separator */}
+                <hr style={{ borderColor: '#F2F2F2' }} />
+
                 {/* Description */}
-                <p className="text-sm text-muted-foreground leading-relaxed">
+                <p className="text-[14px] text-muted-foreground leading-relaxed">
                   {event.description}
                 </p>
 
                 {/* Location */}
-                <div className="flex items-start gap-2 text-sm text-muted-foreground">
-                  <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" />
+                <div className="flex items-start gap-2 text-[12px] text-muted-foreground">
+                  <MapPin className="w-[16px] h-[16px] mt-0.5 flex-shrink-0" />
                   <span>{event.location}</span>
                 </div>
 
