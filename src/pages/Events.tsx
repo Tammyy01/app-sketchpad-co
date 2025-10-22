@@ -81,57 +81,60 @@ const Events = () => {
               {/* Gap */}
               <div className="h-[15px]" />
 
-              {/* Event Image Card */}
-              <div className="w-[326px] h-[278px] rounded-[6px] overflow-hidden">
-                <img
-                  src={event.image}
-                  alt={event.title}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-
-              {/* Event Details */}
-              <div className="mt-5 space-y-4">
-                {/* Title */}
-                <h3 className="text-xl font-semibold">
-                  {event.title}
-                </h3>
-
-                {/* Date and Time */}
-                <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                  <div className="flex items-center gap-1.5">
-                    <Calendar className="w-4 h-4" />
-                    <span>{event.date}</span>
-                  </div>
-                  <div className="flex items-center gap-1.5">
-                    <Clock className="w-4 h-4" />
-                    <span>{event.time}</span>
-                  </div>
+              {/* Main Event Card - Contains Image and Details */}
+              <div className="w-[347px] h-[542px] bg-[#FFFFFF] rounded-[6px] overflow-hidden">
+                {/* Event Image */}
+                <div className="w-full h-[278px]">
+                  <img
+                    src={event.image}
+                    alt={event.title}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
 
-                {/* Description */}
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  {event.description}
-                </p>
+                {/* Event Details */}
+                <div className="p-5 space-y-4">
+                  {/* Title */}
+                  <h3 className="text-xl font-semibold">
+                    {event.title}
+                  </h3>
 
-                {/* Location */}
-                <div className="flex items-start gap-2 text-sm text-muted-foreground">
-                  <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" />
-                  <span>{event.location}</span>
-                </div>
+                  {/* Date and Time */}
+                  <div className="flex items-center gap-4 text-sm text-muted-foreground">
+                    <div className="flex items-center gap-1.5">
+                      <Calendar className="w-4 h-4" />
+                      <span>{event.date}</span>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <Clock className="w-4 h-4" />
+                      <span>{event.time}</span>
+                    </div>
+                  </div>
 
-                {/* Action Buttons */}
-                <div className="flex gap-3 pt-2">
-                  <Button variant="brand" className="flex-1 rounded-full h-12 font-medium">
-                    Yes, I'm going
-                  </Button>
-                  <Button
-                    variant="outline"
-                    className="flex-1 rounded-full h-12 font-medium"
-                  >
-                    <Calendar className="w-4 h-4 mr-2" />
-                    Add to Calendar
-                  </Button>
+                  {/* Description */}
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    {event.description}
+                  </p>
+
+                  {/* Location */}
+                  <div className="flex items-start gap-2 text-sm text-muted-foreground">
+                    <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" />
+                    <span>{event.location}</span>
+                  </div>
+
+                  {/* Action Buttons */}
+                  <div className="flex gap-3 pt-2">
+                    <Button variant="brand" className="flex-1 rounded-full h-12 font-medium">
+                      Yes, I'm going
+                    </Button>
+                    <Button
+                      variant="outline"
+                      className="flex-1 rounded-full h-12 font-medium"
+                    >
+                      <Calendar className="w-4 h-4 mr-2" />
+                      Add to Calendar
+                    </Button>
+                  </div>
                 </div>
               </div>
             </div>
