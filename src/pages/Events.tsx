@@ -70,9 +70,10 @@ const Events = () => {
 
       {/* Event Cards */}
       <div className="py-6">
-        <div className="p-[10px]">
-          {events.map((event) => (
-            <div key={event.id}>
+        {events.map((event) => (
+          <div key={event.id}>
+            {/* Main Event Card with 10px padding */}
+            <div className="w-[347px] h-[542px] bg-[#FFFFFF] rounded-[6px] p-[10px]">
               {/* Interest Notification Card */}
               <div className="w-[327px] h-[32px] bg-[#F6FEF9] rounded-[4px] flex items-center justify-center">
                 <p className="text-sm text-center">You have shown interest to attend this event</p>
@@ -81,65 +82,62 @@ const Events = () => {
               {/* Gap */}
               <div className="h-[15px]" />
 
-              {/* Main Event Card - Contains Image and Details */}
-              <div className="w-[347px] h-[542px] bg-[#FFFFFF] rounded-[6px] overflow-hidden">
-                {/* Event Image */}
-                <div className="w-full h-[278px]">
-                  <img
-                    src={event.image}
-                    alt={event.title}
-                    className="w-full h-full object-cover"
-                  />
+              {/* Event Image */}
+              <div className="w-[326px] h-[278px] rounded-[6px] overflow-hidden">
+                <img
+                  src={event.image}
+                  alt={event.title}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+
+              {/* Event Details */}
+              <div className="mt-5 space-y-4">
+                {/* Title */}
+                <h3 className="text-xl font-semibold">
+                  {event.title}
+                </h3>
+
+                {/* Date and Time */}
+                <div className="flex items-center gap-4 text-sm text-muted-foreground">
+                  <div className="flex items-center gap-1.5">
+                    <Calendar className="w-4 h-4" />
+                    <span>{event.date}</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <Clock className="w-4 h-4" />
+                    <span>{event.time}</span>
+                  </div>
                 </div>
 
-                {/* Event Details */}
-                <div className="p-5 space-y-4">
-                  {/* Title */}
-                  <h3 className="text-xl font-semibold">
-                    {event.title}
-                  </h3>
+                {/* Description */}
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  {event.description}
+                </p>
 
-                  {/* Date and Time */}
-                  <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                    <div className="flex items-center gap-1.5">
-                      <Calendar className="w-4 h-4" />
-                      <span>{event.date}</span>
-                    </div>
-                    <div className="flex items-center gap-1.5">
-                      <Clock className="w-4 h-4" />
-                      <span>{event.time}</span>
-                    </div>
-                  </div>
+                {/* Location */}
+                <div className="flex items-start gap-2 text-sm text-muted-foreground">
+                  <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" />
+                  <span>{event.location}</span>
+                </div>
 
-                  {/* Description */}
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    {event.description}
-                  </p>
-
-                  {/* Location */}
-                  <div className="flex items-start gap-2 text-sm text-muted-foreground">
-                    <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" />
-                    <span>{event.location}</span>
-                  </div>
-
-                  {/* Action Buttons */}
-                  <div className="flex gap-3 pt-2">
-                    <Button variant="brand" className="flex-1 rounded-full h-12 font-medium">
-                      Yes, I'm going
-                    </Button>
-                    <Button
-                      variant="outline"
-                      className="flex-1 rounded-full h-12 font-medium"
-                    >
-                      <Calendar className="w-4 h-4 mr-2" />
-                      Add to Calendar
-                    </Button>
-                  </div>
+                {/* Action Buttons */}
+                <div className="flex gap-3 pt-2">
+                  <Button variant="brand" className="flex-1 rounded-full h-12 font-medium">
+                    Yes, I'm going
+                  </Button>
+                  <Button
+                    variant="outline"
+                    className="flex-1 rounded-full h-12 font-medium"
+                  >
+                    <Calendar className="w-4 h-4 mr-2" />
+                    Add to Calendar
+                  </Button>
                 </div>
               </div>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
 
         {/* Pagination Dots */}
         <div className="flex justify-center gap-2 mt-6">
