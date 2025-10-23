@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft, Calendar, MapPin, Clock, MoreVertical } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -7,17 +8,33 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 const EventRegistrationConfirm = () => {
   const navigate = useNavigate();
+  const [isCalendarDialogOpen, setIsCalendarDialogOpen] = useState(false);
 
   const handleAddToCalendar = () => {
-    // Handle adding to calendar
-    console.log("Add to calendar clicked");
+    setIsCalendarDialogOpen(true);
+  };
+
+  const handleAddToGoogleCalendar = () => {
+    console.log("Add to Google Calendar clicked");
+    setIsCalendarDialogOpen(false);
+  };
+
+  const handleAddToAppleCalendar = () => {
+    console.log("Add to Apple Calendar clicked");
+    setIsCalendarDialogOpen(false);
   };
 
   const handleCancelRegistration = () => {
-    // Handle cancel registration
     console.log("Cancel registration clicked");
   };
 
@@ -131,6 +148,36 @@ const EventRegistrationConfirm = () => {
           </div>
         </div>
       </div>
+
+      {/* Add to Calendar Dialog */}
+      <Dialog open={isCalendarDialogOpen} onOpenChange={setIsCalendarDialogOpen}>
+        <DialogContent className="w-[90%] max-w-[400px] rounded-[20px] p-8">
+          <DialogHeader>
+            <DialogTitle className="text-center text-[20px] font-semibold mb-4">
+              Add to Calender
+            </DialogTitle>
+            <DialogDescription className="text-center text-[14px] text-muted-foreground leading-relaxed mb-6">
+              When you register for an event, you will get an email that automatically adds it to your Calendar. You can also add it manually below.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="space-y-3">
+            <Button
+              className="w-full h-[48px] rounded-full font-medium"
+              style={{ backgroundColor: '#419A6B', color: 'white' }}
+              onClick={handleAddToGoogleCalendar}
+            >
+              Add to Google Calendar
+            </Button>
+            <Button
+              variant="outline"
+              className="w-full h-[48px] rounded-full font-medium bg-[#F2F2F2]"
+              onClick={handleAddToAppleCalendar}
+            >
+              Add to Apple Calender
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
