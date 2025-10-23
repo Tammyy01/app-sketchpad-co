@@ -4,6 +4,8 @@ import { BottomNav } from "@/components/BottomNav";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Calendar, Clock, MapPin } from "lucide-react";
+import image from "@/assets/tech-expo.jpg";
+import avatar from "@/assets/woman.jpg";
 
 const Events = () => {
   const [activeTab, setActiveTab] = useState("find");
@@ -22,7 +24,7 @@ const Events = () => {
       time: "4:00PM",
       description: "A comprehensive event on technology forecasting and its impact on our world",
       location: "1234 Venice Blvd, Los Angeles, CA 90291",
-      image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80",
+      image: image,
     },
   ];
 
@@ -34,7 +36,7 @@ const Events = () => {
         
         <div className="flex items-center justify-between mt-[10px] mb-6">
           <Avatar className="w-10 h-10">
-            <AvatarImage src="/placeholder.svg" />
+            <AvatarImage src={avatar} />
             <AvatarFallback>U</AvatarFallback>
           </Avatar>
           <button className="w-10 h-10 flex items-center justify-center">
@@ -43,7 +45,7 @@ const Events = () => {
         </div>
 
         {/* Stay Connected Section */}
-        <div className="mb-6 flex flex-col gap-[5px]">
+        <div className="mb-6 flex flex-col gap-[5px] pl-3">
           <h2 className="text-2xl font-medium">Stay connected</h2>
           <p className="text-muted-foreground">
             Find the amazing tech events near you
@@ -51,14 +53,14 @@ const Events = () => {
         </div>
 
         {/* Tabs */}
-        <div className="w-[277px] flex gap-2">
+        <div className="w-[277px] flex gap-2 pl-3">
           {tabs.map((tab) => (
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
               className={`w-[86px] h-[27px] rounded-full text-xs font-normal transition-colors ${
                 activeTab === tab.id
-                  ? "bg-[#343434] text-white"
+                  ? "bg-[#419A6B] text-white"
                   : "bg-white/90 text-gray-600"
               }`}
             >
@@ -74,13 +76,15 @@ const Events = () => {
           <div key={event.id}>
             {/* Main Event Card with 10px padding */}
             <div className="w-[347px] h-auto bg-[#FFFFFF] rounded-[6px] p-[10px] mx-auto">
-              {/* Interest Notification Card */}
-              <div className="w-[327px] h-[32px] bg-[#F6FEF9] rounded-[4px] flex items-center justify-center">
-                <p className="text-sm text-center">You have shown interest to attend this event</p>
-              </div>
+              {/* Interest Notification Card - Only show on "You're going" tab */}
+              {activeTab === "going" && (
+                <div className="w-[327px] h-[32px] bg-[#F6FEF9] rounded-[4px] flex items-center justify-center">
+                  <p className="text-sm text-center">You have shown interest to attend this event</p>
+                </div>
+              )}
 
               {/* Gap */}
-              <div className="h-[15px]" />
+              {activeTab === "going" && <div className="h-[15px]" />}
 
               {/* Event Image */}
               <div className="w-[326px] h-[278px] rounded-[6px] overflow-hidden">
@@ -98,12 +102,12 @@ const Events = () => {
                   <h3 className="w-[144px] text-[18px] font-medium whitespace-nowrap" style={{ color: '#419A6B' }}>
                     {event.title}
                   </h3>
-                  <div className="w-[144px] flex items-center gap-2 text-[10px] text-muted-foreground">
+                  <div className="w-[104px] flex items-center gap-2 text-[10px] text-muted-foreground ml-6">
                     <div className="flex items-center gap-1.5">
                       <Calendar className="w-[14px] h-[14px]" />
                       <span>{event.date}</span>
                     </div>
-                    <div className="h-[14px] w-px bg-border" />
+                    {/* <div className="h-[14px] w-px bg-border" /> */}
                     <div className="flex items-center gap-1.5">
                       <Clock className="w-[14px] h-[14px]" />
                       <span>{event.time}</span>
@@ -127,12 +131,12 @@ const Events = () => {
 
                 {/* Action Buttons */}
                 <div className="flex gap-3 pt-2">
-                  <Button variant="brand" className="flex-1 rounded-full h-12 font-medium">
+                  <Button variant="brand" className="flex-1 rounded-full w-[143px] h-[43px] font-medium">
                     Yes, I'm going
                   </Button>
                   <Button
                     variant="outline"
-                    className="flex-1 rounded-full h-12 font-medium"
+                    className="flex-1 rounded-full w-[143px] h-[43px] font-medium bg-[#F2F2F2]"
                   >
                     <Calendar className="w-4 h-4 mr-2" />
                     Add to Calendar
