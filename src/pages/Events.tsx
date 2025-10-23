@@ -1,13 +1,13 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Bell } from "lucide-react";
 import { BottomNav } from "@/components/BottomNav";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Calendar, Clock, MapPin } from "lucide-react";
-import image from "@/assets/tech-expo.jpg";
-import avatar from "@/assets/woman.jpg";
 
 const Events = () => {
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("find");
 
   const tabs = [
@@ -24,7 +24,7 @@ const Events = () => {
       time: "4:00PM",
       description: "A comprehensive event on technology forecasting and its impact on our world",
       location: "1234 Venice Blvd, Los Angeles, CA 90291",
-      image: image,
+      image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80",
     },
   ];
 
@@ -36,7 +36,7 @@ const Events = () => {
         
         <div className="flex items-center justify-between mt-[10px] mb-6">
           <Avatar className="w-10 h-10">
-            <AvatarImage src={avatar} />
+            <AvatarImage src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&q=80" />
             <AvatarFallback>U</AvatarFallback>
           </Avatar>
           <button className="w-10 h-10 flex items-center justify-center">
@@ -131,7 +131,11 @@ const Events = () => {
 
                 {/* Action Buttons */}
                 <div className="flex gap-3 pt-2">
-                  <Button variant="brand" className="flex-1 rounded-full w-[143px] h-[43px] font-medium">
+                  <Button 
+                    variant="brand" 
+                    className="flex-1 rounded-full w-[143px] h-[43px] font-medium"
+                    onClick={() => navigate(`/home/events/${event.id}`)}
+                  >
                     Yes, I'm going
                   </Button>
                   <Button
