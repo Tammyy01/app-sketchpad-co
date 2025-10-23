@@ -73,8 +73,7 @@ const EventDetails = () => {
             variant="brand" 
             className="w-[289px] h-[53px] rounded-full text-base font-medium"
             onClick={() => {
-              // Handle registration confirmation
-              navigate(-1);
+              navigate('/home/events/1/confirm');
             }}
           >
             Confirm Registration
