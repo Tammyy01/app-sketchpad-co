@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft, Calendar, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import heroImage from "@/assets/tech-expo-hero.png";
+import heroImage from "@/assets/tech-expo.jpg";
 
 const EventDetails = () => {
   const navigate = useNavigate();
@@ -17,7 +17,7 @@ const EventDetails = () => {
         />
         
         {/* Header Overlay */}
-        <div className="absolute top-0 left-0 right-0 pt-6 px-4">
+        <div className="absolute top-0 left-0 right-0 pt-safe px-4" style={{ paddingTop: 'max(env(safe-area-inset-top), 1.5rem)' }}>
           <div className="flex items-center">
             <button
               onClick={() => navigate(-1)}
@@ -59,8 +59,8 @@ const EventDetails = () => {
           </div>
         </div>
 
-        {/* About Event Section */}
-        <div className="mb-8">
+        {/* About Event Card */}
+        <div className="bg-white rounded-lg p-4 mb-6">
           <h3 className="text-xl font-semibold mb-3">About Event</h3>
           <p className="text-base text-gray-600 leading-relaxed">
             A comprehensive event on technology forecasting and its impact on our world, A comprehensive event on technology forecasting and its impact on our worldforecasting and its impact on our world
@@ -68,16 +68,18 @@ const EventDetails = () => {
         </div>
 
         {/* Confirm Registration Button */}
-        <Button 
-          variant="brand" 
-          className="w-full h-14 rounded-full text-base font-medium"
-          onClick={() => {
-            // Handle registration confirmation
-            navigate(-1);
-          }}
-        >
-          Confirm Registration
-        </Button>
+        <div className="flex justify-center">
+          <Button 
+            variant="brand" 
+            className="w-[289px] h-[53px] rounded-full text-base font-medium"
+            onClick={() => {
+              // Handle registration confirmation
+              navigate(-1);
+            }}
+          >
+            Confirm Registration
+          </Button>
+        </div>
       </div>
     </div>
   );
