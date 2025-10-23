@@ -13,7 +13,7 @@ const EventDetails = () => {
         <img
           src={heroImage}
           alt="Tech Impact Expo"
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover object-top"
         />
         
         {/* Header Overlay */}
