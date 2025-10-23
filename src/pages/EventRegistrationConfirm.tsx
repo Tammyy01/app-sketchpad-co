@@ -91,7 +91,8 @@ const EventRegistrationConfirm = () => {
             <div className="flex gap-3 pt-2">
               <Button
                 variant="outline"
-                className="flex-1 rounded-full w-[143px] h-[43px] font-medium bg-[#F2F2F2]"
+                className="rounded-full h-[43px] font-medium bg-[#F2F2F2]"
+                style={{ width: '70%' }}
                 onClick={handleAddToCalendar}
               >
                 <Calendar className="w-4 h-4 mr-2" />
@@ -102,7 +103,8 @@ const EventRegistrationConfirm = () => {
                 <DropdownMenuTrigger asChild>
                   <Button
                     variant="outline"
-                    className="flex-1 rounded-full w-[143px] h-[43px] font-medium bg-[#F2F2F2]"
+                    className="rounded-full h-[43px] font-medium bg-[#F2F2F2]"
+                    style={{ width: '20%' }}
                   >
                     <MoreVertical className="w-5 h-5" />
                   </Button>
