@@ -9,12 +9,12 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+} from "@/components/ui/sheet";
 import techExpoHero from "@/assets/tech-expo-hero.png";
 
 const EventRegistrationConfirm = () => {
@@ -150,35 +150,37 @@ const EventRegistrationConfirm = () => {
         </div>
       </div>
 
-      {/* Add to Calendar Dialog */}
-      <Dialog open={isCalendarDialogOpen} onOpenChange={setIsCalendarDialogOpen}>
-        <DialogContent className="fixed left-[50%] bottom-0 translate-x-[-50%] translate-y-0 w-[375px] h-[276px] rounded-t-[20px] rounded-b-none p-6 data-[state=open]:slide-in-from-bottom data-[state=closed]:slide-out-to-bottom">
-          <DialogHeader>
-            <DialogTitle className="text-center text-[20px] font-semibold mb-3">
-              Add to Calender
-            </DialogTitle>
-            <DialogDescription className="text-center text-[14px] text-muted-foreground leading-relaxed mb-4">
-              When you register for an event, you will get an email that automatically adds it to your Calendar. You can also add it manually below.
-            </DialogDescription>
-          </DialogHeader>
-          <div className="space-y-3">
-            <Button
-              className="w-full h-[48px] rounded-full font-medium"
-              style={{ backgroundColor: '#419A6B', color: 'white' }}
-              onClick={handleAddToGoogleCalendar}
-            >
-              Add to Google Calendar
-            </Button>
-            <Button
-              variant="outline"
-              className="w-full h-[48px] rounded-full font-medium bg-[#F2F2F2]"
-              onClick={handleAddToAppleCalendar}
-            >
-              Add to Apple Calender
-            </Button>
+      {/* Add to Calendar Bottom Sheet */}
+      <Sheet open={isCalendarDialogOpen} onOpenChange={setIsCalendarDialogOpen}>
+        <SheetContent side="bottom" className="h-[276px] rounded-t-[20px] p-6 data-[state=open]:slide-in-from-bottom data-[state=closed]:slide-out-to-bottom">
+          <div className="mx-auto w-[375px] max-w-full">
+            <SheetHeader>
+              <SheetTitle className="text-center text-[20px] font-semibold mb-3">
+                Add to Calender
+              </SheetTitle>
+              <SheetDescription className="text-center text-[14px] text-muted-foreground leading-relaxed mb-4">
+                When you register for an event, you will get an email that automatically adds it to your Calendar. You can also add it manually below.
+              </SheetDescription>
+            </SheetHeader>
+            <div className="space-y-3">
+              <Button
+                className="w-full h-[48px] rounded-full font-medium"
+                style={{ backgroundColor: '#419A6B', color: 'white' }}
+                onClick={handleAddToGoogleCalendar}
+              >
+                Add to Google Calendar
+              </Button>
+              <Button
+                variant="outline"
+                className="w-full h-[48px] rounded-full font-medium bg-[#F2F2F2]"
+                onClick={handleAddToAppleCalendar}
+              >
+                Add to Apple Calender
+              </Button>
+            </div>
           </div>
-        </DialogContent>
-      </Dialog>
+        </SheetContent>
+      </Sheet>
     </div>
   );
 };
