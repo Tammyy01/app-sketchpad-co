@@ -15,7 +15,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import image from "@/assets/tech-expo.jpg";
+import techExpoHero from "@/assets/tech-expo-hero.png";
 
 const EventRegistrationConfirm = () => {
   const navigate = useNavigate();
@@ -39,7 +39,7 @@ const EventRegistrationConfirm = () => {
     console.log("Cancel registration clicked");
   };
 
-  const eventImage = image;
+  const eventImage = techExpoHero;
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-[hsl(var(--onboarding-gradient-start))] to-[hsl(var(--onboarding-gradient-end))] px-[10px] pb-8">
