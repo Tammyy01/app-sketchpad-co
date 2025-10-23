@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft, Calendar, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import heroImage from "@/assets/tech-expo.jpg";
+import heroImage from "@/assets/tech-expo-hero.png";
 
 const EventDetails = () => {
   const navigate = useNavigate();
