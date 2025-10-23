@@ -15,6 +15,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import image from "@/assets/tech-expo.jpg";
 
 const EventRegistrationConfirm = () => {
   const navigate = useNavigate();
@@ -38,18 +39,18 @@ const EventRegistrationConfirm = () => {
     console.log("Cancel registration clicked");
   };
 
-  const eventImage = "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80";
+  const eventImage = image;
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-[hsl(var(--onboarding-gradient-start))] to-[hsl(var(--onboarding-gradient-end))] px-[10px] pb-8">
       {/* Header */}
       <div className="pt-safe px-4" style={{ paddingTop: 'max(env(safe-area-inset-top), 1.5rem)' }}>
-        <div className="flex items-center py-4">
+        <div className="flex items-center pb-0 pt-10">
           <button
             onClick={() => navigate(-1)}
-            className="w-10 h-10 flex items-center justify-center"
+            className="w-10 h-10 flex items-center justify-center mt-2"
           >
-            <ArrowLeft className="w-6 h-6 text-gray-700" />
+            <ArrowLeft className="w-6 h-6 text-[#419A6B]" />
           </button>
         </div>
       </div>
@@ -58,9 +59,9 @@ const EventRegistrationConfirm = () => {
       <div className="py-6">
         <div className="w-[347px] h-auto bg-[#FFFFFF] rounded-[6px] p-[10px] mx-auto">
           {/* Confirmation Notification Card */}
-          <div className="w-[327px] h-[32px] bg-[#F6FEF9] rounded-[4px] flex items-center justify-center mb-[15px]">
+          {/* <div className="w-[327px] h-[32px] bg-[#F6FEF9] rounded-[4px] flex items-center justify-center mb-[15px]">
             <p className="text-sm text-center">You have shown interest to attend this event</p>
-          </div>
+          </div> */}
 
           {/* Event Image */}
           <div className="w-[326px] h-[278px] rounded-[6px] overflow-hidden">
@@ -109,10 +110,10 @@ const EventRegistrationConfirm = () => {
               <Button
                 variant="outline"
                 className="rounded-full h-[43px] font-medium bg-[#F2F2F2]"
-                style={{ width: '70%' }}
+                style={{ width: '90%' }}
                 onClick={handleAddToCalendar}
               >
-                <Calendar className="w-4 h-4 mr-2" />
+                <Calendar className="w-4 h-4 mr-0 text-[#419A6B]" />
                 Add to Calendar
               </Button>
               
@@ -120,8 +121,8 @@ const EventRegistrationConfirm = () => {
                 <DropdownMenuTrigger asChild>
                   <Button
                     variant="outline"
-                    className="rounded-full h-[43px] font-medium bg-[#F2F2F2]"
-                    style={{ width: '20%' }}
+                    className=" h-[43px] font-medium bg-[#F2F2F2]"
+                    style={{ width: '12%' }}
                   >
                     <MoreVertical className="w-5 h-5" />
                   </Button>
@@ -151,12 +152,12 @@ const EventRegistrationConfirm = () => {
 
       {/* Add to Calendar Dialog */}
       <Dialog open={isCalendarDialogOpen} onOpenChange={setIsCalendarDialogOpen}>
-        <DialogContent className="w-[90%] max-w-[400px] rounded-[20px] p-8">
+        <DialogContent className="fixed left-[50%] bottom-0 translate-x-[-50%] translate-y-0 w-[375px] h-[276px] rounded-t-[20px] rounded-b-none p-6 data-[state=open]:slide-in-from-bottom data-[state=closed]:slide-out-to-bottom">
           <DialogHeader>
-            <DialogTitle className="text-center text-[20px] font-semibold mb-4">
+            <DialogTitle className="text-center text-[20px] font-semibold mb-3">
               Add to Calender
             </DialogTitle>
-            <DialogDescription className="text-center text-[14px] text-muted-foreground leading-relaxed mb-6">
+            <DialogDescription className="text-center text-[14px] text-muted-foreground leading-relaxed mb-4">
               When you register for an event, you will get an email that automatically adds it to your Calendar. You can also add it manually below.
             </DialogDescription>
           </DialogHeader>
