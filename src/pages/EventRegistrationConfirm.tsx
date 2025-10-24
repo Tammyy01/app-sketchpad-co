@@ -20,6 +20,7 @@ import techExpoHero from "@/assets/tech-expo-hero.png";
 const EventRegistrationConfirm = () => {
   const navigate = useNavigate();
   const [isCalendarDialogOpen, setIsCalendarDialogOpen] = useState(false);
+  const [isCancelDialogOpen, setIsCancelDialogOpen] = useState(false);
 
   const handleAddToCalendar = () => {
     setIsCalendarDialogOpen(true);
@@ -36,7 +37,13 @@ const EventRegistrationConfirm = () => {
   };
 
   const handleCancelRegistration = () => {
-    console.log("Cancel registration clicked");
+    setIsCancelDialogOpen(true);
+  };
+
+  const handleConfirmCancel = () => {
+    console.log("Registration cancelled");
+    setIsCancelDialogOpen(false);
+    navigate(-1);
   };
 
   const eventImage = techExpoHero;
@@ -152,17 +159,17 @@ const EventRegistrationConfirm = () => {
 
       {/* Add to Calendar Bottom Sheet */}
       <Sheet open={isCalendarDialogOpen} onOpenChange={setIsCalendarDialogOpen}>
-        <SheetContent side="bottom" className="h-[276px] rounded-t-[20px] p-6 data-[state=open]:slide-in-from-bottom data-[state=closed]:slide-out-to-bottom">
+        <SheetContent side="bottom" className="h-[300px] rounded-t-[20px] p-6 data-[state=open]:slide-in-from-bottom data-[state=closed]:slide-out-to-bottom px-10">
           <div className="mx-auto w-[375px] max-w-full">
             <SheetHeader>
-              <SheetTitle className="text-center text-[20px] font-semibold mb-3">
+              <SheetTitle className="text-center text-[20px] font-semibold mb-1">
                 Add to Calender
               </SheetTitle>
-              <SheetDescription className="text-center text-[14px] text-muted-foreground leading-relaxed mb-4">
+              <SheetDescription className="text-center text-[14px] text-muted-foreground leading-relaxed mb-9">
                 When you register for an event, you will get an email that automatically adds it to your Calendar. You can also add it manually below.
               </SheetDescription>
             </SheetHeader>
-            <div className="space-y-3">
+            <div className="space-y-3 mt-4">
               <Button
                 className="w-full h-[48px] rounded-full font-medium"
                 style={{ backgroundColor: '#419A6B', color: 'white' }}
@@ -176,6 +183,38 @@ const EventRegistrationConfirm = () => {
                 onClick={handleAddToAppleCalendar}
               >
                 Add to Apple Calender
+              </Button>
+            </div>
+          </div>
+        </SheetContent>
+      </Sheet>
+
+      {/* Cancel Registration Bottom Sheet */}
+      <Sheet open={isCancelDialogOpen} onOpenChange={setIsCancelDialogOpen}>
+        <SheetContent side="bottom" className="h-[260px] rounded-t-[20px] p-6 data-[state=open]:slide-in-from-bottom data-[state=closed]:slide-out-to-bottom px-10">
+          <div className="mx-auto w-[375px] max-w-full">
+            <SheetHeader>
+              <SheetTitle className="text-center text-[20px] font-semibold mb-3">
+                Leave Event
+              </SheetTitle>
+              <SheetDescription className="text-center text-[14px] text-muted-foreground leading-relaxed mb-6">
+                Are you sure you want to leave the event?
+              </SheetDescription>
+            </SheetHeader>
+            <div className="flex gap-3 mt-4">
+              <Button
+                variant="outline"
+                className="flex-1 h-[48px] rounded-full font-medium bg-[#F2F2F2]"
+                onClick={() => setIsCancelDialogOpen(false)}
+              >
+                Dismiss
+              </Button>
+              <Button
+                className="flex-1 h-[48px] rounded-full font-medium"
+                style={{ backgroundColor: '#419A6B', color: 'white' }}
+                onClick={handleConfirmCancel}
+              >
+                Confirm
               </Button>
             </div>
           </div>
