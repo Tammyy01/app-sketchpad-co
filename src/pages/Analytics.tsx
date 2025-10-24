@@ -73,19 +73,25 @@ const Analytics = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-[hsl(var(--onboarding-gradient-start))] to-[hsl(var(--onboarding-gradient-end))] px-6 pb-10">
       {/* Header */}
-      <div className="pt-6 max-w-full mx-auto flex items-center gap-3">
+      <div className="pt-6 max-w-full mx-auto mt-[40px]">
         <Button
           variant="ghost"
           size="icon"
           onClick={() => navigate(-1)}
-          className="w-[37px] h-[37px] rounded-[10px] bg-white/90 hover:bg-white mt-[40px]"
+          className="w-[37px] h-[37px] rounded-[10px] bg-white/90 hover:bg-white mb-4"
         >
           <ArrowLeft className="w-5 h-5" />
         </Button>
-        <h1 className="flex-1 text-center text-xl font-semibold mt-[40px]">
-          Analytics
-        </h1>
-        <div className="w-10" />
+        
+        {/* Tabs */}
+        <div className="flex gap-8 border-b border-gray-300">
+          <button className="pb-2 text-base font-semibold text-[#419A6B] border-b-2 border-[#419A6B]">
+            Analytics
+          </button>
+          <button className="pb-2 text-base font-medium text-gray-500 border-b-2 border-gray-300">
+            Reimbursement
+          </button>
+        </div>
       </div>
 
       <div className="max-w-full mx-auto mt-6 space-y-5">
