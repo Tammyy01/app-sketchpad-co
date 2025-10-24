@@ -20,7 +20,7 @@ const EditProfile = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 flex flex-col">
+    <div className="min-h-screen bg-gradient-to-b from-[hsl(var(--onboarding-gradient-start))] to-[hsl(var(--onboarding-gradient-end))] flex flex-col">
       {/* Header */}
       <div className="flex items-center justify-center relative px-5 pt-6 pb-4">
         <button
