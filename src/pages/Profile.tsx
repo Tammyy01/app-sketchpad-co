@@ -37,7 +37,7 @@ const Profile = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 flex flex-col pb-20">
+    <div className="min-h-screen bg-gradient-to-b from-[hsl(var(--onboarding-gradient-start))] to-[hsl(var(--onboarding-gradient-end))] flex flex-col pb-20">
       {/* Header */}
       <div className="flex items-center justify-end px-5 pt-6 pb-4">
         <button onClick={() => navigate("/home/settings")}>
@@ -46,10 +46,10 @@ const Profile = () => {
       </div>
 
       {/* Content */}
-      <div className="flex-1 px-6 py-2">
+      <div className="flex-1 px-6 py-2 space-y-4">
+        {/* Profile Card */}
         <div className="bg-white rounded-3xl p-6 max-w-md mx-auto">
-          {/* Profile Section */}
-          <div className="flex flex-col items-center mb-8">
+          <div className="flex flex-col items-center">
             <div className="w-24 h-24 rounded-full overflow-hidden bg-gray-100 mb-4">
               <img
                 src={avatar1}
@@ -62,7 +62,10 @@ const Profile = () => {
             </h2>
             <p className="text-sm text-gray-500 mt-1">maria.hughes@gmail.com</p>
           </div>
+        </div>
 
+        {/* Menu Card */}
+        <div className="bg-white rounded-3xl p-6 max-w-md mx-auto">
           {/* Menu Items */}
           <div className="space-y-2 mb-6">
             {menuItems.map((item) => {
@@ -88,18 +91,16 @@ const Profile = () => {
           </div>
 
           {/* Logout Button */}
-          <div className="pt-6 border-t border-gray-100">
-            <Button
-              onClick={handleLogout}
-              variant="ghost"
-              className="w-full justify-start gap-4 p-4 text-red-500 hover:bg-red-50 hover:text-red-600 rounded-xl h-auto"
-            >
-              <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-red-50">
-                <LogOut className="w-5 h-5" />
-              </div>
-              <span className="text-base font-medium">Logout</span>
-            </Button>
-          </div>
+          <Button
+            onClick={handleLogout}
+            variant="ghost"
+            className="w-full justify-start gap-4 p-4 text-red-500 hover:bg-red-50 hover:text-red-600 rounded-xl h-auto"
+          >
+            <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-red-50">
+              <LogOut className="w-5 h-5" />
+            </div>
+            <span className="text-base font-medium">Logout</span>
+          </Button>
         </div>
       </div>
 
