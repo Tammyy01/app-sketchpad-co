@@ -251,9 +251,9 @@ const Analytics = () => {
           </div>
         </div>
       ) : (
-        <div className="max-w-full mx-auto mt-6 space-y-5 pb-20">
+        <div className="max-w-full mx-auto mt-6 space-y-5 pb-20 animate-fade-in">
           {/* Summary Card */}
-          <Card className="bg-[#419A6B] border-0 rounded-3xl p-6 text-white">
+          <Card className="bg-[#419A6B] border-0 rounded-3xl p-6 text-white animate-scale-in">
             <div className="space-y-4">
               <div className="flex justify-between items-center">
                 <span className="text-sm font-medium opacity-90">Total Submitted:</span>
@@ -273,16 +273,17 @@ const Analytics = () => {
           </Card>
 
           {/* Filter Tabs */}
-          <div className="flex gap-2">
-            {["all", "pending", "approved", "paid"].map((filter) => (
+          <div className="flex gap-2 animate-fade-in" style={{ animationDelay: '0.1s' }}>
+            {["all", "pending", "approved", "paid"].map((filter, index) => (
               <button
                 key={filter}
                 onClick={() => setReimbursementFilter(filter)}
-                className={`px-5 py-2 rounded-full text-sm font-medium capitalize transition-colors ${
+                className={`px-5 py-2 rounded-full text-sm font-medium capitalize transition-all duration-200 hover:scale-105 ${
                   reimbursementFilter === filter
                     ? "bg-[#419A6B] text-white"
                     : "bg-white/90 text-gray-600"
                 }`}
+                style={{ animationDelay: `${0.1 + index * 0.05}s` }}
               >
                 {filter}
               </button>
@@ -291,8 +292,12 @@ const Analytics = () => {
 
           {/* Reimbursement List */}
           <div className="space-y-4">
-            {filteredReimbursements.map((item) => (
-              <Card key={item.id} className="bg-white/90 backdrop-blur border-0 rounded-2xl p-5">
+            {filteredReimbursements.map((item, index) => (
+              <Card 
+                key={item.id} 
+                className="bg-white/90 backdrop-blur border-0 rounded-2xl p-5 animate-fade-in hover:scale-[1.02] transition-transform duration-200"
+                style={{ animationDelay: `${0.2 + index * 0.1}s` }}
+              >
                 <div className="space-y-3">
                   <div className="flex justify-between">
                     <span className="text-sm text-gray-500">Event:</span>
@@ -324,7 +329,7 @@ const Analytics = () => {
           </div>
 
           {/* Floating Add Button */}
-          <button className="fixed bottom-24 right-6 w-14 h-14 rounded-full bg-[#419A6B] text-white flex items-center justify-center shadow-lg z-50">
+          <button className="fixed bottom-24 right-6 w-14 h-14 rounded-full bg-[#419A6B] text-white flex items-center justify-center shadow-lg z-50 animate-scale-in hover:scale-110 transition-transform duration-200" style={{ animationDelay: '0.4s' }}>
             <Plus className="w-6 h-6" />
           </button>
         </div>
