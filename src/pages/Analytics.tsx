@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ArrowLeft, Filter, Phone, Users, Gift, Plus } from "lucide-react";
+import { ArrowLeft, Filter, Phone, Users, Gift, MapPin, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import {
@@ -43,7 +43,7 @@ const Analytics = () => {
       label: "Events",
       value: "12",
       subtitle: "Attended",
-      bgColor: "bg-white/90",
+      bgColor: "bg-[#F7FFFB]",
       iconColor: "#343434",
     },
     {
@@ -51,7 +51,7 @@ const Analytics = () => {
       label: "Calls",
       value: "8",
       subtitle: "Booked",
-      bgColor: "bg-[#FFF9E6]/90",
+      bgColor: "bg-[#FFFDF4]",
       iconColor: "#F59E0B",
     },
     {
@@ -59,7 +59,7 @@ const Analytics = () => {
       label: "Contacts",
       value: "26",
       subtitle: "Shared",
-      bgColor: "bg-[#EFF6FF]/90",
+      bgColor: "bg-[#F2F5FF]",
       iconColor: "#3B82F6",
     },
     {
@@ -67,7 +67,7 @@ const Analytics = () => {
       label: "Total Rewards",
       value: "$3,500",
       subtitle: "Earned",
-      bgColor: "bg-[#FEF2F2]/90",
+      bgColor: "bg-[#FFF2F2]",
       iconColor: "#EF4444",
     },
   ];
@@ -120,12 +120,12 @@ const Analytics = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-[hsl(var(--onboarding-gradient-start))] to-[hsl(var(--onboarding-gradient-end))] px-6 pb-10">
       {/* Header */}
-      <div className="pt-6 max-w-full mx-auto mt-[40px]">
+      <div className="pt-16 max-w-full mx-auto">
         <Button
           variant="ghost"
           size="icon"
           onClick={() => navigate(-1)}
-          className="w-[37px] h-[37px] rounded-[10px] bg-white/90 hover:bg-white mb-4"
+          className="w-[37px] h-[37px] rounded-[10px] mb-4"
         >
           <ArrowLeft className="w-5 h-5" />
         </Button>
@@ -136,18 +136,18 @@ const Analytics = () => {
             onClick={() => setMainTab("analytics")}
             className={`flex-1 pb-2 text-base font-semibold text-center ${
               mainTab === "analytics"
-                ? "text-gray-900 border-b-2 border-gray-900"
-                : "text-gray-500 border-b-2 border-transparent"
+                ? "text-[#419A6B] border-b-2 border-[#419A6B]"
+                : "text-gray-500 border-b-2 border-gray-300"
             }`}
           >
             Analytics
           </button>
           <button
             onClick={() => setMainTab("reimbursement")}
-            className={`flex-1 pb-2 text-base font-semibold text-center ${
+            className={`flex-1 pb-2 text-base font-medium text-center ${
               mainTab === "reimbursement"
                 ? "text-[#419A6B] border-b-2 border-[#419A6B]"
-                : "text-gray-500 border-b-2 border-transparent"
+                : "text-gray-500 border-b-2 border-gray-300"
             }`}
           >
             Reimbursement
@@ -169,12 +169,12 @@ const Analytics = () => {
                 {tabs.map((tab) => (
                   <button
                     key={tab.id}
-                    onClick={() => setActiveTab(tab.id)}
-                    className={`px-5 py-2 rounded-full text-sm font-medium transition-colors ${
-                      activeTab === tab.id
-                        ? "bg-[#343434] text-white"
-                        : "bg-white/90 text-gray-600"
-                    }`}
+                  onClick={() => setActiveTab(tab.id)}
+                  className={`px-5 py-2 rounded-full text-sm font-medium transition-colors ${
+                    activeTab === tab.id
+                      ? "bg-[#419A6B] text-white"
+                      : "bg-white/90 text-gray-600"
+                  }`}
                   >
                     {tab.label}
                   </button>
@@ -200,7 +200,7 @@ const Analytics = () => {
                     <ChartTooltip content={<ChartTooltipContent hideLabel />} />
                     <Bar
                       dataKey="value"
-                      fill="#343434"
+                      fill="#419A6B"
                       radius={[8, 8, 0, 0]}
                       maxBarSize={45}
                     />
@@ -209,7 +209,7 @@ const Analytics = () => {
               </ChartContainer>
             </Card>
 
-            <p className="text-xs text-gray-400 mt-2">
+            <p className="w-[302px] text-[14px] text-gray-400 mt-4">
               Your performance between Aug 01, 2025 and Aug 31, 2025
             </p>
           </div>
@@ -224,10 +224,7 @@ const Analytics = () => {
                 <div className="flex items-center gap-3">
                   <div className="w-8 h-8 rounded-full flex items-center justify-center bg-white">
                     {stat.icon === "circle" && (
-                      <div
-                        className="w-5 h-5 rounded-full"
-                        style={{ backgroundColor: stat.iconColor }}
-                      />
+                      <MapPin className="w-5 h-5" style={{ color: stat.iconColor }} />
                     )}
                     {stat.icon === "phone" && (
                       <Phone className="w-5 h-5" style={{ color: stat.iconColor }} />
