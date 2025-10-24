@@ -1,140 +1,109 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ArrowLeft, Camera } from "lucide-react";
+import { User, DollarSign, BarChart3, LogOut, Settings } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { BottomNav } from "@/components/BottomNav";
 import avatar1 from "@/assets/avatar1.png";
 
 const Profile = () => {
   const navigate = useNavigate();
-  const [isEditing, setIsEditing] = useState(false);
-  const [formData, setFormData] = useState({
-    firstName: "Maria",
-    lastName: "Hughes",
-    email: "MariaHughes@gmail.com",
-    linkedin: "MariaHughes/linkedin/profile/url",
-  });
 
-  const handleSave = () => {
-    // Save changes logic here
-    setIsEditing(false);
+  const handleLogout = () => {
+    // Handle logout logic here
+    navigate("/login");
   };
 
+  const menuItems = [
+    {
+      id: "profile",
+      label: "Profile",
+      icon: User,
+      onClick: () => navigate("/home/edit-profile"),
+      color: "#419A6B"
+    },
+    {
+      id: "earnings",
+      label: "Earnings",
+      icon: DollarSign,
+      onClick: () => navigate("/home/earnings"),
+      color: "#419A6B"
+    },
+    {
+      id: "analytics",
+      label: "Analytics",
+      icon: BarChart3,
+      onClick: () => navigate("/home/analytics"),
+      color: "#419A6B"
+    },
+  ];
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 flex flex-col">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 flex flex-col pb-20">
       {/* Header */}
-      <div className="flex items-center justify-center relative px-5 pt-6 pb-4">
-        <button
-          onClick={() => navigate(-1)}
-          className="absolute left-5"
-        >
-          <ArrowLeft className="w-6 h-6 text-gray-700" />
+      <div className="flex items-center justify-end px-5 pt-6 pb-4">
+        <button onClick={() => navigate("/home/settings")}>
+          <Settings className="w-6 h-6 text-gray-500" />
         </button>
-        <h1 className="text-lg font-semibold text-gray-900">Edit Profile</h1>
       </div>
 
       {/* Content */}
-      <div className="flex-1 px-6 py-6">
-        <div className="bg-white rounded-3xl p-8 max-w-md mx-auto">
-          {/* Avatar Section */}
+      <div className="flex-1 px-6 py-2">
+        <div className="bg-white rounded-3xl p-6 max-w-md mx-auto">
+          {/* Profile Section */}
           <div className="flex flex-col items-center mb-8">
-            <div className="relative">
-              <div className="w-24 h-24 rounded-full overflow-hidden bg-gray-100">
-                <img
-                  src={avatar1}
-                  alt="Profile"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <button className="absolute bottom-0 right-0 w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center">
-                <Camera className="w-4 h-4 text-white" />
-              </button>
+            <div className="w-24 h-24 rounded-full overflow-hidden bg-gray-100 mb-4">
+              <img
+                src={avatar1}
+                alt="Profile"
+                className="w-full h-full object-cover"
+              />
             </div>
-            <h2 className="mt-4 text-xl font-semibold text-gray-900">
-              {formData.firstName} {formData.lastName}
+            <h2 className="text-xl font-semibold text-gray-900">
+              Maria Hughes
             </h2>
-            <p className="text-sm text-gray-500">{formData.email}</p>
+            <p className="text-sm text-gray-500 mt-1">maria.hughes@gmail.com</p>
           </div>
 
-          {/* Form Fields */}
-          <div className="space-y-4">
-            <div className="flex items-center justify-between py-3 border-b border-gray-100">
-              <label className="text-sm text-gray-500">First Name</label>
-              {isEditing ? (
-                <input
-                  type="text"
-                  value={formData.firstName}
-                  onChange={(e) =>
-                    setFormData({ ...formData, firstName: e.target.value })
-                  }
-                  className="text-right text-gray-900 border-none outline-none bg-transparent"
-                />
-              ) : (
-                <span className="text-gray-900">{formData.firstName}</span>
-              )}
-            </div>
-
-            <div className="flex items-center justify-between py-3 border-b border-gray-100">
-              <label className="text-sm text-gray-500">Last Name</label>
-              {isEditing ? (
-                <input
-                  type="text"
-                  value={formData.lastName}
-                  onChange={(e) =>
-                    setFormData({ ...formData, lastName: e.target.value })
-                  }
-                  className="text-right text-gray-900 border-none outline-none bg-transparent"
-                />
-              ) : (
-                <span className="text-gray-900">{formData.lastName}</span>
-              )}
-            </div>
-
-            <div className="flex items-center justify-between py-3 border-b border-gray-100">
-              <label className="text-sm text-gray-500">Email</label>
-              {isEditing ? (
-                <input
-                  type="email"
-                  value={formData.email}
-                  onChange={(e) =>
-                    setFormData({ ...formData, email: e.target.value })
-                  }
-                  className="text-right text-gray-900 border-none outline-none bg-transparent"
-                />
-              ) : (
-                <span className="text-gray-900">{formData.email}</span>
-              )}
-            </div>
-
-            <div className="flex items-center justify-between py-3 border-b border-gray-100">
-              <label className="text-sm text-gray-500">LinkedIn</label>
-              {isEditing ? (
-                <input
-                  type="text"
-                  value={formData.linkedin}
-                  onChange={(e) =>
-                    setFormData({ ...formData, linkedin: e.target.value })
-                  }
-                  className="text-right text-gray-900 border-none outline-none bg-transparent"
-                />
-              ) : (
-                <span className="text-gray-900">{formData.linkedin}</span>
-              )}
-            </div>
+          {/* Menu Items */}
+          <div className="space-y-2 mb-6">
+            {menuItems.map((item) => {
+              const Icon = item.icon;
+              return (
+                <button
+                  key={item.id}
+                  onClick={item.onClick}
+                  className="w-full flex items-center gap-4 p-4 rounded-xl hover:bg-gray-50 transition-colors"
+                >
+                  <div
+                    className="w-10 h-10 rounded-lg flex items-center justify-center"
+                    style={{ backgroundColor: `${item.color}20` }}
+                  >
+                    <Icon className="w-5 h-5" style={{ color: item.color }} />
+                  </div>
+                  <span className="text-base font-medium text-gray-900">
+                    {item.label}
+                  </span>
+                </button>
+              );
+            })}
           </div>
 
-          {/* Action Button */}
-          <div className="mt-8">
+          {/* Logout Button */}
+          <div className="pt-6 border-t border-gray-100">
             <Button
-              onClick={isEditing ? handleSave : () => setIsEditing(true)}
-              className="w-full h-14 rounded-full text-white text-base font-medium"
-              style={{ backgroundColor: "#343434" }}
+              onClick={handleLogout}
+              variant="ghost"
+              className="w-full justify-start gap-4 p-4 text-red-500 hover:bg-red-50 hover:text-red-600 rounded-xl h-auto"
             >
-              {isEditing ? "Save Changes" : "Edit"}
+              <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-red-50">
+                <LogOut className="w-5 h-5" />
+              </div>
+              <span className="text-base font-medium">Logout</span>
             </Button>
           </div>
         </div>
       </div>
+
+      <BottomNav />
     </div>
   );
 };

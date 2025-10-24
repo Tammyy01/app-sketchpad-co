@@ -1,11 +1,11 @@
-import { QrCode, Calendar, Users, DollarSign } from "lucide-react";
+import { QrCode, Calendar, Users, User } from "lucide-react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const tabs = [
   { id: "qr", label: "QR", icon: QrCode, path: "/home" },
   { id: "events", label: "Events", icon: Calendar, path: "/home/events" },
   { id: "contacts", label: "Contacts", icon: Users, path: "/home/contacts" },
-  { id: "earnings", label: "Earnings", icon: DollarSign, path: "/home/earnings" },
+  { id: "profile", label: "Profile", icon: User, path: "/home/profile" },
 ];
 
 export const BottomNav = () => {

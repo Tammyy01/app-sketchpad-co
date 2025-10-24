@@ -16,6 +16,7 @@ import ApplyVerifyEmailCode from "./pages/ApplyVerifyEmailCode";
 import Index from "./pages/Index";
 import CompleteProfile from "./pages/CompleteProfile";
 import Profile from "./pages/Profile";
+import EditProfile from "./pages/EditProfile";
 import Analytics from "./pages/Analytics";
 import Earnings from "./pages/Earnings";
 import Rankings from "./pages/Rankings";
@@ -45,8 +46,9 @@ const App = () => (
           <Route path="/apply-verify-email-code" element={<ApplyVerifyEmailCode />} />
           <Route path="/home" element={<Index />} />
           <Route path="/complete-profile" element={<CompleteProfile />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/analytics" element={<Analytics />} />
+          <Route path="/home/profile" element={<Profile />} />
+          <Route path="/home/edit-profile" element={<EditProfile />} />
+          <Route path="/home/analytics" element={<Analytics />} />
           <Route path="/home/earnings" element={<Earnings />} />
           <Route path="/home/events" element={<Events />} />
           <Route path="/home/events/:eventId" element={<EventDetails />} />
