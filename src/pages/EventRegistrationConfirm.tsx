@@ -26,6 +26,7 @@ const EventRegistrationConfirm = () => {
   const [isCalendarDialogOpen, setIsCalendarDialogOpen] = useState(false);
   const [isCancelDialogOpen, setIsCancelDialogOpen] = useState(false);
   const [isSuccessDialogOpen, setIsSuccessDialogOpen] = useState(false);
+  const [isCalendarSuccessDialogOpen, setIsCalendarSuccessDialogOpen] = useState(false);
 
   const handleAddToCalendar = () => {
     setIsCalendarDialogOpen(true);
@@ -34,6 +35,12 @@ const EventRegistrationConfirm = () => {
   const handleAddToGoogleCalendar = () => {
     console.log("Add to Google Calendar clicked");
     setIsCalendarDialogOpen(false);
+    setIsCalendarSuccessDialogOpen(true);
+    
+    // Auto close after 2 seconds and navigate
+    setTimeout(() => {
+      setIsCalendarSuccessDialogOpen(false);
+    }, 2000);
   };
 
   const handleAddToAppleCalendar = () => {
@@ -245,6 +252,33 @@ const EventRegistrationConfirm = () => {
             {/* Success Message */}
             <p className="text-center text-[16px] text-gray-900 font-medium">
               You have withdrawn your application
+            </p>
+            
+            {/* Loading Spinner */}
+            <div className="w-8 h-8 border-4 border-[#419A6B] border-t-transparent rounded-full animate-spin" />
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* Calendar Success Dialog */}
+      <Dialog open={isCalendarSuccessDialogOpen} onOpenChange={setIsCalendarSuccessDialogOpen}>
+        <DialogContent className="w-[280px] h-[250px] rounded-[20px] p-6 border-0 flex items-center justify-center">
+          <div className="flex flex-col items-center gap-4">
+            {/* Checkmark Circle */}
+            <div className="w-[60px] h-[60px] rounded-full border-4 border-[#419A6B] flex items-center justify-center">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 6L9 17L4 12" stroke="#419A6B" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </div>
+            
+            {/* Success Title */}
+            <h3 className="text-center text-[20px] text-gray-900 font-semibold">
+              You're In
+            </h3>
+            
+            {/* Success Message */}
+            <p className="text-center text-[14px] text-muted-foreground">
+              Thank you, We look forward to seeing you
             </p>
             
             {/* Loading Spinner */}
