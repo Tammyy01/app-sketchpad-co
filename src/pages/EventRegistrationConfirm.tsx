@@ -15,6 +15,10 @@ import {
   SheetHeader,
   SheetTitle,
 } from "@/components/ui/sheet";
+import {
+  Dialog,
+  DialogContent,
+} from "@/components/ui/dialog";
 import techExpoHero from "@/assets/tech-expo-hero.png";
 
 const EventRegistrationConfirm = () => {
@@ -228,28 +232,26 @@ const EventRegistrationConfirm = () => {
         </SheetContent>
       </Sheet>
 
-      {/* Success Bottom Sheet */}
-      <Sheet open={isSuccessDialogOpen} onOpenChange={setIsSuccessDialogOpen}>
-        <SheetContent side="bottom" className="h-[260px] rounded-t-[20px] p-6 data-[state=open]:slide-in-from-bottom data-[state=closed]:slide-out-to-bottom px-10 border-0">
-          <div className="mx-auto w-[375px] max-w-full flex flex-col items-center justify-center h-full">
-            <div className="flex flex-col items-center gap-6">
-              {/* Checkmark SVG */}
-              <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect width="59.0649" height="59.0649" rx="29.5325" fill="#419A6B"/>
-                <path d="M41.4701 24.3282L24.6832 41.1151C24.5858 41.2126 24.47 41.29 24.3427 41.3428C24.2153 41.3956 24.0788 41.4228 23.9409 41.4228C23.803 41.4228 23.6665 41.3956 23.5391 41.3428C23.4118 41.29 23.296 41.2126 23.1986 41.1151L15.8543 33.7708C15.6575 33.5739 15.5469 33.3069 15.5469 33.0285C15.5469 32.7501 15.6575 32.4831 15.8543 32.2862C16.0512 32.0893 16.3182 31.9787 16.5966 31.9787C16.8751 31.9787 17.1421 32.0893 17.3389 32.2862L23.9409 38.8895L39.9855 22.8436C40.1823 22.6467 40.4494 22.5361 40.7278 22.5361C41.0062 22.5361 41.2732 22.6467 41.4701 22.8436C41.6669 23.0405 41.7775 23.3075 41.7775 23.5859C41.7775 23.8643 41.6669 24.1313 41.4701 24.3282Z" fill="white"/>
-              </svg>
-              
-              {/* Success Message */}
-              <p className="text-center text-[16px] text-gray-900 font-medium">
-                You have withdrawn your application
-              </p>
-              
-              {/* Loading Spinner */}
-              <div className="w-8 h-8 border-4 border-[#419A6B] border-t-transparent rounded-full animate-spin" />
-            </div>
+      {/* Success Dialog */}
+      <Dialog open={isSuccessDialogOpen} onOpenChange={setIsSuccessDialogOpen}>
+        <DialogContent className="w-[247px] h-[220px] rounded-[20px] p-6 border-0 flex items-center justify-center">
+          <div className="flex flex-col items-center gap-6">
+            {/* Checkmark SVG */}
+            <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="59.0649" height="59.0649" rx="29.5325" fill="#419A6B"/>
+              <path d="M41.4701 24.3282L24.6832 41.1151C24.5858 41.2126 24.47 41.29 24.3427 41.3428C24.2153 41.3956 24.0788 41.4228 23.9409 41.4228C23.803 41.4228 23.6665 41.3956 23.5391 41.3428C23.4118 41.29 23.296 41.2126 23.1986 41.1151L15.8543 33.7708C15.6575 33.5739 15.5469 33.3069 15.5469 33.0285C15.5469 32.7501 15.6575 32.4831 15.8543 32.2862C16.0512 32.0893 16.3182 31.9787 16.5966 31.9787C16.8751 31.9787 17.1421 32.0893 17.3389 32.2862L23.9409 38.8895L39.9855 22.8436C40.1823 22.6467 40.4494 22.5361 40.7278 22.5361C41.0062 22.5361 41.2732 22.6467 41.4701 22.8436C41.6669 23.0405 41.7775 23.3075 41.7775 23.5859C41.7775 23.8643 41.6669 24.1313 41.4701 24.3282Z" fill="white"/>
+            </svg>
+            
+            {/* Success Message */}
+            <p className="text-center text-[16px] text-gray-900 font-medium">
+              You have withdrawn your application
+            </p>
+            
+            {/* Loading Spinner */}
+            <div className="w-8 h-8 border-4 border-[#419A6B] border-t-transparent rounded-full animate-spin" />
           </div>
-        </SheetContent>
-      </Sheet>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
