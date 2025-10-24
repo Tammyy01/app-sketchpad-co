@@ -84,11 +84,11 @@ const Analytics = () => {
         </Button>
         
         {/* Tabs */}
-        <div className="flex gap-8 border-b border-gray-300">
-          <button className="pb-2 text-base font-semibold text-[#419A6B] border-b-2 border-[#419A6B]">
+        <div className="flex border-b border-gray-300">
+          <button className="flex-1 pb-2 text-base font-semibold text-[#419A6B] border-b-2 border-[#419A6B] text-center">
             Analytics
           </button>
-          <button className="pb-2 text-base font-medium text-gray-500 border-b-2 border-gray-300">
+          <button className="flex-1 pb-2 text-base font-medium text-gray-500 border-b-2 border-gray-300 text-center">
             Reimbursement
           </button>
         </div>
