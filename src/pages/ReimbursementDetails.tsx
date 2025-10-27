@@ -1,7 +1,17 @@
+import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { ArrowLeft, Plus } from "lucide-react";
+import { ArrowLeft, Plus, Camera, Image } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/drawer";
 
 interface ReimbursementItem {
   id: number;
@@ -17,6 +27,19 @@ const ReimbursementDetails = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const item = location.state as ReimbursementItem;
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
+  const handleTakePhoto = () => {
+    // Camera functionality will be implemented
+    console.log("Take photo");
+    setIsDrawerOpen(false);
+  };
+
+  const handleUploadFromGallery = () => {
+    // Gallery upload functionality will be implemented
+    console.log("Upload from gallery");
+    setIsDrawerOpen(false);
+  };
 
   const getStatusColor = (status: string) => {
     switch (status) {
@@ -93,12 +116,45 @@ const ReimbursementDetails = () => {
             </div>
           ) : (
             <Card className="bg-white/90 backdrop-blur border-0 rounded-3xl p-8 flex flex-col items-center justify-center min-h-[200px]">
-              <button className="flex flex-col items-center gap-3 text-gray-400 hover:text-gray-600 transition-colors">
-                <div className="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center">
-                  <Plus className="w-8 h-8" />
-                </div>
-                <span className="text-sm font-medium">Add Receipt</span>
-              </button>
+              <Drawer open={isDrawerOpen} onOpenChange={setIsDrawerOpen}>
+                <DrawerTrigger asChild>
+                  <button className="flex flex-col items-center gap-3 text-gray-400 hover:text-gray-600 transition-colors">
+                    <div className="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center">
+                      <Plus className="w-8 h-8" />
+                    </div>
+                    <span className="text-sm font-medium">Add Receipt</span>
+                  </button>
+                </DrawerTrigger>
+                <DrawerContent>
+                  <DrawerHeader className="text-left">
+                    <DrawerTitle>Add Receipt</DrawerTitle>
+                    <DrawerDescription>
+                      Choose how you'd like to add your receipt
+                    </DrawerDescription>
+                  </DrawerHeader>
+                  <div className="px-4 pb-8 space-y-3">
+                    <button
+                      onClick={handleTakePhoto}
+                      className="w-full h-14 bg-white border border-gray-200 rounded-2xl flex items-center gap-4 px-6 hover:bg-gray-50 transition-colors"
+                    >
+                      <Camera className="w-6 h-6 text-gray-700" />
+                      <span className="text-base font-medium text-gray-900">Take a photo</span>
+                    </button>
+                    <button
+                      onClick={handleUploadFromGallery}
+                      className="w-full h-14 bg-white border border-gray-200 rounded-2xl flex items-center gap-4 px-6 hover:bg-gray-50 transition-colors"
+                    >
+                      <Image className="w-6 h-6 text-gray-700" />
+                      <span className="text-base font-medium text-gray-900">Upload from gallery</span>
+                    </button>
+                    <DrawerClose asChild>
+                      <button className="w-full h-14 bg-gray-100 rounded-2xl text-base font-medium text-gray-700 hover:bg-gray-200 transition-colors">
+                        Cancel
+                      </button>
+                    </DrawerClose>
+                  </div>
+                </DrawerContent>
+              </Drawer>
             </Card>
           )}
         </div>
