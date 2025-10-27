@@ -9,49 +9,49 @@ const EventDirections = () => {
   const eventLocation = location.state?.eventLocation || "Los Angeles, CA 90291";
 
   return (
-    <div className="min-h-screen bg-background flex flex-col">
+    <div className="min-h-screen bg-background flex flex-col safe-top safe-bottom">
       {/* Header with Location */}
-      <div className="absolute top-0 left-0 right-0 z-10 p-4">
-        <div className="flex items-start gap-3">
+      <div className="pt-safe px-4 py-3 bg-gradient-to-b from-white/95 to-transparent backdrop-blur-sm">
+        <div className="flex items-start gap-2 mb-3">
           <Button
             variant="ghost"
             size="icon"
             onClick={() => navigate(-1)}
-            className="w-10 h-10 rounded-full bg-white shadow-md flex-shrink-0"
+            className="w-11 h-11 rounded-full bg-white shadow-lg flex-shrink-0 active:scale-95 transition-transform"
           >
             <ArrowLeft className="w-5 h-5 text-gray-900" />
           </Button>
           
-          <Card className="flex-1 bg-white border-0 shadow-md p-3 rounded-xl">
+          <Card className="flex-1 bg-white border-0 shadow-lg p-3 rounded-2xl">
             <div className="flex items-start gap-2">
               <div className="w-2 h-2 rounded-full bg-gray-400 mt-1.5 flex-shrink-0" />
               <div className="flex-1 min-w-0">
-                <p className="text-xs text-gray-500">Your approximate location</p>
-                <p className="text-sm font-medium text-gray-900 truncate">{eventLocation}</p>
+                <p className="text-[11px] text-gray-500 leading-tight">Your approximate location</p>
+                <p className="text-[13px] font-medium text-gray-900 truncate mt-0.5">{eventLocation}</p>
               </div>
             </div>
           </Card>
         </div>
 
         {/* Transportation Options */}
-        <div className="mt-3 flex gap-2 px-12">
-          <Button className="h-9 px-3 rounded-full bg-[#419A6B] hover:bg-[#3a8a5e] text-white text-sm font-medium flex items-center gap-1.5">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide">
+          <Button className="h-11 px-4 rounded-full bg-[#419A6B] hover:bg-[#3a8a5e] active:scale-95 text-white text-sm font-medium flex items-center gap-2 shadow-md transition-transform flex-shrink-0">
+            <svg width="18" height="18" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M15 6.5H14.325L12.5887 2.59375C12.5102 2.41702 12.382 2.26686 12.2199 2.16148C12.0577 2.05609 11.8684 2 11.675 2H4.325C4.13159 2 3.94233 2.05609 3.78014 2.16148C3.61796 2.26686 3.48982 2.41702 3.41125 2.59375L1.675 6.5H1C0.867392 6.5 0.740215 6.55268 0.646447 6.64645C0.552678 6.74021 0.5 6.86739 0.5 7C0.5 7.13261 0.552678 7.25979 0.646447 7.35355C0.740215 7.44732 0.867392 7.5 1 7.5H1.5V12.5C1.5 12.7652 1.60536 13.0196 1.79289 13.2071C1.98043 13.3946 2.23478 13.5 2.5 13.5H4C4.26522 13.5 4.51957 13.3946 4.70711 13.2071C4.89464 13.0196 5 12.7652 5 12.5V12H11V12.5C11 12.7652 11.1054 13.0196 11.2929 13.2071C11.4804 13.3946 11.7348 13.5 12 13.5H13.5C13.7652 13.5 14.0196 13.3946 14.2071 13.2071C14.3946 13.0196 14.5 12.7652 14.5 12.5V7.5H15C15.1326 7.5 15.2598 7.44732 15.3536 7.35355C15.4473 7.25979 15.5 7.13261 15.5 7C15.5 6.86739 15.4473 6.74021 15.3536 6.64645C15.2598 6.55268 15.1326 6.5 15 6.5ZM5 9.5H3.5C3.36739 9.5 3.24021 9.44732 3.14645 9.35355C3.05268 9.25979 3 9.13261 3 9C3 8.86739 3.05268 8.74021 3.14645 8.64645C3.24021 8.55268 3.36739 8.5 3.5 8.5H5C5.13261 8.5 5.25979 8.55268 5.35355 8.64645C5.44732 8.74021 5.5 8.86739 5.5 9C5.5 9.13261 5.44732 9.25979 5.35355 9.35355C5.25979 9.44732 5.13261 9.5 5 9.5ZM12.5 9.5H11C10.8674 9.5 10.7402 9.44732 10.6464 9.35355C10.5527 9.25979 10.5 9.13261 10.5 9C10.5 8.86739 10.5527 8.74021 10.6464 8.64645C10.7402 8.55268 10.8674 8.5 11 8.5H12.5C12.6326 8.5 12.7598 8.55268 12.8536 8.64645C12.9473 8.74021 13 8.86739 13 9C13 9.13261 12.9473 9.25979 12.8536 9.35355C12.7598 9.44732 12.6326 9.5 12.5 9.5ZM2.76938 6.5L4.325 3H11.675L13.2306 6.5H2.76938Z" fill="white"/>
             </svg>
             6 min
           </Button>
-          <Button variant="outline" className="h-9 px-3 rounded-full bg-white border-gray-200 text-gray-700 text-sm font-medium flex items-center gap-1.5">
-            <Bike className="w-4 h-4" />
+          <Button variant="outline" className="h-11 px-4 rounded-full bg-white border-gray-200 text-gray-700 text-sm font-medium flex items-center gap-2 active:scale-95 transition-transform flex-shrink-0 shadow-sm">
+            <Bike className="w-5 h-5" />
             5 min
           </Button>
-          <Button variant="outline" className="h-9 px-3 rounded-full bg-white border-gray-200 text-gray-700 text-sm font-medium flex items-center gap-1.5">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <Button variant="outline" className="h-11 px-4 rounded-full bg-white border-gray-200 text-gray-700 text-sm font-medium flex items-center gap-2 active:scale-95 transition-transform flex-shrink-0 shadow-sm">
+            <svg width="18" height="18" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M11.5 1.5H4.5C3.96957 1.5 3.46086 1.71071 3.08579 2.08579C2.71071 2.46086 2.5 2.96957 2.5 3.5V11.5C2.5 12.0304 2.71071 12.5391 3.08579 12.9142C3.46086 13.2893 3.96957 13.5 4.5 13.5H5L4.1 14.7C4.0606 14.7525 4.03194 14.8123 4.01564 14.8759C3.99935 14.9395 3.99574 15.0057 4.00503 15.0707C4.01431 15.1357 4.03631 15.1982 4.06976 15.2547C4.10322 15.3112 4.14747 15.3606 4.2 15.4C4.25253 15.4394 4.3123 15.4681 4.37591 15.4844C4.43952 15.5007 4.50571 15.5043 4.57071 15.495C4.63571 15.4857 4.69825 15.4637 4.75475 15.4302C4.81125 15.3968 4.8606 15.3525 4.9 15.3L6.25 13.5H9.75L11.1 15.3C11.1796 15.4061 11.298 15.4762 11.4293 15.495C11.5606 15.5137 11.6939 15.4796 11.8 15.4C11.9061 15.3204 11.9762 15.202 11.995 15.0707C12.0137 14.9394 11.9796 14.8061 11.9 14.7L11 13.5H11.5C12.0304 13.5 12.5391 13.2893 12.9142 12.9142C13.2893 12.5391 13.5 12.0304 13.5 11.5V3.5C13.5 2.96957 13.2893 2.46086 12.9142 2.08579C12.5391 1.71071 12.0304 1.5 11.5 1.5ZM5.25 11.5C5.10166 11.5 4.95666 11.456 4.83332 11.3736C4.70999 11.2912 4.61386 11.1741 4.55709 11.037C4.50032 10.9 4.48547 10.7492 4.51441 10.6037C4.54335 10.4582 4.61478 10.3246 4.71967 10.2197C4.82456 10.1148 4.9582 10.0434 5.10368 10.0144C5.24917 9.98547 5.39997 10.0003 5.53701 10.0571C5.67406 10.1139 5.79119 10.21 5.8736 10.3333C5.95601 10.4567 6 10.6017 6 10.75C6 10.9489 5.92098 11.1397 5.78033 11.2803C5.63968 11.421 5.44891 11.5 5.25 11.5ZM7.5 7.5H3.5V5H7.5V7.5ZM10.75 11.5C10.6017 11.5 10.4567 11.456 10.3333 11.3736C10.21 11.2912 10.1139 11.1741 10.0571 11.037C10.0003 10.9 9.98547 10.7492 10.0144 10.6037C10.0433 10.4582 10.1148 10.3246 10.2197 10.2197C10.3246 10.1148 10.4582 10.0434 10.6037 10.0144C10.7492 9.98547 10.9 10.0003 11.037 10.0571C11.1741 10.1139 11.2912 10.21 11.3736 10.3333C11.456 10.4567 11.5 10.6017 11.5 10.75C11.5 10.9489 11.421 11.1397 11.2803 11.2803C11.1397 11.421 10.9489 11.5 10.75 11.5ZM12.5 7.5H8.5V5H12.5V7.5Z" fill="#2F2D2D"/>
             </svg>
           </Button>
-          <Button variant="outline" className="h-9 px-3 rounded-full bg-white border-gray-200 text-gray-700 text-sm font-medium flex items-center gap-1.5">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <Button variant="outline" className="h-11 px-4 rounded-full bg-white border-gray-200 text-gray-700 text-sm font-medium flex items-center gap-2 active:scale-95 transition-transform flex-shrink-0 shadow-sm">
+            <svg width="18" height="18" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M7.50087 3C7.50087 2.60444 7.61817 2.21776 7.83793 1.88886C8.0577 1.55996 8.37005 1.30362 8.73551 1.15224C9.10096 1.00087 9.50309 0.96126 9.89105 1.03843C10.279 1.1156 10.6354 1.30608 10.9151 1.58579C11.1948 1.86549 11.3853 2.22186 11.4624 2.60982C11.5396 2.99778 11.5 3.39992 11.3486 3.76537C11.1973 4.13082 10.9409 4.44318 10.612 4.66294C10.2831 4.8827 9.89643 5 9.50087 5C8.97044 5 8.46173 4.78929 8.08666 4.41422C7.71159 4.03914 7.50087 3.53043 7.50087 3ZM13.0009 8.5C11.2109 8.5 10.3877 7.66875 9.5165 6.78938C9.29587 6.56625 9.06775 6.33563 8.829 6.12813C6.5165 4.11938 2.81525 7.54875 2.659 7.69563C2.56595 7.78723 2.51242 7.91159 2.50986 8.04213C2.5073 8.17268 2.55591 8.29905 2.64529 8.39423C2.73467 8.48941 2.85774 8.54584 2.98819 8.55148C3.11864 8.55711 3.24612 8.51149 3.34337 8.42438C3.925 7.89893 4.56502 7.44198 5.25087 7.0625C6.11212 6.60125 6.83775 6.42313 7.41962 6.52625L4.04212 14.3006C3.98939 14.4222 3.98708 14.5598 4.03572 14.6831C4.08435 14.8064 4.17995 14.9053 4.3015 14.9581C4.36429 14.9859 4.43221 15.0002 4.50087 15C4.59831 15 4.69365 14.9716 4.77515 14.9182C4.85665 14.8648 4.92077 14.7887 4.95962 14.6994L7.059 9.87L9.00087 11.2575V14.5C9.00087 14.6326 9.05355 14.7598 9.14732 14.8536C9.24109 14.9473 9.36826 15 9.50087 15C9.63348 15 9.76066 14.9473 9.85443 14.8536C9.94819 14.7598 10.0009 14.6326 10.0009 14.5V11C10.0009 10.9204 9.98188 10.842 9.94546 10.7712C9.90904 10.7004 9.85626 10.6394 9.7915 10.5931L7.4665 8.9325L8.30587 7C8.47087 7.1525 8.63462 7.31688 8.80587 7.49C9.6915 8.38688 10.794 9.5 13.0009 9.5C13.1335 9.5 13.2607 9.44732 13.3544 9.35356C13.4482 9.25979 13.5009 9.13261 13.5009 9C13.5009 8.86739 13.4482 8.74022 13.3544 8.64645C13.2607 8.55268 13.1335 8.5 13.0009 8.5Z" fill="#2F2D2D"/>
             </svg>
             14 min
@@ -75,27 +75,27 @@ const EventDirections = () => {
         </div>
 
       {/* Bottom Info Card */}
-      <div className="bg-white rounded-t-3xl shadow-2xl p-6 pb-8">
-        <h3 className="text-2xl font-semibold text-gray-900 mb-1">6 min (1.7 km)</h3>
-        <p className="text-sm text-gray-600 mb-6">{eventLocation}</p>
+      <div className="bg-white rounded-t-3xl shadow-2xl p-5 pb-safe">
+        <h3 className="text-xl font-semibold text-gray-900 mb-0.5">6 min (1.7 km)</h3>
+        <p className="text-sm text-gray-600 mb-5">{eventLocation}</p>
 
         {/* App Prompt */}
-        <div className="flex flex-col items-center mb-6 py-4">
-          <div className="w-16 h-20 mb-3 relative">
+        <div className="flex flex-col items-center mb-5 py-3">
+          <div className="w-12 h-16 mb-2 relative">
             <div className="absolute inset-0 border-2 border-gray-300 rounded-lg" />
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-              <div className="w-6 h-6 rounded-full bg-gray-300" />
-              <div className="w-0.5 h-3 bg-gray-300 mx-auto mt-1" />
+              <div className="w-5 h-5 rounded-full bg-gray-300" />
+              <div className="w-0.5 h-2.5 bg-gray-300 mx-auto mt-1" />
             </div>
           </div>
-          <p className="text-xs text-center text-gray-600 max-w-[280px]">
+          <p className="text-[11px] text-center text-gray-600 max-w-[260px] leading-relaxed">
             Switch to the app for live traffic and turn-by-turn directions
           </p>
         </div>
 
         {/* Start Button */}
         <Button
-          className="w-full h-14 bg-[#419A6B] hover:bg-[#3a8a5e] text-white rounded-full text-base font-semibold flex items-center justify-center gap-2 shadow-lg"
+          className="w-full h-14 bg-[#419A6B] hover:bg-[#3a8a5e] active:scale-[0.98] text-white rounded-full text-base font-semibold flex items-center justify-center gap-2.5 shadow-lg transition-transform"
         >
           <div className="w-5 h-5 border-2 border-white rounded-sm flex items-center justify-center">
             <div className="w-0 h-0 border-l-[6px] border-l-white border-y-[4px] border-y-transparent ml-0.5" />
