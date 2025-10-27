@@ -295,7 +295,8 @@ const Analytics = () => {
             {filteredReimbursements.map((item, index) => (
               <Card 
                 key={item.id} 
-                className="bg-white/90 backdrop-blur border-0 rounded-2xl p-5 animate-fade-in hover:scale-[1.02] transition-transform duration-200"
+                onClick={() => navigate('/home/reimbursement-details', { state: item })}
+                className="bg-white/90 backdrop-blur border-0 rounded-2xl p-5 cursor-pointer animate-fade-in hover:scale-[1.02] transition-transform duration-200"
                 style={{ animationDelay: `${0.2 + index * 0.1}s` }}
               >
                 <div className="space-y-3">

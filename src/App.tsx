@@ -18,6 +18,7 @@ import CompleteProfile from "./pages/CompleteProfile";
 import Profile from "./pages/Profile";
 import EditProfile from "./pages/EditProfile";
 import Analytics from "./pages/Analytics";
+import ReimbursementDetails from "./pages/ReimbursementDetails";
 import Earnings from "./pages/Earnings";
 import Rankings from "./pages/Rankings";
 import Events from "./pages/Events";
@@ -49,6 +50,7 @@ const App = () => (
           <Route path="/home/profile" element={<Profile />} />
           <Route path="/home/edit-profile" element={<EditProfile />} />
           <Route path="/home/analytics" element={<Analytics />} />
+          <Route path="/home/reimbursement-details" element={<ReimbursementDetails />} />
           <Route path="/home/earnings" element={<Earnings />} />
           <Route path="/home/events" element={<Events />} />
           <Route path="/home/events/:eventId" element={<EventDetails />} />
