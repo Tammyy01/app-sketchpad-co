@@ -37,15 +37,27 @@ const EventRegistrationConfirm = () => {
     setIsCalendarDialogOpen(false);
     setIsCalendarSuccessDialogOpen(true);
     
-    // Auto close after 2 seconds and navigate
+    // Auto close after 2 seconds and navigate to directions
     setTimeout(() => {
       setIsCalendarSuccessDialogOpen(false);
+      navigate("/home/event-directions", { 
+        state: { eventLocation: "1234 Venice Blvd, Los Angeles, CA 90291" } 
+      });
     }, 2000);
   };
 
   const handleAddToAppleCalendar = () => {
     console.log("Add to Apple Calendar clicked");
     setIsCalendarDialogOpen(false);
+    setIsCalendarSuccessDialogOpen(true);
+    
+    // Auto close after 2 seconds and navigate to directions
+    setTimeout(() => {
+      setIsCalendarSuccessDialogOpen(false);
+      navigate("/home/event-directions", { 
+        state: { eventLocation: "1234 Venice Blvd, Los Angeles, CA 90291" } 
+      });
+    }, 2000);
   };
 
   const handleCancelRegistration = () => {

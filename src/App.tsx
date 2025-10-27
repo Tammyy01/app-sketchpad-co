@@ -25,6 +25,7 @@ import Rankings from "./pages/Rankings";
 import Events from "./pages/Events";
 import EventDetails from "./pages/EventDetails";
 import EventRegistrationConfirm from "./pages/EventRegistrationConfirm";
+import EventDirections from "./pages/EventDirections";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -57,6 +58,7 @@ const App = () => (
           <Route path="/home/events" element={<Events />} />
           <Route path="/home/events/:eventId" element={<EventDetails />} />
           <Route path="/home/events/:eventId/confirm" element={<EventRegistrationConfirm />} />
+          <Route path="/home/event-directions" element={<EventDirections />} />
           <Route path="/rankings" element={<Rankings />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
