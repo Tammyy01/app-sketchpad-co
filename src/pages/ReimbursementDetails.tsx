@@ -1,17 +1,8 @@
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { ArrowLeft, Plus, Camera, Image } from "lucide-react";
+import { ArrowLeft, Plus, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import {
-  Drawer,
-  DrawerClose,
-  DrawerContent,
-  DrawerDescription,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerTrigger,
-} from "@/components/ui/drawer";
 
 interface ReimbursementItem {
   id: number;
@@ -27,18 +18,30 @@ const ReimbursementDetails = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const item = location.state as ReimbursementItem;
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [receiptImage, setReceiptImage] = useState<string | null>(item?.receiptImage || null);
+  const [tempImage, setTempImage] = useState<string | null>(null);
+  const [showPreview, setShowPreview] = useState(false);
 
-  const handleTakePhoto = () => {
-    // Camera functionality will be implemented
-    console.log("Take photo");
-    setIsDrawerOpen(false);
+  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setTempImage(reader.result as string);
+        setShowPreview(true);
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
-  const handleUploadFromGallery = () => {
-    // Gallery upload functionality will be implemented
-    console.log("Upload from gallery");
-    setIsDrawerOpen(false);
+  const handleRetake = () => {
+    setTempImage(null);
+    setShowPreview(false);
+  };
+
+  const handleUpload = () => {
+    setReceiptImage(tempImage);
+    setShowPreview(false);
   };
 
   const getStatusColor = (status: string) => {
@@ -55,7 +58,45 @@ const ReimbursementDetails = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[hsl(var(--onboarding-gradient-start))] to-[hsl(var(--onboarding-gradient-end))] px-6 pb-10">
+    <>
+      {/* Photo Preview Screen */}
+      {showPreview && tempImage && (
+        <div className="fixed inset-0 bg-black z-50 flex flex-col">
+          <div className="absolute top-6 left-6">
+            <button
+              onClick={handleRetake}
+              className="w-10 h-10 rounded-full bg-gray-700/50 flex items-center justify-center"
+            >
+              <X className="w-6 h-6 text-white" />
+            </button>
+          </div>
+
+          <div className="flex-1 flex items-center justify-center">
+            <img
+              src={tempImage}
+              alt="Preview"
+              className="max-w-full max-h-full object-contain"
+            />
+          </div>
+
+          <div className="p-6 flex gap-4">
+            <Button
+              onClick={handleRetake}
+              className="flex-1 h-14 rounded-full bg-[#343434] hover:bg-[#2a2a2a] text-white text-base font-medium"
+            >
+              Retake
+            </Button>
+            <Button
+              onClick={handleUpload}
+              className="flex-1 h-14 rounded-full bg-white hover:bg-gray-100 text-black text-base font-medium"
+            >
+              Upload
+            </Button>
+          </div>
+        </div>
+      )}
+
+      <div className="min-h-screen bg-gradient-to-b from-[hsl(var(--onboarding-gradient-start))] to-[hsl(var(--onboarding-gradient-end))] px-6 pb-10">
       {/* Header */}
       <div className="pt-16 max-w-full mx-auto mb-6">
         <div className="flex items-center gap-4 mb-6">
@@ -106,55 +147,29 @@ const ReimbursementDetails = () => {
 
         {/* Receipt Section */}
         <div className="space-y-4 animate-fade-in" style={{ animationDelay: '0.1s' }}>
-          {item?.receiptImage ? (
+          {receiptImage ? (
             <div className="bg-white/90 backdrop-blur border-0 rounded-3xl p-4">
               <img
-                src={item.receiptImage}
+                src={receiptImage}
                 alt="Receipt"
                 className="w-full h-auto rounded-2xl object-cover"
               />
             </div>
           ) : (
             <Card className="bg-white/90 backdrop-blur border-0 rounded-3xl p-8 flex flex-col items-center justify-center min-h-[200px]">
-              <Drawer open={isDrawerOpen} onOpenChange={setIsDrawerOpen}>
-                <DrawerTrigger asChild>
-                  <button className="flex flex-col items-center gap-3 text-gray-400 hover:text-gray-600 transition-colors">
-                    <div className="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center">
-                      <Plus className="w-8 h-8" />
-                    </div>
-                    <span className="text-sm font-medium">Add Receipt</span>
-                  </button>
-                </DrawerTrigger>
-                <DrawerContent>
-                  <DrawerHeader className="text-left">
-                    <DrawerTitle>Add Receipt</DrawerTitle>
-                    <DrawerDescription>
-                      Choose how you'd like to add your receipt
-                    </DrawerDescription>
-                  </DrawerHeader>
-                  <div className="px-4 pb-8 space-y-3">
-                    <button
-                      onClick={handleTakePhoto}
-                      className="w-full h-14 bg-white border border-gray-200 rounded-2xl flex items-center gap-4 px-6 hover:bg-gray-50 transition-colors"
-                    >
-                      <Camera className="w-6 h-6 text-gray-700" />
-                      <span className="text-base font-medium text-gray-900">Take a photo</span>
-                    </button>
-                    <button
-                      onClick={handleUploadFromGallery}
-                      className="w-full h-14 bg-white border border-gray-200 rounded-2xl flex items-center gap-4 px-6 hover:bg-gray-50 transition-colors"
-                    >
-                      <Image className="w-6 h-6 text-gray-700" />
-                      <span className="text-base font-medium text-gray-900">Upload from gallery</span>
-                    </button>
-                    <DrawerClose asChild>
-                      <button className="w-full h-14 bg-gray-100 rounded-2xl text-base font-medium text-gray-700 hover:bg-gray-200 transition-colors">
-                        Cancel
-                      </button>
-                    </DrawerClose>
-                  </div>
-                </DrawerContent>
-              </Drawer>
+              <label htmlFor="receipt-upload" className="flex flex-col items-center gap-3 text-gray-400 hover:text-gray-600 transition-colors cursor-pointer">
+                <div className="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center">
+                  <Plus className="w-8 h-8" />
+                </div>
+                <span className="text-sm font-medium">Add Receipt</span>
+              </label>
+              <input
+                id="receipt-upload"
+                type="file"
+                accept="image/*"
+                className="hidden"
+                onChange={handleImageUpload}
+              />
             </Card>
           )}
         </div>
@@ -166,7 +181,8 @@ const ReimbursementDetails = () => {
           </Button>
         </div>
       </div>
-    </div>
+      </div>
+    </>
   );
 };
 
