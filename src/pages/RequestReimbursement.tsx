@@ -5,13 +5,6 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 
 const RequestReimbursement = () => {
@@ -124,18 +117,11 @@ const RequestReimbursement = () => {
             <Label htmlFor="expense-type" className="text-sm font-normal text-gray-900">
               Expense type
             </Label>
-            <Select>
-              <SelectTrigger className="h-14 rounded-2xl bg-white border-0 text-gray-400">
-                <SelectValue placeholder="Select expense type" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="ticket">Ticket</SelectItem>
-                <SelectItem value="travel">Travel</SelectItem>
-                <SelectItem value="accommodation">Accommodation</SelectItem>
-                <SelectItem value="meals">Meals</SelectItem>
-                <SelectItem value="other">Other</SelectItem>
-              </SelectContent>
-            </Select>
+            <Input
+              id="expense-type"
+              placeholder="Enter expense type"
+              className="h-14 rounded-2xl bg-white border-0 text-gray-900 placeholder:text-gray-400"
+            />
           </div>
 
           {/* Amount */}
