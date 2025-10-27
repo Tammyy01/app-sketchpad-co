@@ -330,7 +330,11 @@ const Analytics = () => {
           </div>
 
           {/* Floating Add Button */}
-          <button className="fixed bottom-24 right-6 w-14 h-14 rounded-full bg-[#419A6B] text-white flex items-center justify-center shadow-lg z-50 animate-scale-in hover:scale-110 transition-transform duration-200" style={{ animationDelay: '0.4s' }}>
+          <button 
+            onClick={() => navigate('/home/request-reimbursement')}
+            className="fixed bottom-24 right-6 w-14 h-14 rounded-full bg-[#419A6B] text-white flex items-center justify-center shadow-lg z-50 animate-scale-in hover:scale-110 transition-transform duration-200" 
+            style={{ animationDelay: '0.4s' }}
+          >
             <Plus className="w-6 h-6" />
           </button>
         </div>
