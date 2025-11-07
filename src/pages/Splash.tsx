@@ -25,20 +25,20 @@ const Splash = () => {
       transform: "translate(-50%, -50%)",
     });
 
-    // Phase 1: Initial Reveal & Hold (0.0s to 1.3s)
+    // Setup and Initial Reveal
     tl.to([...punchLettersRef.current], {
       opacity: 1,
       scale: 1,
       duration: 0.4,
       stagger: 0.03,
       ease: "power2.out",
-    }).to({}, { duration: 0.7 }); // Hold at 1.3s total
+    }).to({}, { duration: 0.7 }); // Hold
 
-    // Phase 2: Signature Collapse (Starts at ~1.3s)
+    // Phase 1: Subtitle Exit & Dot Transformation (Starts at ~1.3s)
     const pLetter = punchLettersRef.current[0];
     const unchLetters = punchLettersRef.current.slice(1);
 
-    // Action B: "unch" letters collapse to center
+    // Action A & B: "unch" letters collapse to center
     tl.to(
       unchLetters,
       {
@@ -52,7 +52,7 @@ const Splash = () => {
           const rect = target.getBoundingClientRect();
           return window.innerHeight / 2 - rect.top - rect.height / 2;
         },
-        duration: 0.4,
+        duration: 0.5,
         stagger: {
           each: 0.02,
           from: "end",
@@ -62,35 +62,54 @@ const Splash = () => {
       "1.3"
     );
 
-    // Action C: Dot reveals at center and rolls back LEFT to P
+    // Action C: Dot reveals at center and rolls back to P
     tl.to(
       dotRef.current,
       {
         opacity: 1,
         scale: 1,
+        duration: 0.2,
+        ease: "back.out(1.7)",
+      },
+      "1.3"
+    ).to(
+      dotRef.current,
+      {
         x: () => {
           const pRect = pLetter.getBoundingClientRect();
           const centerX = window.innerWidth / 2;
-          // Move from center to just right of P
+          // Calculate distance from center to just right of P
           return pRect.right - centerX + 8;
+        },
+        duration: 0.5,
+        ease: "power2.inOut",
+      },
+      "1.5"
+    );
+
+    // Phase 2: Final Convergence and Centralization (Starts at ~1.8s)
+    // Move both P and dot together to center the signature
+    tl.to(
+      [pLetter, dotRef.current],
+      {
+        x: (index, target) => {
+          const rect = target.getBoundingClientRect();
+          const currentX = rect.left + rect.width / 2;
+          return window.innerWidth / 2 - currentX;
+        },
+        y: (index, target) => {
+          const rect = target.getBoundingClientRect();
+          const currentY = rect.top + rect.height / 2;
+          return window.innerHeight / 2 - currentY;
         },
         duration: 0.4,
         ease: "power2.inOut",
       },
-      "1.3"
+      "2.0"
     );
 
-    // P shakes on impact
-    tl.to(pLetter, {
-      x: -3,
-      duration: 0.08,
-      yoyo: true,
-      repeat: 5,
-      ease: "power2.inOut",
-    }, "1.7");
-
     // Phase 3: Final Exit
-    tl.to({}, { duration: 0.5 }, "2.0").to(
+    tl.to({}, { duration: 0.5 }, "2.4").to(
       containerRef.current,
       {
         opacity: 0,
@@ -100,7 +119,7 @@ const Splash = () => {
           setTimeout(() => navigate("/onboarding"), 300);
         },
       },
-      "2.5"
+      "2.9"
     );
 
     return () => {
