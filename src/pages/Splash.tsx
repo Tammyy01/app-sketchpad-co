@@ -5,22 +5,29 @@ import gsap from "gsap";
 const Splash = () => {
   const navigate = useNavigate();
   const containerRef = useRef<HTMLDivElement>(null);
-  const pRef = useRef<HTMLSpanElement>(null);
-  const unchLettersRef = useRef<HTMLSpanElement[]>([]);
-  const ambassadorsLettersRef = useRef<HTMLSpanElement[]>([]);
-  const dotRef = useRef<HTMLDivElement>(null);
+  const punchLettersRef = useRef<HTMLSpanElement[]>([]);
+  const ambLettersRef = useRef<HTMLSpanElement[]>([]);
+  const dotRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
     const tl = gsap.timeline();
 
-    // Phase 1: Setup and Initial Reveal (0.0s to 0.5s)
-    gsap.set([pRef.current, ...unchLettersRef.current, ...ambassadorsLettersRef.current], {
+    // Preparation: Setup initial states
+    gsap.set([...punchLettersRef.current, ...ambLettersRef.current], {
       opacity: 0,
       scale: 0
     });
-    gsap.set(dotRef.current, { opacity: 0, scale: 0 });
+    gsap.set(dotRef.current, { 
+      opacity: 0, 
+      scale: 0,
+      position: "fixed",
+      left: "50%",
+      top: "50%",
+      transform: "translate(-50%, -50%)"
+    });
 
-    tl.to([pRef.current, ...unchLettersRef.current, ...ambassadorsLettersRef.current], {
+    // Phase 0: Initial Reveal (0.0s to 0.5s)
+    tl.to([...punchLettersRef.current, ...ambLettersRef.current], {
       opacity: 1,
       scale: 1,
       duration: 0.5,
@@ -28,31 +35,88 @@ const Splash = () => {
       ease: "power2.out"
     });
 
-    // Phase 2: Subtitle Exit & Dot Transformation (Starts at ~0.5s)
-    tl.to([...unchLettersRef.current, ...ambassadorsLettersRef.current], {
+    // Phase 1: Collapse to Center (Starts at ~0.5s)
+    // Action A: Ambassadors letters collapse to center
+    tl.to(ambLettersRef.current, {
       opacity: 0,
       scale: 0,
-      x: "50vw",
-      y: "50vh",
+      x: (index, target) => {
+        const rect = target.getBoundingClientRect();
+        return window.innerWidth / 2 - rect.left - rect.width / 2;
+      },
+      y: (index, target) => {
+        const rect = target.getBoundingClientRect();
+        return window.innerHeight / 2 - rect.top - rect.height / 2;
+      },
       duration: 0.4,
+      stagger: {
+        each: 0.02,
+        from: "start"
+      },
       ease: "power2.in"
-    }, "0.5")
-    .to(dotRef.current, {
+    }, "0.5");
+
+    // Action B: "unch" letters collapse to center (NOT 'P')
+    const unchLetters = punchLettersRef.current.slice(1);
+    tl.to(unchLetters, {
+      opacity: 0,
+      scale: 0,
+      x: (index, target) => {
+        const rect = target.getBoundingClientRect();
+        return window.innerWidth / 2 - rect.left - rect.width / 2;
+      },
+      y: (index, target) => {
+        const rect = target.getBoundingClientRect();
+        return window.innerHeight / 2 - rect.top - rect.height / 2;
+      },
+      duration: 0.3,
+      stagger: {
+        each: 0.02,
+        from: "end"
+      },
+      ease: "power2.in"
+    }, "0.5");
+
+    // Action C: Dot reveals as letters collapse
+    tl.to(dotRef.current, {
       opacity: 1,
       scale: 1,
-      duration: 0.3,
+      duration: 0.25,
       ease: "back.out(1.7)"
     }, "0.7");
 
-    // Phase 3: Final Central Movement (Starts ~1.2s)
-    tl.to([pRef.current, dotRef.current], {
-      x: 0,
-      y: 0,
-      duration: 0.4,
+    // Phase 2: Convergence & Signature Hold (Starts at ~1.0s)
+    const pLetter = punchLettersRef.current[0];
+    
+    // Action A: P slides to dot position
+    tl.to(pLetter, {
+      x: (index, target) => {
+        const rect = target.getBoundingClientRect();
+        return window.innerWidth / 2 - rect.left - rect.width - 12;
+      },
+      y: (index, target) => {
+        const rect = target.getBoundingClientRect();
+        return window.innerHeight / 2 - rect.top - rect.height / 2;
+      },
+      duration: 0.5,
       ease: "power2.inOut"
-    }, "1.2");
+    }, "1.0");
 
-    // Phase 4: Hold and Exit (Starts ~1.6s)
+    // Action B: P pops with scale
+    tl.to(pLetter, {
+      scale: 1.3,
+      duration: 0.15,
+      ease: "power2.out"
+    }, "1.5")
+    .to(pLetter, {
+      scale: 1.2,
+      duration: 0.2,
+      ease: "back.out(1.7)"
+    });
+
+    // Action C: Hold (implicit in timeline timing)
+    
+    // Phase 3: Final Exit
     tl.to(containerRef.current, {
       opacity: 0,
       duration: 0.3,
@@ -60,41 +124,39 @@ const Splash = () => {
       onComplete: () => {
         setTimeout(() => navigate("/onboarding"), 300);
       }
-    }, "1.9");
+    }, "2.2");
 
     return () => {
       tl.kill();
     };
   }, [navigate]);
 
+  const punchLetters = ["P", "u", "n", "c", "h"];
+  const ambLetters = ["A", "m", "b", "a", "s", "s", "a", "d", "o", "r", "s"];
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-[hsl(var(--splash-gradient-end))] to-[hsl(var(--splash-gradient-start))]">
       <div ref={containerRef} className="text-center relative">
         <div className="flex flex-col items-center gap-2">
           <h1 className="text-6xl font-bold text-foreground flex items-center justify-center">
-            <span ref={pRef} className="inline-block">P</span>
-            {["u", "n", "c", "h"].map((letter, i) => (
+            {punchLetters.map((letter, i) => (
               <span
                 key={i}
                 ref={(el) => {
-                  if (el) unchLettersRef.current[i] = el;
+                  if (el) punchLettersRef.current[i] = el;
                 }}
                 className="inline-block"
               >
                 {letter}
               </span>
             ))}
-            <div 
-              ref={dotRef} 
-              className="w-3 h-3 rounded-full bg-foreground absolute"
-            />
           </h1>
           <p className="text-lg text-muted-foreground flex">
-            {["A", "m", "b", "a", "s", "s", "a", "d", "o", "r", "s"].map((letter, i) => (
+            {ambLetters.map((letter, i) => (
               <span
                 key={i}
                 ref={(el) => {
-                  if (el) ambassadorsLettersRef.current[i] = el;
+                  if (el) ambLettersRef.current[i] = el;
                 }}
                 className="inline-block"
               >
@@ -103,6 +165,12 @@ const Splash = () => {
             ))}
           </p>
         </div>
+        
+        {/* Central collapsing dot */}
+        <span 
+          ref={dotRef}
+          className="w-3 h-3 rounded-full bg-foreground inline-block"
+        />
       </div>
     </div>
   );
