@@ -11,18 +11,41 @@ const Splash = () => {
   useEffect(() => {
     const tl = gsap.timeline();
 
+    // Compute 'unch' group center BEFORE applying transforms
+    const unchEls = punchLettersRef.current.slice(1).filter(Boolean);
+    const rects = unchEls.map((el) => el.getBoundingClientRect());
+    const bounds = rects.length
+      ? {
+          left: Math.min(...rects.map((r) => r.left)),
+          right: Math.max(...rects.map((r) => r.right)),
+          top: Math.min(...rects.map((r) => r.top)),
+          bottom: Math.max(...rects.map((r) => r.bottom)),
+        }
+      : {
+          left: window.innerWidth / 2,
+          right: window.innerWidth / 2,
+          top: window.innerHeight / 2,
+          bottom: window.innerHeight / 2,
+        };
+    const groupCenterX = (bounds.left + bounds.right) / 2;
+    const groupCenterY = (bounds.top + bounds.bottom) / 2;
+    const xFromCenter = groupCenterX - window.innerWidth / 2;
+    const yFromCenter = groupCenterY - window.innerHeight / 2;
+
     // Preparation: Setup initial states
     gsap.set([...punchLettersRef.current], {
       opacity: 0,
-      scale: 0
+      scale: 0,
     });
-    gsap.set(dotRef.current, { 
-      opacity: 0, 
+    gsap.set(dotRef.current, {
+      opacity: 0,
       scale: 0,
       position: "fixed",
       left: "50%",
       top: "50%",
-      transform: "translate(-50%, -50%)"
+      x: xFromCenter,
+      y: yFromCenter,
+      transform: "translate(-50%, -50%)",
     });
 
     // Phase 0: Initial Reveal (0.0s to 0.5s)
@@ -56,47 +79,50 @@ const Splash = () => {
       ease: "power2.in"
     }, "0.5");
 
-    // Action C: Dot reveals as letters collapse
+    // Action C removed: dot reveal merged into flight tween
+
+    // Phase 2: Position P at center while dot rolls back to it
+    const pLetter = punchLettersRef.current[0];
+
+    // Move P to exact center early
+    tl.to(pLetter, {
+      x: (i, target) => {
+        const rect = target.getBoundingClientRect();
+        return window.innerWidth / 2 - rect.left - rect.width / 2;
+      },
+      y: (i, target) => {
+        const rect = target.getBoundingClientRect();
+        return window.innerHeight / 2 - rect.top - rect.height / 2;
+      },
+      duration: 0.35,
+      ease: "power2.inOut"
+    }, "0.5");
+
+    // Dot flies from unch center to sit just to the right of centered P
     tl.to(dotRef.current, {
       opacity: 1,
       scale: 1,
-      duration: 0.25,
-      ease: "back.out(1.7)"
-    }, "0.7");
-
-    // Phase 2: Impact and Reaction (The Signature Move - Starts at ~1.0s)
-    const pLetter = punchLettersRef.current[0];
-
-    // P stays in place (no movement)
-
-    // Dot rolls from center to P's position
-    tl.to(dotRef.current, {
-      x: (index, target) => {
+      x: () => {
         const pRect = pLetter.getBoundingClientRect();
-        const dotRect = target.getBoundingClientRect();
-        // place dot just to the right of P with a small gap
-        return pRect.right - dotRect.left + 6;
+        const gap = 6;
+        return pRect.width / 2 + gap;
       },
-      y: (index, target) => {
-        const pRect = pLetter.getBoundingClientRect();
-        const dotRect = target.getBoundingClientRect();
-        return pRect.top + pRect.height / 2 - dotRect.top - dotRect.height / 2;
-      },
+      y: 0,
       duration: 0.5,
       ease: "power2.in"
-    }, "1.0");
+    }, "0.5");
 
-    // P reacts with shake on impact
+    // Impact shake upon arrival
     tl.to(pLetter, {
       x: -3,
       duration: 0.08,
       yoyo: true,
       repeat: 5,
       ease: "power2.inOut"
-    }, "1.5");
+    }, "1.0");
 
     // Hold the signature state
-    tl.to({}, { duration: 0.5 }, "1.8");
+    tl.to({}, { duration: 0.5 }, "1.2");
     
     // Phase 3: Final Exit
     tl.to(containerRef.current, {
