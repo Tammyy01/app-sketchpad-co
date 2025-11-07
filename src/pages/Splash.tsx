@@ -11,12 +11,12 @@ const Splash = () => {
   useEffect(() => {
     const tl = gsap.timeline({
       onComplete: () => {
-        setTimeout(() => navigate("/onboarding"), 500);
+        setTimeout(() => navigate("/onboarding"), 800);
       }
     });
 
     // Initial setup
-    gsap.set(dotRef.current, { opacity: 0, scale: 0 });
+    gsap.set(dotRef.current, { opacity: 0, scale: 0, x: 0 });
 
     // Animation sequence
     tl.from([pRef.current, unchRef.current], {
@@ -37,17 +37,22 @@ const Splash = () => {
       duration: 0.2
     }, "-=0.1")
     .to(dotRef.current, {
-      x: -80,
+      x: 60,
+      duration: 0.4,
+      ease: "power1.out"
+    })
+    .to(dotRef.current, {
+      x: 0,
       duration: 0.5,
-      ease: "power2.inOut"
+      ease: "power2.in"
     })
     .to(pRef.current, {
       x: -3,
-      duration: 0.1,
+      duration: 0.08,
       yoyo: true,
-      repeat: 3,
+      repeat: 5,
       ease: "power2.inOut"
-    });
+    }, "-=0.2");
 
     return () => {
       tl.kill();
@@ -57,13 +62,12 @@ const Splash = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-[hsl(var(--splash-gradient-end))] to-[hsl(var(--splash-gradient-start))]">
       <div className="text-center relative">
-        <h1 className="text-6xl font-bold text-foreground mb-1 relative">
+        <h1 className="text-6xl font-bold text-foreground mb-1 flex items-center justify-center gap-1">
           <span ref={pRef} className="inline-block">P</span>
           <span ref={unchRef} className="inline-block">unch</span>
           <div 
             ref={dotRef} 
-            className="inline-block w-3 h-3 rounded-full bg-foreground absolute"
-            style={{ top: '50%', transform: 'translateY(-50%)', right: '0' }}
+            className="w-3 h-3 rounded-full bg-foreground"
           />
         </h1>
       </div>
