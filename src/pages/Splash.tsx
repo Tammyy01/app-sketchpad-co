@@ -6,14 +6,13 @@ const Splash = () => {
   const navigate = useNavigate();
   const containerRef = useRef<HTMLDivElement>(null);
   const punchLettersRef = useRef<HTMLSpanElement[]>([]);
-  const ambLettersRef = useRef<HTMLSpanElement[]>([]);
   const dotRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
     const tl = gsap.timeline();
 
     // Preparation: Setup initial states
-    gsap.set([...punchLettersRef.current, ...ambLettersRef.current], {
+    gsap.set([...punchLettersRef.current], {
       opacity: 0,
       scale: 0
     });
@@ -27,7 +26,7 @@ const Splash = () => {
     });
 
     // Phase 0: Initial Reveal (0.0s to 0.5s)
-    tl.to([...punchLettersRef.current, ...ambLettersRef.current], {
+    tl.to([...punchLettersRef.current], {
       opacity: 1,
       scale: 1,
       duration: 0.5,
@@ -36,26 +35,6 @@ const Splash = () => {
     });
 
     // Phase 1: Collapse to Center (Starts at ~0.5s)
-    // Action A: Ambassadors letters collapse to center
-    tl.to(ambLettersRef.current, {
-      opacity: 0,
-      scale: 0,
-      x: (index, target) => {
-        const rect = target.getBoundingClientRect();
-        return window.innerWidth / 2 - rect.left - rect.width / 2;
-      },
-      y: (index, target) => {
-        const rect = target.getBoundingClientRect();
-        return window.innerHeight / 2 - rect.top - rect.height / 2;
-      },
-      duration: 0.4,
-      stagger: {
-        each: 0.02,
-        from: "start"
-      },
-      ease: "power2.in"
-    }, "0.5");
-
     // Action B: "unch" letters collapse to center (NOT 'P')
     const unchLetters = punchLettersRef.current.slice(1);
     tl.to(unchLetters, {
@@ -134,39 +113,23 @@ const Splash = () => {
   }, [navigate]);
 
   const punchLetters = ["P", "u", "n", "c", "h"];
-  const ambLetters = ["A", "m", "b", "a", "s", "s", "a", "d", "o", "r", "s"];
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-[hsl(var(--splash-gradient-end))] to-[hsl(var(--splash-gradient-start))]">
       <div ref={containerRef} className="text-center relative">
-        <div className="flex flex-col items-center gap-2">
-          <h1 className="text-6xl font-bold text-foreground flex items-center justify-center">
-            {punchLetters.map((letter, i) => (
-              <span
-                key={i}
-                ref={(el) => {
-                  if (el) punchLettersRef.current[i] = el;
-                }}
-                className="inline-block"
-              >
-                {letter}
-              </span>
-            ))}
-          </h1>
-          <p className="text-lg text-muted-foreground flex">
-            {ambLetters.map((letter, i) => (
-              <span
-                key={i}
-                ref={(el) => {
-                  if (el) ambLettersRef.current[i] = el;
-                }}
-                className="inline-block"
-              >
-                {letter}
-              </span>
-            ))}
-          </p>
-        </div>
+        <h1 className="text-6xl font-bold text-foreground flex items-center justify-center">
+          {punchLetters.map((letter, i) => (
+            <span
+              key={i}
+              ref={(el) => {
+                if (el) punchLettersRef.current[i] = el;
+              }}
+              className="inline-block"
+            >
+              {letter}
+            </span>
+          ))}
+        </h1>
         
         {/* Central collapsing dot */}
         <span 
