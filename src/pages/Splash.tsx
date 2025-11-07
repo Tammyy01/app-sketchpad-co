@@ -11,10 +11,9 @@ const Splash = () => {
   useEffect(() => {
     const tl = gsap.timeline();
 
-    // Preparation: Setup initial states
+    // Preparation: Setup initial states (all text hidden)
     gsap.set([...punchLettersRef.current], {
       opacity: 0,
-      scale: 0,
     });
     gsap.set(dotRef.current, {
       opacity: 0,
@@ -25,20 +24,19 @@ const Splash = () => {
       transform: "translate(-50%, -50%)",
     });
 
-    // Setup and Initial Reveal
+    // Phase 1: Initial Reveal (0.0s to 0.5s)
     tl.to([...punchLettersRef.current], {
       opacity: 1,
-      scale: 1,
-      duration: 0.4,
-      stagger: 0.03,
+      duration: 0.3,
+      stagger: 0.02,
       ease: "power2.out",
-    }).to({}, { duration: 0.7 }); // Hold
+    });
 
-    // Phase 1: Subtitle Exit & Dot Transformation (Starts at ~1.3s)
+    // Phase 2: Collapse & Dot Formation (Starts at ~0.5s)
     const pLetter = punchLettersRef.current[0];
     const unchLetters = punchLettersRef.current.slice(1);
 
-    // Action A & B: "unch" letters collapse to center
+    // Action A: Letters collapse to center
     tl.to(
       unchLetters,
       {
@@ -52,17 +50,17 @@ const Splash = () => {
           const rect = target.getBoundingClientRect();
           return window.innerHeight / 2 - rect.top - rect.height / 2;
         },
-        duration: 0.5,
+        duration: 0.4,
         stagger: {
           each: 0.02,
           from: "end",
         },
         ease: "power2.in",
       },
-      "1.3"
+      "0.5"
     );
 
-    // Action C: Dot reveals at center and rolls back to P
+    // Action B: Dot reveals at center
     tl.to(
       dotRef.current,
       {
@@ -71,8 +69,12 @@ const Splash = () => {
         duration: 0.2,
         ease: "back.out(1.7)",
       },
-      "1.3"
-    ).to(
+      "0.5"
+    );
+
+    // Phase 3: Collision & Reaction (Starts at ~1.0s)
+    // Action A: Dot rollback/impact - moves from center to P
+    tl.to(
       dotRef.current,
       {
         x: () => {
@@ -81,14 +83,26 @@ const Splash = () => {
           // Calculate distance from center to just right of P
           return pRect.right - centerX + 8;
         },
-        duration: 0.5,
-        ease: "power2.inOut",
+        duration: 0.3,
+        ease: "power2.out",
       },
-      "1.5"
+      "1.0"
     );
 
-    // Phase 2: Final Convergence and Centralization (Starts at ~1.8s)
-    // Move both P and dot together to center the signature
+    // Action B: P reaction - jiggle on impact
+    tl.to(
+      pLetter,
+      {
+        x: -4,
+        duration: 0.05,
+        yoyo: true,
+        repeat: 3,
+        ease: "power2.inOut",
+      },
+      "1.3"
+    );
+
+    // Action C: Centralization - move signature to center
     tl.to(
       [pLetter, dotRef.current],
       {
@@ -105,11 +119,11 @@ const Splash = () => {
         duration: 0.4,
         ease: "power2.inOut",
       },
-      "2.0"
+      "1.5"
     );
 
-    // Phase 3: Final Exit
-    tl.to({}, { duration: 0.5 }, "2.4").to(
+    // Phase 4: Hold and Exit
+    tl.to({}, { duration: 0.5 }, "1.9").to(
       containerRef.current,
       {
         opacity: 0,
@@ -119,7 +133,7 @@ const Splash = () => {
           setTimeout(() => navigate("/onboarding"), 300);
         },
       },
-      "2.9"
+      "2.4"
     );
 
     return () => {
