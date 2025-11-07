@@ -67,35 +67,39 @@ const Splash = () => {
     // Phase 2: Impact and Reaction (The Signature Move - Starts at ~1.0s)
     const pLetter = punchLettersRef.current[0];
     
-    // P stays in place (no movement)
-    
-    // Dot rolls from center to P's position
-    tl.to(dotRef.current, {
+    // P moves to center of screen
+    tl.to(pLetter, {
       x: (index, target) => {
-        const pRect = pLetter.getBoundingClientRect();
-        const dotRect = target.getBoundingClientRect();
-        return pRect.right - dotRect.left + 8;
+        const rect = target.getBoundingClientRect();
+        return window.innerWidth / 2 - rect.left - rect.width - 6;
       },
       y: (index, target) => {
-        const pRect = pLetter.getBoundingClientRect();
-        const dotRect = target.getBoundingClientRect();
-        return pRect.top + pRect.height / 2 - dotRect.top - dotRect.height / 2;
+        const rect = target.getBoundingClientRect();
+        return window.innerHeight / 2 - rect.top - rect.height / 2;
       },
-      duration: 0.5,
+      duration: 0.4,
+      ease: "power2.inOut"
+    }, "1.0");
+    
+    // Dot stays at center and rolls to meet P (slight adjustment to be next to P)
+    tl.to(dotRef.current, {
+      x: 0,
+      y: 0,
+      duration: 0.4,
       ease: "power2.in"
     }, "1.0");
 
     // P reacts with shake on impact
     tl.to(pLetter, {
-      x: -3,
+      x: "-=3",
       duration: 0.08,
       yoyo: true,
       repeat: 5,
       ease: "power2.inOut"
-    }, "1.5");
+    }, "1.4");
 
     // Hold the signature state
-    tl.to({}, { duration: 0.5 }, "1.8");
+    tl.to({}, { duration: 0.5 }, "1.7");
     
     // Phase 3: Final Exit
     tl.to(containerRef.current, {
