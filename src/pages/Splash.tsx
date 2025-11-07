@@ -67,11 +67,11 @@ const Splash = () => {
     // Phase 2: Impact and Reaction (The Signature Move - Starts at ~1.0s)
     const pLetter = punchLettersRef.current[0];
     
-    // Move P to center of screen
+    // Move P to left of center
     tl.to(pLetter, {
       x: (index, target) => {
         const rect = target.getBoundingClientRect();
-        return window.innerWidth / 2 - rect.left - rect.width / 2 - 12;
+        return window.innerWidth / 2 - rect.left - rect.width - 6;
       },
       y: (index, target) => {
         const rect = target.getBoundingClientRect();
@@ -81,7 +81,7 @@ const Splash = () => {
       ease: "power2.inOut"
     }, "1.0");
     
-    // Dot moves to center (next to P)
+    // Dot moves to right of P at center
     tl.to(dotRef.current, {
       x: 0,
       y: 0,
@@ -91,7 +91,7 @@ const Splash = () => {
 
     // P reacts with shake on impact
     tl.to(pLetter, {
-      x: "+=4",
+      x: "-=4",
       duration: 0.05,
       yoyo: true,
       repeat: 5,
