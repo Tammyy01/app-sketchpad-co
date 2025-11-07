@@ -85,36 +85,38 @@ const Splash = () => {
       ease: "back.out(1.7)"
     }, "0.7");
 
-    // Phase 2: Convergence & Signature Hold (Starts at ~1.0s)
+    // Phase 2: Impact and Reaction (The Signature Move - Starts at ~1.0s)
     const pLetter = punchLettersRef.current[0];
     
-    // Action A: P slides to dot position
-    tl.to(pLetter, {
+    // Action A: P stays put (no animation needed)
+    
+    // Action B: Dot flies from center to next to P
+    tl.to(dotRef.current, {
       x: (index, target) => {
-        const rect = target.getBoundingClientRect();
-        return window.innerWidth / 2 - rect.left - rect.width - 12;
+        const pRect = pLetter.getBoundingClientRect();
+        const dotRect = target.getBoundingClientRect();
+        return pRect.right - dotRect.left + 8;
       },
       y: (index, target) => {
-        const rect = target.getBoundingClientRect();
-        return window.innerHeight / 2 - rect.top - rect.height / 2;
+        const pRect = pLetter.getBoundingClientRect();
+        const dotRect = target.getBoundingClientRect();
+        return pRect.top + pRect.height / 2 - dotRect.top - dotRect.height / 2;
       },
-      duration: 0.5,
-      ease: "power2.inOut"
+      duration: 0.4,
+      ease: "power2.in"
     }, "1.0");
 
-    // Action B: P pops with scale
+    // Action C: P reacts with shake on impact
     tl.to(pLetter, {
-      scale: 1.3,
-      duration: 0.15,
-      ease: "power2.out"
-    }, "1.5")
-    .to(pLetter, {
-      scale: 1.2,
-      duration: 0.2,
-      ease: "back.out(1.7)"
-    });
+      x: -4,
+      duration: 0.05,
+      yoyo: true,
+      repeat: 5,
+      ease: "elastic.out(1, 0.3)"
+    }, "1.4");
 
-    // Action C: Hold (implicit in timeline timing)
+    // Hold the signature state
+    tl.to({}, { duration: 0.5 }, "1.6");
     
     // Phase 3: Final Exit
     tl.to(containerRef.current, {
