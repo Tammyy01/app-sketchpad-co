@@ -15,8 +15,8 @@ const Splash = () => {
       }
     });
 
-    // Initial setup
-    gsap.set(dotRef.current, { opacity: 0, scale: 0, x: 0 });
+    // Initial setup - dot starts where "unch" was
+    gsap.set(dotRef.current, { opacity: 0, scale: 0, x: 50 });
 
     // Animation sequence
     tl.from([pRef.current, unchRef.current], {
@@ -37,12 +37,12 @@ const Splash = () => {
       duration: 0.2
     }, "-=0.1")
     .to(dotRef.current, {
-      x: 60,
+      x: 100,
       duration: 0.4,
       ease: "power1.out"
     })
     .to(dotRef.current, {
-      x: 0,
+      x: 8,
       duration: 0.5,
       ease: "power2.in"
     })
